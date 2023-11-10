@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://eng2ya2wr5v3"]
+
+[ext_resource type="Texture2D" uid="uid://cq86uo3opb1p0" path="res://assets/background.jpg" id="1_kbnsj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+
+[node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -554.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kbnsj")
+expand_mode = 3
+stretch_mode = 6
