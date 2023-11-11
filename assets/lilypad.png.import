@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fourdca5hne5"
-path="res://.godot/imported/lilypad.jpg-0127f4109306d28f3b9c98c49c2efb20.ctex"
+uid="uid://w8frwaoowqw4"
+path="res://.godot/imported/lilypad.png-cb214011f0e7ff2f039dc529b630fae9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/lilypad.jpg"
-dest_files=["res://.godot/imported/lilypad.jpg-0127f4109306d28f3b9c98c49c2efb20.ctex"]
+source_file="res://assets/lilypad.png"
+dest_files=["res://.godot/imported/lilypad.png-cb214011f0e7ff2f039dc529b630fae9.ctex"]
 
 [params]
 
