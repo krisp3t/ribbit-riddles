@@ -28,6 +28,7 @@ folder_colors={
 "res://assets/": "green",
 "res://ideas/": "pink",
 "res://scenes/": "blue",
+"res://scripts/": "purple",
 "res://themes/": "orange"
 }
 

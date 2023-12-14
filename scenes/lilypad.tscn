@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://di2uqv7h12sgt"]
+
+[ext_resource type="Script" path="res://scripts/lilypad.gd" id="1_v3pfs"]
+
+[node name="Lilypad" type="Marker2D" groups=["zone"]]
+script = ExtResource("1_v3pfs")

@@ -1,16 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://eng2ya2wr5v3"]
+[gd_scene load_steps=7 format=3 uid="uid://eng2ya2wr5v3"]
 
-[ext_resource type="Texture2D" uid="uid://cn187pluqv2al" path="res://assets/bg_1.jpg" id="1_uxspj"]
-[ext_resource type="Script" path="res://scenes/dragndrop.gd" id="1_xbuqh"]
+[ext_resource type="Texture2D" uid="uid://ejwjgbjc62fq" path="res://assets/bg_2.png" id="1_k78h8"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
 [ext_resource type="Texture2D" uid="uid://bnewcqt2522ba" path="res://assets/button_2.png" id="3_lse6n"]
-[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog.png" id="5_7f87h"]
+[ext_resource type="PackedScene" uid="uid://cqb6d2rgcwhd8" path="res://scenes/frog.tscn" id="4_w27at"]
+[ext_resource type="PackedScene" uid="uid://di2uqv7h12sgt" path="res://scenes/lilypad.tscn" id="5_2cfo7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2a3y"]
 texture = ExtResource("3_lse6n")
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2ltlb"]
-radius = 503.49
 
 [node name="Level" type="Node2D"]
 
@@ -32,12 +29,9 @@ size_flags_vertical = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_right = 88.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_uxspj")
-expand_mode = 3
+texture = ExtResource("1_k78h8")
 stretch_mode = 6
 
 [node name="Logo" type="TextureRect" parent="UI/CanvasLayer"]
@@ -69,15 +63,10 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_u2a3y")
 text = "Next level"
 
-[node name="Frog" type="Sprite2D" parent="."]
-position = Vector2(920, 344)
-scale = Vector2(0.248428, 0.248428)
-texture = ExtResource("5_7f87h")
-script = ExtResource("1_xbuqh")
+[node name="Lilypad" parent="." instance=ExtResource("5_2cfo7")]
+position = Vector2(832, 608)
 
-[node name="Area2D" type="Area2D" parent="Frog"]
+[node name="Lilypad2" parent="." instance=ExtResource("5_2cfo7")]
+position = Vector2(1184, 608)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Frog/Area2D"]
-shape = SubResource("CircleShape2D_2ltlb")
-
-[connection signal="input_event" from="Frog/Area2D" to="Frog" method="_on_area_2d_input_event"]
+[node name="Frog" parent="." instance=ExtResource("4_w27at")]
