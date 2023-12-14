@@ -16,7 +16,6 @@ func _ready():
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	# Start dragging
 	if event.is_action_pressed("click"):
-		print_debug("start dragging frog");
 		if not selected:
 			selected = true;
 			modulate = Color(1, 1, 1, 0.5);
