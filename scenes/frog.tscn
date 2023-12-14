@@ -4,9 +4,10 @@
 [ext_resource type="Script" path="res://scripts/frog.gd" id="2_s8wbr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ltlb"]
-radius = 503.49
+radius = 195.06
 
 [node name="Frog" type="Sprite2D"]
+z_index = 1
 position = Vector2(920, 344)
 scale = Vector2(0.248428, 0.248428)
 texture = ExtResource("1_8kqrw")

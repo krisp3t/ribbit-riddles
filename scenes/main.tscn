@@ -65,7 +65,7 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_u2a3y")
 text = "Next level"
 
 [node name="Playfield" parent="." instance=ExtResource("4_b0t30")]
-position = Vector2(960, 552)
+position = Vector2(960, 540)
 script = ExtResource("5_t2tci")
 
 [editable path="Playfield"]

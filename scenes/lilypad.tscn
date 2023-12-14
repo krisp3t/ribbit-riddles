@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/lilypad.gd" id="1_v3pfs"]
 [ext_resource type="Texture2D" uid="uid://w8frwaoowqw4" path="res://assets/lilypad.png" id="2_7sv1c"]
 
-[node name="Lilypad" type="Marker2D" groups=["zone"]]
+[node name="Lilypad" type="Marker2D"]
 script = ExtResource("1_v3pfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
