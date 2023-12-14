@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://ejwjgbjc62fq" path="res://assets/bg_2.png" id="1_k78h8"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
 [ext_resource type="Texture2D" uid="uid://bnewcqt2522ba" path="res://assets/button_2.png" id="3_lse6n"]
-[ext_resource type="PackedScene" uid="uid://cqb6d2rgcwhd8" path="res://scenes/frog.tscn" id="4_w27at"]
-[ext_resource type="PackedScene" uid="uid://di2uqv7h12sgt" path="res://scenes/lilypad.tscn" id="5_2cfo7"]
+[ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="4_b0t30"]
+[ext_resource type="Script" path="res://scenes/playfield.gd" id="5_t2tci"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2a3y"]
 texture = ExtResource("3_lse6n")
@@ -32,6 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_k78h8")
+expand_mode = 2
 stretch_mode = 6
 
 [node name="Logo" type="TextureRect" parent="UI/CanvasLayer"]
@@ -63,10 +64,8 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_u2a3y")
 text = "Next level"
 
-[node name="Lilypad" parent="." instance=ExtResource("5_2cfo7")]
-position = Vector2(832, 608)
+[node name="Playfield" parent="." instance=ExtResource("4_b0t30")]
+position = Vector2(960, 552)
+script = ExtResource("5_t2tci")
 
-[node name="Lilypad2" parent="." instance=ExtResource("5_2cfo7")]
-position = Vector2(1184, 608)
-
-[node name="Frog" parent="." instance=ExtResource("4_w27at")]
+[editable path="Playfield"]
