@@ -1,15 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://eng2ya2wr5v3"]
+[gd_scene load_steps=8 format=3 uid="uid://eng2ya2wr5v3"]
 
 [ext_resource type="Texture2D" uid="uid://cn187pluqv2al" path="res://assets/bg_1.jpg" id="1_uxspj"]
+[ext_resource type="Script" path="res://scenes/dragndrop.gd" id="1_xbuqh"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
 [ext_resource type="Texture2D" uid="uid://bnewcqt2522ba" path="res://assets/button_2.png" id="3_lse6n"]
+[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog.png" id="5_7f87h"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2a3y"]
 texture = ExtResource("3_lse6n")
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ltlb"]
+radius = 503.49
 
-[node name="Control" type="Control" parent="."]
+[node name="Level" type="Node2D"]
+
+[node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,20 +24,23 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Control"]
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
 
-[node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="UI/CanvasLayer"]
+
+[node name="Background" type="TextureRect" parent="UI/CanvasLayer/ParallaxBackground"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 88.0
+offset_right = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_uxspj")
 expand_mode = 3
 stretch_mode = 6
 
-[node name="TextureRect" type="TextureRect" parent="Control/CanvasLayer/TextureRect"]
-layout_mode = 1
+[node name="Logo" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -43,19 +51,33 @@ grow_horizontal = 2
 texture = ExtResource("2_ofg7h")
 expand_mode = 2
 
-[node name="Button" type="Button" parent="Control/CanvasLayer/TextureRect"]
+[node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
 texture_repeat = 2
-layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -210.0
-offset_top = -56.0
+offset_left = -240.0
+offset_top = -136.0
+offset_right = -46.0
+offset_bottom = -80.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxTexture_u2a3y")
 text = "Next level"
+
+[node name="Frog" type="Sprite2D" parent="."]
+position = Vector2(920, 344)
+scale = Vector2(0.248428, 0.248428)
+texture = ExtResource("5_7f87h")
+script = ExtResource("1_xbuqh")
+
+[node name="Area2D" type="Area2D" parent="Frog"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Frog/Area2D"]
+shape = SubResource("CircleShape2D_2ltlb")
+
+[connection signal="input_event" from="Frog/Area2D" to="Frog" method="_on_area_2d_input_event"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqb6d2rgcwhd8"]
+
+[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog.png" id="1_8kqrw"]
+[ext_resource type="Script" path="res://scenes/dragndrop.gd" id="2_s8wbr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ltlb"]
+radius = 503.49
+
+[node name="Frog" type="Sprite2D"]
+position = Vector2(920, 344)
+scale = Vector2(0.248428, 0.248428)
+texture = ExtResource("1_8kqrw")
+script = ExtResource("2_s8wbr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2ltlb")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
