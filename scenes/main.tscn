@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
 [ext_resource type="Texture2D" uid="uid://bnewcqt2522ba" path="res://assets/button_2.png" id="3_lse6n"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="4_b0t30"]
-[ext_resource type="Script" path="res://scenes/playfield.gd" id="5_t2tci"]
+[ext_resource type="Script" path="res://scripts/playfield.gd" id="5_t2tci"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u2a3y"]
 texture = ExtResource("3_lse6n")

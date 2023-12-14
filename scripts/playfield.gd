@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D;
 
 const LILYPADS_OFFSET : Vector2i = Vector2i(200, 100);
 const DROP_SHORTEST_DIST = 75;
@@ -7,20 +7,15 @@ var frog_scene : PackedScene = preload("res://scenes/frog.tscn");
 var lilypad_scene : PackedScene = preload("res://scenes/lilypad.tscn");
 var lilypads : Array = [];
 
-func read_JSON(json_file_path: String) -> Dictionary:
-	var file : FileAccess = FileAccess.open(json_file_path, FileAccess.READ);
-	var content : String = file.get_as_text();
-	return JSON.new().parse_string(content);
-
-func center_self() -> void:
+func _center_self() -> void:
 	position = get_viewport_rect().size / 2;
 	print_debug(position);
 	
 
 func _ready() -> void:
-	center_self();
-	get_tree().get_root().connect("size_changed", center_self);
-	var layout : Dictionary = read_JSON("res://levels/easy.json");
+	_center_self();
+	get_tree().get_root().connect("size_changed", _center_self);
+	var layout : Dictionary = read_JSON.get_dict("res://levels/easy.json");
 	# TODO: get current level instead of hardcode	
 	var level_layout : Array = layout["1"];
 	
@@ -42,24 +37,32 @@ func _ready() -> void:
 			
 			# Instantiate frogs on the lilypads
 			var frog : Node2D = frog_scene.instantiate();
-			frog.coord = Vector2i(x, y);
+			frog.attached_lilypad = lilypad;
 			frog.red = (val == lilypad_enum.STATUS.RED);
 			lilypad.status = lilypad_enum.STATUS.RED if frog.red else lilypad_enum.STATUS.GREEN;
-			frog.rest_point = lilypad.position;
 			frog.connect('drop_frog', _on_frog_drop);
 			add_child(frog);
 
+func _check_valid_move(frog: Frog, lilypad: Lilypad) -> bool:
+	print_debug("check valid move", frog.position, lilypad.position)
+	if lilypad.status != lilypad_enum.STATUS.EMPTY:
+		return false;
+	return true;
+	
+	
 func _on_frog_drop(frog: Frog) -> void:
 	for child in get_tree().get_nodes_in_group("lilypads"):
 		var lilypad : Lilypad = child;
-		# Drop to the closest lilypad
 		var distance : float = frog.position.distance_to(lilypad.position);
-		print_debug(distance, frog.position, lilypad.position, lilypad.coord);
+		print_debug(distance, "dropping frog", frog.position, lilypad.position)
+		# Drop to the closest lilypad		
 		if distance < DROP_SHORTEST_DIST:
-			print_debug("frog dropping", lilypad.coord);
-			frog.rest_point = lilypad.position;
+			if (!_check_valid_move(frog, lilypad)):
+				break;
+			frog.attached_lilypad.status = lilypad_enum.STATUS.EMPTY;			
+			frog.attached_lilypad = lilypad;
 			lilypad.status = lilypad_enum.STATUS.RED if frog.red else lilypad_enum.STATUS.GREEN;
-			return;
+			break;
 	
 
 
