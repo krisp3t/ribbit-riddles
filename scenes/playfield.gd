@@ -37,24 +37,30 @@ func _ready() -> void:
 				# Centre the rows with even numbers of lilypads (have 1 lilypad less)
 				lilypad.position = Vector2i((x - 1) * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2), (y - 1) * LILYPADS_OFFSET.y);
 			add_child(lilypad);
-			if (val == 0): 
+			if (val == lilypad_enum.STATUS.EMPTY): 
 				continue;
 			
-			# Instantiate frogs
+			# Instantiate frogs on the lilypads
 			var frog : Node2D = frog_scene.instantiate();
 			frog.coord = Vector2i(x, y);
-			frog.red = (val == 2);
+			frog.red = (val == lilypad_enum.STATUS.RED);
+			lilypad.status = lilypad_enum.STATUS.RED if frog.red else lilypad_enum.STATUS.GREEN;
 			frog.rest_point = lilypad.position;
 			frog.connect('drop_frog', _on_frog_drop);
 			add_child(frog);
 
 func _on_frog_drop(frog: Frog) -> void:
 	for child in get_tree().get_nodes_in_group("lilypads"):
+		var lilypad : Lilypad = child;
 		# Drop to the closest lilypad
-		var distance : float = frog.position.distance_to(child.position);
+		var distance : float = frog.position.distance_to(lilypad.position);
+		print_debug(distance, frog.position, lilypad.position, lilypad.coord);
 		if distance < DROP_SHORTEST_DIST:
-			print_debug("frog dropping", child.coord);
-			frog.rest_point = child.position;
+			print_debug("frog dropping", lilypad.coord);
+			frog.rest_point = lilypad.position;
+			lilypad.status = lilypad_enum.STATUS.RED if frog.red else lilypad_enum.STATUS.GREEN;
+			return;
+	
 
 
 func _process(delta: float) -> void:
