@@ -13,7 +13,7 @@ func _ready():
 	if red:
 		texture = preload("res://assets/frog_red.png");
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	# Start dragging
 	if event.is_action_pressed("click"):
 		if not selected:

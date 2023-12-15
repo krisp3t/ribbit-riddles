@@ -1,15 +1,19 @@
 class_name level_enum;
 enum DIFFICULTY {EASY, INTERMEDIATE, HARD, EXPERT, CUSTOM};
-@export var difficulty: DIFFICULTY;
 
+const MAX_EASY : int = 10;
+const MAX_INTERMEDIATE : int = 20;
+const MAX_HARD : int = 30;
+const MAX_EXPERT : int = 40;
+ 
 static func get_level_difficulty(level: int) -> DIFFICULTY:
-	if (level >= 1 and level <= 10):
+	if (level >= 1 and level <= MAX_EASY):
 		return DIFFICULTY.EASY;
-	elif (level >= 11 and level <= 20):
+	elif (level >= MAX_EASY + 1 and level <= MAX_INTERMEDIATE):
 		return DIFFICULTY.INTERMEDIATE;
-	elif (level >= 21 and level <= 30):
+	elif (level >= MAX_INTERMEDIATE + 1 and level <= MAX_HARD):
 		return DIFFICULTY.HARD;
-	elif (level >= 31 and level <= 40):
+	elif (level >= MAX_HARD + 1 and level <= MAX_EXPERT):
 		return DIFFICULTY.EXPERT;
 	else:
 		return DIFFICULTY.CUSTOM;

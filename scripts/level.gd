@@ -9,7 +9,7 @@ func _initialize() -> void:
 
 	
 func _ready() -> void:
-	_initialize();
+	_initialize();"res://assets/bg_1.png"
 
 
 func _on_restart_level_button_pressed() -> void:

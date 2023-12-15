@@ -29,11 +29,11 @@ func _ready() -> void:
 			var lilypad : Node2D = lilypad_scene.instantiate();
 			if (y % 2 == 0):
 				lilypad.coord = Vector2i(y, x * 2);
-				lilypad.position = Vector2i((x - 1) * LILYPADS_OFFSET.x, (y - 1) * LILYPADS_OFFSET.y);
+				lilypad.position = Vector2((x - 1) * LILYPADS_OFFSET.x, (y - 1) * LILYPADS_OFFSET.y);
 			else:
 				lilypad.coord = Vector2i(y, x * 2 + 1);
 				# Centre the rows with even numbers of lilypads (have 1 lilypad less)				
-				lilypad.position = Vector2i((x - 1) * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2), (y - 1) * LILYPADS_OFFSET.y);
+				lilypad.position = Vector2((x - 1) * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2.0), (y - 1) * LILYPADS_OFFSET.y);
 			add_child(lilypad);
 			lilypads[lilypad.coord] = lilypad;
 			if (val == lilypad_enum.STATUS.EMPTY): 
@@ -64,7 +64,7 @@ func _get_between_lilypad(start: Vector2i, target: Vector2i) -> Lilypad:
 		return null;
 	return lilypads[between];
 	
-func _check_valid_move(start: Lilypad, between: Lilypad, target: Lilypad) -> bool:
+func _check_valid_move(between: Lilypad, target: Lilypad) -> bool:
 	if (target.attached_frog != null || between == null):
 		return false;
 	if (between.attached_frog == null || between.attached_frog.red == true):
@@ -87,7 +87,7 @@ func _on_frog_drop(frog: Frog) -> void:
 		var start : Vector2i = frog.attached_lilypad.coord;
 		var target : Vector2i = lilypad.coord;
 		var between : Lilypad = _get_between_lilypad(start, target);
-		if (!_check_valid_move(lilypads[start], between, lilypads[target])):
+		if (!_check_valid_move(between, lilypads[target])):
 			break;
 			
 		# Jump over frog
@@ -105,5 +105,3 @@ func _on_frog_drop(frog: Frog) -> void:
 	
 
 
-func _process(delta: float) -> void:
-	pass
