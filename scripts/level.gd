@@ -5,6 +5,9 @@ func _initialize() -> void:
 	var difficulty : level_enum.DIFFICULTY = level_enum.get_level_difficulty(level_vars.current_level)
 	$UI/CanvasLayer/LevelLabel.text = "Level: %d" % level_vars.current_level;
 	$UI/CanvasLayer/DifficultyLabel.text = "Difficulty: %s" % level_enum.get_difficulty_name(difficulty);
+	var background : String = level_enum.get_difficulty_background(difficulty);
+	$UI/CanvasLayer/ParallaxBackground/Background.texture = load(background);
+
 	
 func _ready() -> void:
 	_initialize();
@@ -15,7 +18,7 @@ func _on_restart_level_button_pressed() -> void:
 
 
 func _on_next_level_button_pressed() -> void:
-	level_vars.current_level += 1;
+	level_vars.initialize(level_vars.current_level + 1);
 	get_tree().reload_current_scene();
 	
 	

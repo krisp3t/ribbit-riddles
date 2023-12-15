@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://eng2ya2wr5v3"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_47t2f"]
-[ext_resource type="Texture2D" uid="uid://ejwjgbjc62fq" path="res://assets/bg_2.png" id="1_k78h8"]
+[ext_resource type="Texture2D" uid="uid://bu0h7ovcukxni" path="res://assets/bg_1.png" id="2_86sda"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
 [ext_resource type="Texture2D" uid="uid://bnewcqt2522ba" path="res://assets/button_2.png" id="3_lse6n"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="4_b0t30"]
@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_k78h8")
+texture = ExtResource("2_86sda")
 expand_mode = 2
 stretch_mode = 6
 

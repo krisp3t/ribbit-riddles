@@ -19,8 +19,7 @@ func _center_self() -> void:
 func _ready() -> void:
 	_center_self();
 	get_tree().get_root().connect("size_changed", _center_self);
-	var layout : Dictionary = read_JSON.get_dict("res://levels/easy.json");
-	var level_layout : Array = layout[str(level_vars.current_level)];
+	var level_layout : Array = level_vars.level_layout;
 	
 	for y in level_layout.size():
 		for x in level_layout[y].size():
