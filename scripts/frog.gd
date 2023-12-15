@@ -11,7 +11,7 @@ signal drop_frog(Vector2i);
 func _ready():
 	add_to_group("frogs");
 	if red:
-		modulate = Color(1, 0.2, 0.2);
+		texture = preload("res://assets/frog_red.png");
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	# Start dragging

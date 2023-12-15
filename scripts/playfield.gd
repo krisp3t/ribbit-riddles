@@ -1,4 +1,5 @@
 extends Node2D;
+@onready var level_vars = get_node("/root/LevelVariables");
 
 const LILYPADS_OFFSET : Vector2i = Vector2i(200, 100);
 const DROP_SHORTEST_DIST = 75;
@@ -18,9 +19,8 @@ func _center_self() -> void:
 func _ready() -> void:
 	_center_self();
 	get_tree().get_root().connect("size_changed", _center_self);
-	var layout : Dictionary = read_JSON.get_dict("res://levels/veteran.json");
-	# TODO: get current level instead of hardcode	
-	var level_layout : Array = layout["40"];
+	var layout : Dictionary = read_JSON.get_dict("res://levels/easy.json");
+	var level_layout : Array = layout[str(level_vars.current_level)];
 	
 	for y in level_layout.size():
 		for x in level_layout[y].size():
