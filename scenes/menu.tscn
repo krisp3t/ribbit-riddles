@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dpa62fnjg4pxu"]
 
-[ext_resource type="Texture2D" uid="uid://cn187pluqv2al" path="res://assets/bg_1.jpg" id="1_d4fto"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="2_w4526"]
+[ext_resource type="Texture2D" uid="uid://c61n8nqi7vky0" path="res://assets/bg_main_menu.jpg" id="3_5aoog"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_d4fto")
+texture = ExtResource("3_5aoog")
 expand_mode = 4
 stretch_mode = 6
 flip_h = true
