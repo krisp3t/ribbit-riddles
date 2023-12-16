@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpa62fnjg4pxu"]
+[gd_scene load_steps=5 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Texture2D" uid="uid://cn187pluqv2al" path="res://assets/bg_1.jpg" id="1_d4fto"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="2_w4526"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,6 +12,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_v3ef7")
+script = ExtResource("2_w4526")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -76,3 +79,6 @@ text = "Credits"
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
 text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]

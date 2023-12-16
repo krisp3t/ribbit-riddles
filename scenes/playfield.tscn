@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://215fycacuk5o"]
+[gd_scene load_steps=2 format=3 uid="uid://215fycacuk5o"]
+
+[ext_resource type="Texture2D" uid="uid://bukskk1o28qb4" path="res://assets/buttons/4x/Asset 4@4x.png" id="1_pbjdu"]
 
 [node name="Playfield" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -225.0
+offset_right = 350.0
+offset_bottom = 425.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_pbjdu")
+expand_mode = 5

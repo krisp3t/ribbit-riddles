@@ -18,15 +18,10 @@ func initialize(level : int) -> void:
 	queue_next_bg();
 	
 func queue_next_bg() -> void:
-	# Queue next background if needed (different from current)
 	var next_difficulty : level_enum.DIFFICULTY = level_enum.get_level_difficulty(current_level + 1);
-	
 	var next_bg_path : String = level_enum.get_difficulty_background(next_difficulty);
 	ResourceLoader.load_threaded_request(next_bg_path);
 	
-	
-	
-
 func _ready() -> void:
 	ResourceLoader.load_threaded_request(level_enum.get_difficulty_background(level_enum.DIFFICULTY.EASY));
 	initialize(1);

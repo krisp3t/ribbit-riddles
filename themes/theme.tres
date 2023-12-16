@@ -1,10 +1,10 @@
 [gd_resource type="Theme" load_steps=4 format=3 uid="uid://c3n7aiaxcqhoo"]
 
-[ext_resource type="Texture2D" uid="uid://bnewcqt2522ba" path="res://assets/button_2.png" id="1_be1aw"]
+[ext_resource type="Texture2D" uid="uid://v356hmlwdr57" path="res://assets/buttons/4x/Asset 3@4x.png" id="1_2qlu5"]
 [ext_resource type="FontFile" uid="uid://eilaj3eix4dd" path="res://assets/MouseMemoirs-Regular.ttf" id="1_oj614"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dk70t"]
-texture = ExtResource("1_be1aw")
+texture = ExtResource("1_2qlu5")
 
 [resource]
 default_font = ExtResource("1_oj614")
