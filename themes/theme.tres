@@ -23,9 +23,11 @@ modulate_color = Color(1, 1, 1, 0.917)
 [resource]
 default_font = ExtResource("1_oj614")
 default_font_size = 60
-Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 50
 Button/styles/disabled = SubResource("StyleBoxTexture_pebk5")
 Button/styles/focus = SubResource("StyleBoxTexture_bneur")
 Button/styles/hover = SubResource("StyleBoxTexture_e67tl")
 Button/styles/normal = SubResource("StyleBoxTexture_dk70t")
 Button/styles/pressed = SubResource("StyleBoxTexture_cnv7j")
+Label/colors/font_color = Color(0, 0, 0, 1)
