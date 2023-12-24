@@ -3,3 +3,5 @@
 ideas/
 *.tmp
 *.keystore
+*.apk
+android/

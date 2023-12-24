@@ -36,27 +36,26 @@ expand_mode = 2
 stretch_mode = 6
 
 [node name="Logo" type="TextureRect" parent="UI/CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -130.5
-offset_right = 130.5
-offset_bottom = 192.0
-grow_horizontal = 2
+anchors_preset = -1
+anchor_left = 0.841
+anchor_top = 0.01
+anchor_right = 0.841
+anchor_bottom = 0.01
+offset_right = 261.0
+offset_bottom = 191.0
+grow_vertical = 0
 texture = ExtResource("2_ofg7h")
 expand_mode = 2
 
 [node name="RestartLevelButton" type="Button" parent="UI/CanvasLayer"]
 texture_repeat = 2
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -328.0
-offset_right = -62.0
-offset_bottom = -272.0
+anchors_preset = -1
+anchor_left = 0.97
+anchor_top = 0.79
+anchor_right = 0.97
+anchor_bottom = 0.8
+offset_left = -261.88
+offset_top = -56.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -66,16 +65,16 @@ text = "Restart level"
 
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
 texture_repeat = 2
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = -1
+anchor_left = 0.97
+anchor_top = 0.99
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -176.0
+offset_left = -261.0
+offset_top = -154.2
 offset_right = -62.0
-offset_bottom = -120.0
-grow_horizontal = 0
+offset_bottom = -98.2
+grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
@@ -101,6 +100,12 @@ text = "Difficulty: Tadpole"
 [node name="Playfield" parent="." instance=ExtResource("4_b0t30")]
 position = Vector2(960, 540)
 script = ExtResource("5_t2tci")
+
+[node name="TextureRect" parent="Playfield" index="0"]
+offset_left = -550.0
+offset_top = -500.0
+offset_right = 550.0
+offset_bottom = 500.0
 
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
