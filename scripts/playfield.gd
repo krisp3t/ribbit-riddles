@@ -1,7 +1,7 @@
 extends Node2D;
 @onready var level_vars = get_node("/root/LevelVariables");
 
-const LILYPADS_OFFSET : Vector2i = Vector2i(200, 100);
+const LILYPADS_OFFSET : Vector2i = Vector2i(300, 145);
 const DROP_SHORTEST_DIST = 75;
 
 var frog_scene : PackedScene = preload("res://scenes/frog.tscn");
@@ -11,14 +11,7 @@ var frogs_left : int = 0;
 
 signal solved;
 
-func _center_self() -> void:
-	position = get_viewport_rect().size / 2;
-	print_debug(position);
-	
-
 func _ready() -> void:
-	_center_self();
-	get_tree().get_root().connect("size_changed", _center_self);
 	var level_layout : Array = level_vars.level_layout;
 	
 	for y in level_layout.size():
@@ -29,11 +22,11 @@ func _ready() -> void:
 			var lilypad : Node2D = lilypad_scene.instantiate();
 			if (y % 2 == 0):
 				lilypad.coord = Vector2i(y, x * 2);
-				lilypad.position = Vector2((x - 1) * LILYPADS_OFFSET.x, (y - 1) * LILYPADS_OFFSET.y);
+				lilypad.position = Vector2(200 + x * LILYPADS_OFFSET.x, 150 + y * LILYPADS_OFFSET.y);
 			else:
 				lilypad.coord = Vector2i(y, x * 2 + 1);
 				# Centre the rows with even numbers of lilypads (have 1 lilypad less)				
-				lilypad.position = Vector2((x - 1) * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2.0), (y - 1) * LILYPADS_OFFSET.y);
+				lilypad.position = Vector2(200 + x * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2.0), 150 + y * LILYPADS_OFFSET.y);
 			add_child(lilypad);
 			lilypads[lilypad.coord] = lilypad;
 			if (val == lilypad_enum.STATUS.EMPTY): 

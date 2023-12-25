@@ -117,6 +117,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
 offset_left = 1865.0
 offset_top = 264.0
 offset_right = 2304.0
@@ -148,6 +149,7 @@ text = "1. Only             should remain in the pond
 autowrap_mode = 2
 
 [node name="RedFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
 offset_left = 1687.0
 offset_top = 344.0
 offset_right = 1751.0
@@ -156,6 +158,7 @@ texture = ExtResource("7_pyfpy")
 expand_mode = 1
 
 [node name="RedFrog2" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
 offset_left = 1751.0
 offset_top = 482.0
 offset_right = 1815.0
@@ -164,6 +167,7 @@ texture = ExtResource("7_pyfpy")
 expand_mode = 1
 
 [node name="GreenFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
 offset_left = 1655.0
 offset_top = 482.0
 offset_right = 1719.0
@@ -172,6 +176,7 @@ texture = ExtResource("8_x4l4n")
 expand_mode = 1
 
 [node name="GreenFrog2" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
 offset_left = 1751.0
 offset_top = 434.0
 offset_right = 1815.0
@@ -180,6 +185,7 @@ texture = ExtResource("8_x4l4n")
 expand_mode = 1
 
 [node name="GreenFrog3" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
 offset_left = 1760.0
 offset_top = 576.0
 offset_right = 1824.0
@@ -230,14 +236,15 @@ theme_override_font_sizes/font_size = 32
 text = "Finish the level to proceed"
 
 [node name="Playfield" parent="." instance=ExtResource("4_b0t30")]
-position = Vector2(960, 540)
+position = Vector2(500, 100)
 script = ExtResource("5_t2tci")
 
 [node name="PlayfieldBackground" parent="Playfield" index="0"]
-offset_left = -448.0
-offset_top = -460.0
-offset_right = 544.0
-offset_bottom = 445.0
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton2" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]

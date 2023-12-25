@@ -9,7 +9,7 @@ radius = 195.06
 [node name="Frog" type="Sprite2D"]
 z_index = 1
 position = Vector2(920, 344)
-scale = Vector2(0.248428, 0.248428)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_84tpa")
 offset = Vector2(0, -30)
 script = ExtResource("2_s8wbr")
