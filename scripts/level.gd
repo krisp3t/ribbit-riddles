@@ -3,7 +3,7 @@ extends Node2D;
 
 func _initialize() -> void:
 	var difficulty : level_enum.DIFFICULTY = level_enum.get_level_difficulty(level_vars.current_level)
-	$UI/CanvasLayer/LevelLabel.text = "Level: %d" % level_vars.current_level;
+	$UI/CanvasLayer/LevelContainer/LevelLabel.text = "Level: %d" % level_vars.current_level;
 	$UI/CanvasLayer/DifficultyLabel.text = "Difficulty: %s" % level_enum.get_difficulty_name(difficulty);
 	$UI/CanvasLayer/ParallaxBackground/Background.texture = level_vars.background;
 
