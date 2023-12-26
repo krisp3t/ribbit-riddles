@@ -16,8 +16,15 @@ func _on_restart_level_button_pressed() -> void:
 	get_tree().reload_current_scene();
 
 
+func _on_playfield_solved() -> void:
+	$UI/CanvasLayer/VBoxContainer/NextLevelButton.disabled = false;
+	$UI/CanvasLayer/VBoxContainer/FinishWarning.visible = false;
+	$UI/CanvasLayer/LevelContainer/LevelSolved.texture = preload("res://assets/buttons/4x/Asset 25@4x.png");
+	
 func _on_next_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.current_level + 1);
 	get_tree().reload_current_scene();
 	
 	
+
+

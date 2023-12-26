@@ -20,9 +20,7 @@ func _ready():
 		texture = preload("res://assets/frog_red.png");
 		
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	print_debug("event");
 	if event.is_action_pressed("click"):
-		print_debug("click");
 		selected = true;
 		modulate = Color(1, 1, 1, 0.5);
 	

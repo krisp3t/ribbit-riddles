@@ -274,5 +274,6 @@ grow_vertical = 1
 
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton2" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]
 
 [editable path="Playfield"]
