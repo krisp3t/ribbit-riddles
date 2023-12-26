@@ -11,7 +11,12 @@ var frogs_left : int = 0;
 
 signal solved;
 
+func _on_viewport_size_changed():
+	# Center the playfield
+	position.x = (get_viewport_rect().size.x - $PlayfieldBackground.size.x) / 2;
+
 func _ready() -> void:
+	get_tree().root.connect("size_changed", _on_viewport_size_changed);
 	var level_layout : Array = level_vars.level_layout;
 	
 	for y in level_layout.size():

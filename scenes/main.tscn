@@ -60,10 +60,10 @@ texture = ExtResource("2_ofg7h")
 expand_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="UI/CanvasLayer"]
-offset_left = 458.0
+offset_left = 424.0
 offset_top = 236.0
-offset_right = 633.0
-offset_bottom = 640.0
+offset_right = 599.0
+offset_bottom = 606.0
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_d71m5")
 expand_mode = 1
@@ -114,7 +114,7 @@ text = "Difficulty: Tadpole"
 [node name="DifficultyTexture" type="TextureRect" parent="UI/CanvasLayer"]
 offset_left = 64.0
 offset_top = 256.0
-offset_right = 448.0
+offset_right = 408.0
 offset_bottom = 317.0
 texture = ExtResource("6_g3cuy")
 expand_mode = 2
@@ -135,28 +135,36 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 261.0
+offset_top = -2.0
+offset_right = 470.0
+offset_bottom = -167.56
 grow_horizontal = 2
 grow_vertical = 2
+rotation = 1.5708
 texture = SubResource("GradientTexture1D_d71m5")
 expand_mode = 1
 
 [node name="RulesLabel" type="Label" parent="UI/CanvasLayer/Rules"]
 layout_mode = 2
-offset_left = 15.0
-offset_top = -2.0
-offset_right = 255.0
-offset_bottom = 68.0
+offset_left = 14.6
+offset_top = -0.159973
+offset_right = 254.6
+offset_bottom = 69.84
 theme = ExtResource("3_jcgo0")
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
 text = "Rules:"
 
 [node name="RulesText" type="Label" parent="UI/CanvasLayer/Rules"]
 layout_mode = 2
 offset_left = 14.6
-offset_top = 77.84
+offset_top = 85.84
 offset_right = 261.6
-offset_bottom = 403.84
+offset_bottom = 411.84
 theme = ExtResource("3_jcgo0")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 38
 text = "1. Only             should remain in the pond
 2. Jump over           with           or
@@ -204,19 +212,13 @@ theme_override_font_sizes/font_size = 32
 text = "Finish the level to proceed"
 
 [node name="Playfield" parent="." instance=ExtResource("4_b0t30")]
-position = Vector2(500, 100)
+position = Vector2(480, 125)
 script = ExtResource("5_t2tci")
 
 [node name="PlayfieldBackground" parent="Playfield" index="0"]
 anchors_preset = -1
-anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -44.0
-offset_top = 20.0
-offset_right = 956.0
-offset_bottom = 920.0
 grow_vertical = 1
 
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton2" to="." method="_on_restart_level_button_pressed"]
