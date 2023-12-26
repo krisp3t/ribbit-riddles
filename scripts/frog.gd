@@ -7,22 +7,25 @@ var selected : bool = false;
 
 signal drop_frog(Vector2i);
 
-
+func _input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			modulate = Color(1, 1, 1, 1);
+			selected = false;
+			drop_frog.emit(self);
+	
 func _ready():
 	add_to_group("frogs");
 	if red:
 		texture = preload("res://assets/frog_red.png");
-
+		
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	# Start dragging
+	print_debug("event");
 	if event.is_action_pressed("click"):
-		if not selected:
-			selected = true;
-			modulate = Color(1, 1, 1, 0.5);
-		else:
-			modulate = Color(1, 1, 1, 1);
-			drop_frog.emit(self);
-			selected = false;
+		print_debug("click");
+		selected = true;
+		modulate = Color(1, 1, 1, 0.5);
+	
 
 
 		

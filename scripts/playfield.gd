@@ -98,7 +98,6 @@ func _on_frog_drop(frog: Frog) -> void:
 		break;
 	
 	if _check_level_solved():
-		print_debug("win");
 		solved.emit();
 	
 

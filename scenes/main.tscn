@@ -89,7 +89,7 @@ grow_horizontal = 2
 texture = SubResource("GradientTexture1D_7va1i")
 
 [node name="LevelContainer" type="HBoxContainer" parent="UI/CanvasLayer"]
-anchors_preset = -1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -96.5
@@ -247,6 +247,7 @@ theme_override_constants/separation = 16
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_jcgo0")
+disabled = true
 text = "Next level"
 
 [node name="FinishWarning" type="Label" parent="UI/CanvasLayer/VBoxContainer"]
