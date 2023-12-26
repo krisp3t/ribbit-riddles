@@ -68,7 +68,7 @@ text = "Play"
 [node name="MapEditor" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
-text = "Map Editor"
+text = "Level Editor"
 
 [node name="Options" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
@@ -90,6 +90,8 @@ anchor_bottom = 0.01
 offset_left = -243.0
 offset_bottom = 37.0
 grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Made with 💖 by krisp3t"
 

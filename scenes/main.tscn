@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://eng2ya2wr5v3"]
+[gd_scene load_steps=13 format=3 uid="uid://eng2ya2wr5v3"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_47t2f"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="4_ljcy3"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="5_t2tci"]
 [ext_resource type="Texture2D" uid="uid://cobhadix28jtk" path="res://assets/buttons/4x/Asset 30@4x.png" id="6_g3cuy"]
-[ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="7_pyfpy"]
-[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="8_x4l4n"]
 
 [sub_resource type="Gradient" id="Gradient_ebnsf"]
 colors = PackedColorArray(0.764706, 0.345098, 0.180392, 1, 0.890196, 0.603922, 0.203922, 0.921569)
@@ -63,9 +61,9 @@ expand_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="UI/CanvasLayer"]
 offset_left = 458.0
-offset_top = 240.0
-offset_right = 698.0
-offset_bottom = 644.0
+offset_top = 236.0
+offset_right = 633.0
+offset_bottom = 640.0
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_d71m5")
 expand_mode = 1
@@ -85,20 +83,31 @@ offset_bottom = 167.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
 
 [node name="LevelLabel" type="Label" parent="UI/CanvasLayer"]
-offset_left = 72.0
-offset_top = 408.0
-offset_right = 235.0
-offset_bottom = 478.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.02
+anchor_right = 0.5
+anchor_bottom = 0.02
+offset_left = -81.5
+offset_right = 81.5
+offset_bottom = 70.0
+grow_horizontal = 2
 theme = ExtResource("3_jcgo0")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
 text = "Level: 1"
+horizontal_alignment = 1
 
 [node name="DifficultyLabel" type="Label" parent="UI/CanvasLayer"]
 offset_left = 72.0
-offset_top = 328.0
+offset_top = 336.0
 offset_right = 466.0
-offset_bottom = 398.0
+offset_bottom = 406.0
 theme = ExtResource("3_jcgo0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
 text = "Difficulty: Tadpole"
 
@@ -112,35 +121,41 @@ expand_mode = 2
 
 [node name="Rules" type="Control" parent="UI/CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_left = 0.97
+anchor_top = 0.543
+anchor_right = 0.97
+anchor_bottom = 0.634
+offset_left = -261.0
+offset_top = -328.28
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1865.0
-offset_top = 264.0
-offset_right = 2304.0
-offset_bottom = 546.0
-rotation = 1.5708
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("GradientTexture1D_d71m5")
 expand_mode = 1
 
 [node name="RulesLabel" type="Label" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1608.0
-offset_top = 272.0
-offset_right = 1707.0
-offset_bottom = 342.0
+layout_mode = 2
+offset_left = 15.0
+offset_top = -2.0
+offset_right = 255.0
+offset_bottom = 68.0
 theme = ExtResource("3_jcgo0")
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 text = "Rules:"
 
 [node name="RulesText" type="Label" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1608.0
-offset_top = 354.0
-offset_right = 1844.0
-offset_bottom = 680.0
+layout_mode = 2
+offset_left = 14.6
+offset_top = 77.84
+offset_right = 261.6
+offset_bottom = 403.84
 theme = ExtResource("3_jcgo0")
 theme_override_font_sizes/font_size = 38
 text = "1. Only             should remain in the pond
@@ -148,53 +163,7 @@ text = "1. Only             should remain in the pond
 3. No moves without jumping over      allowed"
 autowrap_mode = 2
 
-[node name="RedFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1687.0
-offset_top = 344.0
-offset_right = 1751.0
-offset_bottom = 409.0
-texture = ExtResource("7_pyfpy")
-expand_mode = 1
-
-[node name="RedFrog2" type="TextureRect" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1751.0
-offset_top = 482.0
-offset_right = 1815.0
-offset_bottom = 547.0
-texture = ExtResource("7_pyfpy")
-expand_mode = 1
-
-[node name="GreenFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1655.0
-offset_top = 482.0
-offset_right = 1719.0
-offset_bottom = 547.0
-texture = ExtResource("8_x4l4n")
-expand_mode = 1
-
-[node name="GreenFrog2" type="TextureRect" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1751.0
-offset_top = 434.0
-offset_right = 1815.0
-offset_bottom = 499.0
-texture = ExtResource("8_x4l4n")
-expand_mode = 1
-
-[node name="GreenFrog3" type="TextureRect" parent="UI/CanvasLayer/Rules"]
-layout_mode = 0
-offset_left = 1760.0
-offset_top = 576.0
-offset_right = 1824.0
-offset_bottom = 641.0
-texture = ExtResource("8_x4l4n")
-expand_mode = 1
-
 [node name="RestartLevelButton2" type="Button" parent="UI/CanvasLayer"]
-texture_repeat = 2
 anchors_preset = -1
 anchor_left = 0.97
 anchor_top = 0.79
@@ -205,24 +174,21 @@ offset_top = -56.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("3_jcgo0")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Restart level"
 
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
-texture_repeat = 2
 anchors_preset = -1
 anchor_left = 0.97
 anchor_top = 0.99
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -261.0
-offset_top = -154.2
+offset_left = -261.4
+offset_top = -149.2
 offset_right = -62.0
-offset_bottom = -98.2
+offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("3_jcgo0")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Next level"
 
 [node name="Label" type="Label" parent="UI"]
@@ -232,6 +198,8 @@ offset_top = 992.0
 offset_right = 1845.0
 offset_bottom = 1029.0
 theme = ExtResource("3_jcgo0")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Finish the level to proceed"
 
@@ -245,6 +213,11 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_left = -44.0
+offset_top = 20.0
+offset_right = 956.0
+offset_bottom = 920.0
+grow_vertical = 1
 
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton2" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
