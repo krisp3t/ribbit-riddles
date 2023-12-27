@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://eng2ya2wr5v3"]
+[gd_scene load_steps=22 format=3 uid="uid://eng2ya2wr5v3"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_47t2f"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
@@ -16,8 +16,27 @@
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuvsq"]
 texture = ExtResource("4_731mu")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfxrr"]
+texture = ExtResource("4_731mu")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xksdq"]
+texture = ExtResource("4_731mu")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t47x"]
+texture = ExtResource("4_731mu")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea1sm"]
 texture = ExtResource("4_ljcy3")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fxw67"]
+texture = ExtResource("4_ljcy3")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2ybn"]
+texture = ExtResource("4_ljcy3")
+modulate_color = Color(1, 1, 1, 0.756863)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7va1i"]
 gradient = ExtResource("5_1l3sk")
@@ -69,6 +88,9 @@ offset_top = 40.0
 offset_right = 184.0
 offset_bottom = 167.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_kuvsq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_gfxrr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xksdq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_7t47x")
 
 [node name="MuteButton" type="Button" parent="UI/CanvasLayer"]
 offset_left = 208.0
@@ -76,6 +98,8 @@ offset_top = 40.0
 offset_right = 336.0
 offset_bottom = 167.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
 
 [node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5
@@ -260,7 +284,6 @@ text = "Finish the level to proceed"
 horizontal_alignment = 1
 
 [node name="Playfield" parent="." instance=ExtResource("4_b0t30")]
-position = Vector2(480, 125)
 script = ExtResource("5_t2tci")
 
 [node name="PlayfieldBackground" parent="Playfield" index="0"]
@@ -272,6 +295,7 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton2" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]

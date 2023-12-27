@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://215fycacuk5o"]
+[gd_scene load_steps=3 format=3 uid="uid://215fycacuk5o"]
 
 [ext_resource type="Texture2D" uid="uid://bukskk1o28qb4" path="res://assets/buttons/4x/Asset 4@4x.png" id="1_pbjdu"]
 
+[sub_resource type="Gradient" id="Gradient_fbsli"]
+
 [node name="Playfield" type="Node2D"]
+position = Vector2(460, 125)
 
 [node name="PlayfieldBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.945098)
@@ -17,3 +20,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_pbjdu")
 expand_mode = 5
+
+[node name="LinesBetweenLilypads" type="Line2D" parent="."]
+z_index = 10
+width = 20.0
+gradient = SubResource("Gradient_fbsli")
