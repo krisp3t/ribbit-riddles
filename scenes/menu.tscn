@@ -24,7 +24,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -300.0
+offset_top = -304.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -100,11 +100,13 @@ theme_override_font_sizes/font_size = 32
 text = "Made with 💖 by krisp3t"
 
 [node name="Sidebar" type="Control" parent="."]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 1570.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+layout_mode = 1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+grow_horizontal = 0
+grow_vertical = 2
 
 [node name="SidebarBackground" type="TextureRect" parent="Sidebar"]
 layout_mode = 1
@@ -117,32 +119,64 @@ size_flags_horizontal = 8
 texture = SubResource("GradientTexture1D_ajuxe")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar"]
+[node name="DifficultyLabel" type="Label" parent="Sidebar"]
 layout_mode = 2
+offset_top = 40.0
 offset_right = 350.0
-offset_bottom = 1080.0
-theme_override_constants/separation = 64
+offset_bottom = 114.0
+theme = ExtResource("1_v3ef7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 64
+text = "Difficulty: "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 75
 alignment = 1
 
 [node name="BeginnerButton" type="Button" parent="Sidebar/VBoxContainer"]
 layout_mode = 2
-text = "Beginner"
+text = "Frogspawn"
 
 [node name="IntermediateButton" type="Button" parent="Sidebar/VBoxContainer"]
 layout_mode = 2
-text = "Intermediate"
+text = "Tadpole"
 
 [node name="HardButton" type="Button" parent="Sidebar/VBoxContainer"]
 layout_mode = 2
-text = "Hard"
+text = "Froggy"
 
 [node name="ExpertButton" type="Button" parent="Sidebar/VBoxContainer"]
 layout_mode = 2
-text = "Expert"
+text = "Helltoad"
 
-[node name="CustomButton" type="Button" parent="Sidebar/VBoxContainer"]
+[node name="Custom" type="VBoxContainer" parent="Sidebar/VBoxContainer"]
 layout_mode = 2
-text = "Custom"
+
+[node name="CustomButton" type="Button" parent="Sidebar/VBoxContainer/Custom"]
+layout_mode = 2
+text = "Custom levels"
+
+[node name="CustomLabel" type="Label" parent="Sidebar/VBoxContainer/Custom"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("1_v3ef7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Play levels from Level Editor"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
@@ -150,4 +184,4 @@ text = "Custom"
 [connection signal="pressed" from="Sidebar/VBoxContainer/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/ExpertButton" to="." method="_on_expert_button_pressed"]
-[connection signal="pressed" from="Sidebar/VBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/Custom/CustomButton" to="." method="_on_custom_button_pressed"]
