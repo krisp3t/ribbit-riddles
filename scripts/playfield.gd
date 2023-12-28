@@ -8,6 +8,7 @@ var frog_scene : PackedScene = preload("res://scenes/frog.tscn");
 var lilypad_scene : PackedScene = preload("res://scenes/lilypad.tscn");
 var lilypads : Array = [];
 var frogs_left : int = 0;
+var is_solved : bool = false;
 
 signal solved;
 
@@ -152,7 +153,9 @@ func _on_frog_drop(frog: Frog) -> void:
 		break;
 	
 	if _check_level_solved():
-		solved.emit();
+		if (!is_solved):
+			solved.emit();
+			is_solved = true;
 	
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://eng2ya2wr5v3"]
+[gd_scene load_steps=22 format=3 uid="uid://eng2ya2wr5v3"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_47t2f"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="4_b0t30"]
 [ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="4_ljcy3"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_1l3sk"]
+[ext_resource type="Texture2D" uid="uid://btia1q1jl7ui" path="res://assets/buttons/4x/Asset 24@4x.png" id="5_qtooj"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="5_t2tci"]
 [ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="6_vdf8d"]
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="7_pyfpy"]
@@ -100,7 +101,52 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
 
-[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer"]
+[node name="Win" type="Control" parent="UI/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 216.0
+offset_right = 296.0
+offset_bottom = 384.0
+grow_horizontal = 2
+
+[node name="WinTexture" type="TextureRect" parent="UI/CanvasLayer/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_qtooj")
+
+[node name="WinLabel" type="Label" parent="UI/CanvasLayer/Win"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.447
+anchor_right = 0.5
+anchor_bottom = 0.452
+offset_left = -176.5
+offset_top = -57.5
+offset_right = 176.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_jcgo0")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 100
+text = "Level solved!"
+horizontal_alignment = 1
+
+[node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

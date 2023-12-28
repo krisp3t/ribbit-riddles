@@ -32,6 +32,15 @@ func _on_playfield_solved() -> void:
 	$UI/CanvasLayer/VBoxContainer/NextLevelButton.disabled = false;
 	$UI/CanvasLayer/VBoxContainer/FinishWarning.visible = false;
 	$UI/CanvasLayer/LevelContainer/LevelSolved.texture = preload("res://assets/buttons/4x/Asset 25@4x.png");
+	$UI/CanvasLayer/Win.visible = true;
+	$UI/CanvasLayer/Win.scale = Vector2(0, 0);
+	var tween = get_tree().create_tween();
+	var pos : Vector2 = $UI/CanvasLayer/Win.position;
+	$UI/CanvasLayer/Win.position += $UI/CanvasLayer/Win.size / 2;
+	# tween.set_trans(Tween.EASE_IN);
+	tween.set_parallel(true);
+	tween.tween_property($UI/CanvasLayer/Win, "scale", Vector2(1, 1), 0.5);
+	tween.tween_property($UI/CanvasLayer/Win, "position", pos, 0.5);
 	save_game();
 	
 func _on_previous_level_button_pressed() -> void:
