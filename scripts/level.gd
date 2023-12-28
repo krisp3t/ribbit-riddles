@@ -1,5 +1,6 @@
 extends Node2D;
 @onready var level_vars : LevelVariables = $/root/LevelVariables;
+signal refresh;
 
 func _initialize() -> void:
 	var info : Dictionary = level_enum.get_level_info(level_vars.current_level);
@@ -19,9 +20,12 @@ func _ready() -> void:
 	_initialize();
 
 func _on_restart_level_button_pressed() -> void:
-	get_tree().reload_current_scene();
+	refresh.emit();
 	
 func save_game() -> void:
+	if !(DirAccess.dir_exists_absolute("user://savegames")):
+		var dir : DirAccess = DirAccess.open("user://");	
+		dir.make_dir("savegames");
 	var dict : Dictionary = level_vars["info"]["savegame"];
 	dict[level_vars.current_level] = true;
 	var json : String = JSON.stringify(dict);
@@ -45,11 +49,11 @@ func _on_playfield_solved() -> void:
 	
 func _on_previous_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.current_level - 1);
-	get_tree().reload_current_scene();
+	refresh.emit();
 	
 func _on_next_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.current_level + 1);
-	get_tree().reload_current_scene();
+	refresh.emit();
 	
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");

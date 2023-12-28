@@ -8,7 +8,6 @@ var next_background : Resource;
 func initialize(level : int) -> void:
 	current_level = level;
 	info = level_enum.get_level_info(current_level);
-	print_debug(info["savegame"]);
 	background = ResourceLoader.load_threaded_get(info["difficulty_bg"]);
 	# If background thread failed to load bg, load normally
 	if background == null:

@@ -115,8 +115,12 @@ func _on_soundtrack_h_slider_drag_ended(value_changed: bool) -> void:
 func _on_sfxh_slider_value_changed(value: float) -> void:
 	$Options/OptionsContainer/SFX/SFXProgressBar.value = $Options/OptionsContainer/SFX/SFXHSlider.value;	
 	
-func _on_sfxh_slider_drag_ended(value_changed: bool) -> void:
-	pass # Replace with function body.
+func _on_reset_button_pressed() -> void:
+	var dir : DirAccess = DirAccess.open("user://savegames");
+	dir.remove(".");
+
+
+
 
 
 

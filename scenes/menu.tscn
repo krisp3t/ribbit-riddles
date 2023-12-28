@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpa62fnjg4pxu"]
+[gd_scene load_steps=13 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dhnok5wxorneo" path="res://assets/bg_main_menu.png" id="3_i4hpv"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_xa7ve"]
 [ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="6_0t0ca"]
+[ext_resource type="AudioStream" uid="uid://ca184cu7ajjb" path="res://assets/audio/main_menu.mp3" id="7_efx4i"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ajuxe"]
 gradient = ExtResource("5_xa7ve")
@@ -383,6 +384,10 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
 theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_efx4i")
+autoplay = true
+
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
@@ -396,4 +401,5 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
 [connection signal="value_changed" from="Options/OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_value_changed"]
 [connection signal="drag_ended" from="Options/OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_drag_ended"]
 [connection signal="value_changed" from="Options/OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="pressed" from="Options/OptionsContainer/Reset/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="Options/CloseOptionsButton" to="." method="_on_close_options_button_pressed"]
