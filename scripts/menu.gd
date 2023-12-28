@@ -38,18 +38,18 @@ func _on_beginner_button_pressed() -> void:
 	_play();
 
 func _on_intermediate_button_pressed() -> void:
-	level_vars.initialize(11);
+	level_vars.initialize(level_enum.MAX_EASY + 1);
 	_play();
 
 func _on_hard_button_pressed() -> void:
-	level_vars.initialize(21);
+	level_vars.initialize(level_enum.MAX_INTERMEDIATE + 1);
 	_play();
 
 func _on_expert_button_pressed() -> void:
-	level_vars.initialize(31);
+	level_vars.initialize(level_enum.MAX_HARD + 1);
 	_play();
 
 func _on_custom_button_pressed() -> void:
-	level_vars.initialize(41);
+	level_vars.initialize(level_enum.MAX_EXPERT + 1);
 	_play();
 

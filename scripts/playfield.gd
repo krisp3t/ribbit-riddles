@@ -62,7 +62,7 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 				
 		
 func _instantiate_lilypads() -> void:
-	var level_layout : Array = level_vars.level_layout;	
+	var level_layout = level_vars["info"]["level_layout"];
 	for y in level_layout.size():
 		lilypads.push_back([]);
 		for x in level_layout[y].size():

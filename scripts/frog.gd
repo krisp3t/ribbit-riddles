@@ -24,9 +24,6 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		selected = true;
 		modulate = Color(1, 1, 1, 0.5);
 	
-
-
-		
 func _process(delta: float) -> void:
 	if selected:
 		# While dragging, follow cursor		

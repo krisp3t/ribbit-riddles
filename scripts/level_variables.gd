@@ -1,30 +1,25 @@
 extends Node
 
 var current_level : int;
-var difficulty : level_enum.DIFFICULTY;
-var diff_layout : Dictionary;
-var level_layout : Array;
+var info : Dictionary;
 var background : Resource;
 var next_background : Resource;
 
 func initialize(level : int) -> void:
 	current_level = level;
-	var new_difficulty : level_enum.DIFFICULTY = level_enum.get_level_difficulty(current_level);
-	var bg_path : String = level_enum.get_difficulty_background(new_difficulty);
-	background = ResourceLoader.load_threaded_get(bg_path);
+	info = level_enum.get_level_info(current_level);
+	print_debug(info["savegame"]);
+	background = ResourceLoader.load_threaded_get(info["difficulty_bg"]);
 	# If background thread failed to load bg, load normally
 	if background == null:
-		background = load(bg_path);
-	difficulty = new_difficulty;
-	diff_layout = level_enum.get_level_layout_dict(difficulty);
-	level_layout = diff_layout[str(current_level)];
+		background = load(info["difficulty_bg"]);
 	queue_next_bg();
 	
 func queue_next_bg() -> void:
-	var next_difficulty : level_enum.DIFFICULTY = level_enum.get_level_difficulty(current_level + 1);
-	var next_bg_path : String = level_enum.get_difficulty_background(next_difficulty);
-	ResourceLoader.load_threaded_request(next_bg_path);
+	var next_info : Dictionary = level_enum.get_level_info(current_level + 1);
+	ResourceLoader.load_threaded_request(next_info["difficulty_bg"]);
 	
 func _ready() -> void:
-	ResourceLoader.load_threaded_request(level_enum.get_difficulty_background(level_enum.DIFFICULTY.EASY));
+	var next_info : Dictionary = level_enum.get_level_info(1);
+	ResourceLoader.load_threaded_request(next_info["difficulty_bg"]);
 	initialize(1);

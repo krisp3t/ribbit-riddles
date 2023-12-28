@@ -5,70 +5,54 @@ const MAX_EASY : int = 10;
 const MAX_INTERMEDIATE : int = 20;
 const MAX_HARD : int = 30;
 const MAX_EXPERT : int = 40;
- 
-static func get_level_difficulty(level: int) -> DIFFICULTY:
+
+static func load_savegame(path: String) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {};
+	return read_JSON.get_dict(path);
+		
+static func get_level_info(level: int) -> Dictionary:
+	var info : Dictionary = {};
 	if (level >= 1 and level <= MAX_EASY):
-		return DIFFICULTY.EASY;
+		info["difficulty"] = DIFFICULTY.EASY;
+		info["difficulty_name"] = "Frogspawn";
+		info["difficulty_bg"] = "res://assets/bg_1.png";
+		info["difficulty_progress_bar"] = "res://assets/difficulty/easy.png";
+		info["level_layout"] = read_JSON.get_dict("res://levels/easy.json")[str(level)];
+		info["savegame_path"] = "user://easy.save";
+		info["savegame"] = load_savegame(info["savegame_path"]);
 	elif (level >= MAX_EASY + 1 and level <= MAX_INTERMEDIATE):
-		return DIFFICULTY.INTERMEDIATE;
+		info["difficulty"] = DIFFICULTY.INTERMEDIATE;
+		info["difficulty_name"] = "Tadpole";
+		info["difficulty_bg"] = "res://assets/bg_2.png";
+		info["difficulty_progress_bar"] = "res://assets/difficulty/intermediate.png";
+		info["level_layout"] = read_JSON.get_dict("res://levels/intermediate.json")[str(level)];
+		info["savegame_path"] = "user://intermediate.save";
+		info["savegame"] = load_savegame(info["savegame_path"]);
 	elif (level >= MAX_INTERMEDIATE + 1 and level <= MAX_HARD):
-		return DIFFICULTY.HARD;
+		info["difficulty"] = DIFFICULTY.HARD;
+		info["difficulty_name"] = "Froggy";
+		info["difficulty_bg"] = "res://assets/bg_3.png";
+		info["difficulty_progress_bar"] = "res://assets/difficulty/hard.png";
+		info["level_layout"] = read_JSON.get_dict("res://levels/hard.json")[str(level)];
+		info["savegame_path"] = "user://hard.save";
+		info["savegame"] = load_savegame(info["savegame_path"]);
 	elif (level >= MAX_HARD + 1 and level <= MAX_EXPERT):
-		return DIFFICULTY.EXPERT;
+		info["difficulty"] = DIFFICULTY.EXPERT;
+		info["difficulty_name"] = "Helltoad";
+		info["difficulty_bg"] = "res://assets/bg_4.png";
+		info["difficulty_progress_bar"] = "res://assets/difficulty/expert.png";
+		info["level_layout"] = read_JSON.get_dict("res://levels/expert.json")[str(level)];
+		info["savegame_path"] = "user://expert.save";
+		info["savegame"] = load_savegame(info["savegame_path"]);
 	else:
-		return DIFFICULTY.CUSTOM;
-	
-static func get_difficulty_name(level: DIFFICULTY) -> String:
-	match level:
-		DIFFICULTY.EASY:
-			return "Frogspawn";
-		DIFFICULTY.INTERMEDIATE:
-			return "Tadpole";
-		DIFFICULTY.HARD:
-			return "Froggy";
-		DIFFICULTY.EXPERT:
-			return "Helltoad";
-		_:
-			return "Custom";
-
-static func get_difficulty_background(level: DIFFICULTY) -> String:
-	match level:
-		DIFFICULTY.EASY:
-			return "res://assets/bg_1.png";
-		DIFFICULTY.INTERMEDIATE:
-			return "res://assets/bg_2.png";
-		DIFFICULTY.HARD:
-			return "res://assets/bg_3.png";
-		DIFFICULTY.EXPERT:
-			return "res://assets/bg_4.png";
-		_:
-			return "res://custom/bg.png";
-			
-static func get_difficulty_progress_bar(level: DIFFICULTY) -> String:
-	match level:
-		DIFFICULTY.EASY:
-			return "res://assets/difficulty/easy.png";
-		DIFFICULTY.INTERMEDIATE:
-			return "res://assets/difficulty/intermediate.png";
-		DIFFICULTY.HARD:
-			return "res://assets/difficulty/hard.png";
-		DIFFICULTY.EXPERT:
-			return "res://assets/difficulty/expert.png";
-		_:
-			return "";
-
-static func get_level_layout_dict(level: DIFFICULTY) -> Dictionary:
-	var json_file_path : String;
-	match level:
-		DIFFICULTY.EASY:
-			json_file_path = "res://levels/easy.json";
-		DIFFICULTY.INTERMEDIATE:
-			json_file_path = "res://levels/intermediate.json";
-		DIFFICULTY.HARD:
-			json_file_path = "res://levels/hard.json";
-		DIFFICULTY.EXPERT:
-			json_file_path = "res://levels/expert.json";
-		_:
-			json_file_path = "res://custom/levels.json";
-	return read_JSON.get_dict(json_file_path);
+		info["difficulty"] = DIFFICULTY.CUSTOM;
+		info["difficulty_name"] = "Custom";
+		info["difficulty_bg"] = "res://assets/bg.png";
+		info["difficulty_progress_bar"] = "";
+		info["level_layout"] = {};
+		info["savegame"] = {};
+		
+	print_debug("level_enum", info["savegame"]);
+	return info;
 
