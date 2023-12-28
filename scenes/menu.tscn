@@ -257,7 +257,134 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
 theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
 
+[node name="Options" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="OptionsBackground" type="TextureRect" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+texture = SubResource("GradientTexture1D_ajuxe")
+expand_mode = 1
+
+[node name="DifficultyLabel" type="Label" parent="Options"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+offset_left = 150.0
+offset_top = 40.0
+offset_right = 214.0
+offset_bottom = 114.0
+theme = ExtResource("1_v3ef7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 64
+text = "Options:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="Soundtrack" type="VBoxContainer" parent="Options/OptionsContainer"]
+layout_mode = 2
+
+[node name="SoundtrackProgressBar" type="ProgressBar" parent="Options/OptionsContainer/Soundtrack"]
+layout_mode = 2
+step = 10.0
+
+[node name="SoundtrackHSlider" type="HSlider" parent="Options/OptionsContainer/Soundtrack"]
+layout_mode = 2
+step = 20.0
+tick_count = 6
+
+[node name="SoundtrackLabel" type="Label" parent="Options/OptionsContainer/Soundtrack"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("1_v3ef7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Soundtrack volume"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SFX" type="VBoxContainer" parent="Options/OptionsContainer"]
+layout_mode = 2
+
+[node name="SFXProgressBar" type="ProgressBar" parent="Options/OptionsContainer/SFX"]
+layout_mode = 2
+step = 10.0
+
+[node name="SFXHSlider" type="HSlider" parent="Options/OptionsContainer/SFX"]
+layout_mode = 2
+step = 20.0
+tick_count = 6
+
+[node name="SFXLabel" type="Label" parent="Options/OptionsContainer/SFX"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("1_v3ef7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Sound effects volume"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Reset" type="VBoxContainer" parent="Options/OptionsContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="Options/OptionsContainer/Reset"]
+layout_mode = 2
+theme = ExtResource("1_v3ef7")
+text = "Reset game"
+
+[node name="ResetLabel" type="Label" parent="Options/OptionsContainer/Reset"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("1_v3ef7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Delete all saved progress"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseOptionsButton" type="Button" parent="Options"]
+layout_mode = 2
+offset_left = 294.0
+offset_top = 8.0
+offset_right = 334.0
+offset_bottom = 48.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_8sbee")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
+theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
+
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Sidebar/DifficultyContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
 [connection signal="pressed" from="Sidebar/DifficultyContainer/Intermediate/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
@@ -265,3 +392,8 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
 [connection signal="pressed" from="Sidebar/DifficultyContainer/Expert/ExpertButton" to="." method="_on_expert_button_pressed"]
 [connection signal="pressed" from="Sidebar/DifficultyContainer/Custom/CustomButton" to="." method="_on_custom_button_pressed"]
 [connection signal="pressed" from="Sidebar/CloseSidebarButton" to="." method="_on_close_sidebar_button_pressed"]
+[connection signal="drag_ended" from="Options/OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_drag_ended"]
+[connection signal="value_changed" from="Options/OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_value_changed"]
+[connection signal="drag_ended" from="Options/OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_drag_ended"]
+[connection signal="value_changed" from="Options/OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="pressed" from="Options/CloseOptionsButton" to="." method="_on_close_options_button_pressed"]

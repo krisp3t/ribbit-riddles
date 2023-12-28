@@ -1,36 +1,48 @@
 extends Control
 @onready var level_vars : LevelVariables = $/root/LevelVariables;
 var is_sidebar_open : bool = false;
-var is_settings_open : bool = false;
+var is_options_open : bool = false;
 
 func _ready() -> void:
-	_change_sidebar_state(false, false);
+	_change_sidebar_state($Sidebar, false, func(): is_sidebar_open = false, false);
+	_change_sidebar_state($Options, false, func(): is_options_open = false, false);
 	$Sidebar/DifficultyContainer/Intermediate/IntermediateButton.disabled = _get_max_completed_level(level_enum.DIFFICULTY.EASY) != level_enum.MAX_EASY;
 	$Sidebar/DifficultyContainer/Hard/HardButton.disabled = _get_max_completed_level(level_enum.DIFFICULTY.INTERMEDIATE) != level_enum.MAX_INTERMEDIATE;
 	$Sidebar/DifficultyContainer/Expert/ExpertButton.disabled = _get_max_completed_level(level_enum.DIFFICULTY.HARD) != level_enum.MAX_HARD;
 	# TODO: disable if custom empty
 	
-func _change_sidebar_state(open: bool, animate: bool = true) -> void:
+func _change_sidebar_state(sidebar_node: Control, open: bool, callback: Callable, animate: bool = true) -> void:
 	var tween = get_tree().create_tween();
 	tween.set_trans(Tween.TRANS_QUAD);
-	var pos : Vector2 = Vector2($Sidebar.position.x, $Sidebar.position.y);
+	var pos : Vector2 = Vector2(sidebar_node.position.x, sidebar_node.position.y);
 	if open:
-		pos.x = $Sidebar.position.x - $Sidebar.size.x;
-		is_sidebar_open = true;
+		pos.x = sidebar_node.position.x - sidebar_node.size.x;
 	else:
-		pos.x = $Sidebar.position.x + $Sidebar.size.x;
-		is_sidebar_open = false;
+		pos.x = sidebar_node.position.x + sidebar_node.size.x;
 	if animate:
-		tween.tween_property($Sidebar, "position", pos, 0.5);
+		tween.tween_property(sidebar_node, "position", pos, 0.5);
 	else:
-		$Sidebar.position = pos;
+		sidebar_node.position = pos;
+	callback.call();
 	
 func _on_play_pressed() -> void:
+	if is_options_open:
+		_on_close_options_button_pressed();
 	if !is_sidebar_open:
-		_change_sidebar_state(true);
+		_change_sidebar_state($Sidebar, true, func(): is_sidebar_open = true);
 
 func _on_close_sidebar_button_pressed() -> void:
-	_change_sidebar_state(false);
+	_change_sidebar_state($Sidebar, false, func(): is_sidebar_open = false);
+	
+func _on_options_pressed() -> void:
+	if is_sidebar_open:
+		_on_close_sidebar_button_pressed();
+	if !is_options_open:
+		_change_sidebar_state($Options, true, func(): is_options_open = true);
+
+func _on_close_options_button_pressed() -> void:
+	_change_sidebar_state($Options, false, func(): is_options_open = false);
+	
 
 func _on_exit_pressed() -> void:
 	get_tree().quit();
@@ -68,7 +80,7 @@ func _get_max_completed_level(difficulty: level_enum.DIFFICULTY) -> int:
 	for key in savegame:
 		if (int(key) >= default_max):
 			return default_max;
-		if (int(key) > max_solved):
+		if (int(key) >= max_solved):
 			max_solved = int(key) + 1;
 	return max_solved;
 	
@@ -92,4 +104,24 @@ func _on_expert_button_pressed() -> void:
 func _on_custom_button_pressed() -> void:
 	level_vars.initialize(_get_max_completed_level(level_enum.DIFFICULTY.CUSTOM));
 	_play();
+	
+func _on_soundtrack_h_slider_value_changed(value: float) -> void:
+	$Options/OptionsContainer/Soundtrack/SoundtrackProgressBar.value = $Options/OptionsContainer/Soundtrack/SoundtrackHSlider.value;	
+
+func _on_soundtrack_h_slider_drag_ended(value_changed: bool) -> void:
+	if value_changed:
+		$Options/OptionsContainer/Soundtrack/SoundtrackProgressBar.value = $Options/OptionsContainer/Soundtrack/SoundtrackHSlider.value;	
+
+func _on_sfxh_slider_value_changed(value: float) -> void:
+	$Options/OptionsContainer/SFX/SFXProgressBar.value = $Options/OptionsContainer/SFX/SFXHSlider.value;	
+	
+func _on_sfxh_slider_drag_ended(value_changed: bool) -> void:
+	pass # Replace with function body.
+
+
+
+
+
+
+
 
