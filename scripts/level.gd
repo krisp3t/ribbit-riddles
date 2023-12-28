@@ -7,6 +7,11 @@ func _initialize() -> void:
 	$UI/CanvasLayer/DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];
 	$UI/CanvasLayer/ParallaxBackground/Background.texture = level_vars.background;
 	$UI/CanvasLayer/DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
+	# Is level already solved?
+	$UI/CanvasLayer/VBoxContainer/FinishWarning.visible = !info["solved"];
+	$UI/CanvasLayer/VBoxContainer/NextLevelButton.disabled = !info["solved"];
+	if info["solved"]:
+		$UI/CanvasLayer/LevelContainer/LevelSolved.texture = load("res://assets/buttons/4x/Asset 25@4x.png");
 	if level_vars.current_level == 1:
 		$UI/CanvasLayer/PreviousLevelButton.disabled = true;
 

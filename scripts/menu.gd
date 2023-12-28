@@ -64,13 +64,13 @@ func _get_max_completed_level(difficulty: level_enum.DIFFICULTY) -> int:
 	if (savegame.size() == 0):
 		return default_min;
 		
-	var max: int = default_min;
+	var max_solved: int = default_min;
 	for key in savegame:
 		if (int(key) >= default_max):
 			return default_max;
-		if (int(key) > max):
-			max = int(key) + 1;
-	return max;
+		if (int(key) > max_solved):
+			max_solved = int(key) + 1;
+	return max_solved;
 	
 	
 func _on_beginner_button_pressed() -> void:

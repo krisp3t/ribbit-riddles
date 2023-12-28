@@ -57,7 +57,8 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_progress_bar"] = "";
 		info["level_layout"] = {};
 		info["savegame"] = {};
+	info["solved"] = info["savegame"].get(str(level), false);
 		
-	print_debug("level_enum", info["savegame"]);
+	print_debug("level_enum", info["savegame"], info["solved"]);
 	return info;
 
