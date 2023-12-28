@@ -244,14 +244,10 @@ scale = Vector2(0.13625, 0.13625)
 texture = ExtResource("8_x4l4n")
 
 [node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
 offset_left = 56.0
-offset_top = -184.0
+offset_top = 896.0
 offset_right = 317.88
-offset_bottom = -122.0
-grow_vertical = 0
+offset_bottom = 958.0
 theme = ExtResource("3_jcgo0")
 text = "Previous level"
 
