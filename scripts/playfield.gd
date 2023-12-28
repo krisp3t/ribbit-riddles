@@ -98,9 +98,9 @@ func _instantiate_lilypads() -> void:
 func _get_lilypad(coord: Vector2i) -> Lilypad:
 	var y : int;
 	if (coord.x % 2 == 0):
-		y = int(coord.y) / 2;
+		y = floor(coord.y) / 2;
 	else:
-		y = int(coord.y - 1) / 2;
+		y = floor(coord.y - 1) / 2;
 	return lilypads[coord.x][y];
 	
 func _get_between_lilypad(start: Vector2i, target: Vector2i) -> Lilypad:

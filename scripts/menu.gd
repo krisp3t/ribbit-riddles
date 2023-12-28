@@ -6,20 +6,25 @@ var is_options_open : bool = false;
 func _ready() -> void:
 	_change_sidebar_state($Sidebar, false, func(): is_sidebar_open = false, false);
 	_change_sidebar_state($Options, false, func(): is_options_open = false, false);
-	$Sidebar/DifficultyContainer/Intermediate/IntermediateButton.disabled = _get_max_completed_level(level_enum.DIFFICULTY.EASY) != level_enum.MAX_EASY;
-	$Sidebar/DifficultyContainer/Hard/HardButton.disabled = _get_max_completed_level(level_enum.DIFFICULTY.INTERMEDIATE) != level_enum.MAX_INTERMEDIATE;
-	$Sidebar/DifficultyContainer/Expert/ExpertButton.disabled = _get_max_completed_level(level_enum.DIFFICULTY.HARD) != level_enum.MAX_HARD;
+	$Sidebar/DifficultyContainer/Intermediate/IntermediateButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.EASY);
+	$Sidebar/DifficultyContainer/Intermediate/IntermediateLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.EASY);
+	$Sidebar/DifficultyContainer/Hard/HardButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.INTERMEDIATE);
+	$Sidebar/DifficultyContainer/Hard/HardLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.INTERMEDIATE);
+	$Sidebar/DifficultyContainer/Expert/ExpertButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.HARD);
+	$Sidebar/DifficultyContainer/Expert/ExpertLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.HARD);
+	$Sidebar/DifficultyContainer/Custom/CustomButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
+	$Sidebar/DifficultyContainer/Custom/CustomLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
 	# TODO: disable if custom empty
 	
 func _change_sidebar_state(sidebar_node: Control, open: bool, callback: Callable, animate: bool = true) -> void:
-	var tween = get_tree().create_tween();
-	tween.set_trans(Tween.TRANS_QUAD);
 	var pos : Vector2 = Vector2(sidebar_node.position.x, sidebar_node.position.y);
 	if open:
 		pos.x = sidebar_node.position.x - sidebar_node.size.x;
 	else:
 		pos.x = sidebar_node.position.x + sidebar_node.size.x;
 	if animate:
+		var tween = get_tree().create_tween();
+		tween.set_trans(Tween.TRANS_QUAD);
 		tween.tween_property(sidebar_node, "position", pos, 0.5);
 	else:
 		sidebar_node.position = pos;
@@ -50,7 +55,28 @@ func _on_exit_pressed() -> void:
 func _play() -> void:
 	get_tree().change_scene_to_file("res://scenes/main.tscn");
 	
+func _is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
+	var savegame : Dictionary = {};
+	var custom_levels : Dictionary = {};
+	var level_info : Dictionary;
+	match difficulty:
+		level_enum.DIFFICULTY.EASY:
+			return true;
+		level_enum.DIFFICULTY.INTERMEDIATE:
+			savegame = level_enum.load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_INTERMEDIATE);
+		level_enum.DIFFICULTY.HARD:
+			savegame = level_enum.load_savegame(level_enum.HARD_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_HARD);
+		level_enum.DIFFICULTY.EXPERT:
+			savegame = level_enum.load_savegame(level_enum.EXPERT_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_EXPERT);
+		_:
+			return false;
+	return savegame.size() == len(level_info["difficulty_levels"]);
+	
 func _get_max_completed_level(difficulty: level_enum.DIFFICULTY) -> int:
+	print_debug("a");
 	var savegame : Dictionary = {};
 	var default_min : int;
 	var default_max : int;
@@ -116,8 +142,13 @@ func _on_sfxh_slider_value_changed(value: float) -> void:
 	$Options/OptionsContainer/SFX/SFXProgressBar.value = $Options/OptionsContainer/SFX/SFXHSlider.value;	
 	
 func _on_reset_button_pressed() -> void:
-	var dir : DirAccess = DirAccess.open("user://savegames");
-	dir.remove(".");
+	if (DirAccess.dir_exists_absolute("user://savegames")):
+		var dir : DirAccess = DirAccess.open("user://savegames");
+		for file in dir.get_files():
+			dir.remove(file);
+	$Options/OptionsContainer/Reset/ResetButton.disabled = true;
+	$Options/OptionsContainer/Reset/ResetLabel.text = "Successfully reset game!";
+		
 
 
 

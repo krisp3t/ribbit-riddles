@@ -159,7 +159,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 55
+theme_override_constants/separation = 80
 alignment = 1
 
 [node name="BeginnerButton" type="Button" parent="Sidebar/DifficultyContainer"]
@@ -249,10 +249,9 @@ autowrap_mode = 2
 
 [node name="CloseSidebarButton" type="Button" parent="Sidebar"]
 layout_mode = 2
-offset_left = 294.0
-offset_top = 8.0
-offset_right = 334.0
-offset_bottom = 48.0
+offset_left = 278.0
+offset_right = 350.0
+offset_bottom = 72.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_8sbee")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
@@ -313,6 +312,7 @@ layout_mode = 2
 step = 10.0
 
 [node name="SoundtrackHSlider" type="HSlider" parent="Options/OptionsContainer/Soundtrack"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 step = 20.0
 tick_count = 6
@@ -337,6 +337,7 @@ layout_mode = 2
 step = 10.0
 
 [node name="SFXHSlider" type="HSlider" parent="Options/OptionsContainer/SFX"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 step = 20.0
 tick_count = 6
@@ -375,10 +376,9 @@ autowrap_mode = 2
 
 [node name="CloseOptionsButton" type="Button" parent="Options"]
 layout_mode = 2
-offset_left = 294.0
-offset_top = 8.0
-offset_right = 334.0
-offset_bottom = 48.0
+offset_left = 278.0
+offset_right = 350.0
+offset_bottom = 72.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_8sbee")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")

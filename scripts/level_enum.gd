@@ -23,7 +23,8 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_name"] = "Frogspawn";
 		info["difficulty_bg"] = "res://assets/bg_1.png";
 		info["difficulty_progress_bar"] = "res://assets/difficulty/easy.png";
-		info["level_layout"] = read_JSON.get_dict("res://levels/easy.json")[str(level)];
+		info["difficulty_levels"] = read_JSON.get_dict("res://levels/easy.json");
+		info["level_layout"] = info["difficulty_levels"][str(level)];
 		info["savegame_path"] = EASY_SAVEGAME;
 		info["savegame"] = load_savegame(info["savegame_path"]);
 	elif (level >= MAX_EASY + 1 and level <= MAX_INTERMEDIATE):
@@ -31,7 +32,8 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_name"] = "Tadpole";
 		info["difficulty_bg"] = "res://assets/bg_2.png";
 		info["difficulty_progress_bar"] = "res://assets/difficulty/intermediate.png";
-		info["level_layout"] = read_JSON.get_dict("res://levels/intermediate.json")[str(level)];
+		info["difficulty_levels"] = read_JSON.get_dict("res://levels/intermediate.json");
+		info["level_layout"] = info["difficulty_levels"][str(level)];
 		info["savegame_path"] = INTERMEDIATE_SAVEGAME;
 		info["savegame"] = load_savegame(info["savegame_path"]);
 	elif (level >= MAX_INTERMEDIATE + 1 and level <= MAX_HARD):
@@ -39,7 +41,8 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_name"] = "Froggy";
 		info["difficulty_bg"] = "res://assets/bg_3.png";
 		info["difficulty_progress_bar"] = "res://assets/difficulty/hard.png";
-		info["level_layout"] = read_JSON.get_dict("res://levels/hard.json")[str(level)];
+		info["difficulty_levels"] = read_JSON.get_dict("res://levels/hard.json");
+		info["level_layout"] = info["difficulty_levels"][str(level)];
 		info["savegame_path"] = HARD_SAVEGAME;
 		info["savegame"] = load_savegame(info["savegame_path"]);
 	elif (level >= MAX_HARD + 1 and level <= MAX_EXPERT):
@@ -47,7 +50,8 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_name"] = "Helltoad";
 		info["difficulty_bg"] = "res://assets/bg_4.png";
 		info["difficulty_progress_bar"] = "res://assets/difficulty/expert.png";
-		info["level_layout"] = read_JSON.get_dict("res://levels/expert.json")[str(level)];
+		info["difficulty_levels"] = read_JSON.get_dict("res://levels/expert.json");
+		info["level_layout"] = info["difficulty_levels"][str(level)];
 		info["savegame_path"] = EXPERT_SAVEGAME;
 		info["savegame"] = load_savegame(info["savegame_path"]);
 	else:
@@ -55,7 +59,8 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_name"] = "Custom";
 		info["difficulty_bg"] = "res://custom/bg.png";
 		info["difficulty_progress_bar"] = "";
-		info["level_layout"] = {};
+		info["difficulty_levels"] = read_JSON.get_dict("user://levels/levels.json");
+		info["level_layout"] = info["difficulty_levels"][str(level)];
 		info["savegame"] = {};
 	info["solved"] = info["savegame"].get(str(level), false);
 		

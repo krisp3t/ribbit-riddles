@@ -41,7 +41,6 @@ func _on_playfield_solved() -> void:
 	var tween = get_tree().create_tween();
 	var pos : Vector2 = $UI/CanvasLayer/Win.position;
 	$UI/CanvasLayer/Win.position += $UI/CanvasLayer/Win.size / 2;
-	# tween.set_trans(Tween.EASE_IN);
 	tween.set_parallel(true);
 	tween.tween_property($UI/CanvasLayer/Win, "scale", Vector2(1, 1), 0.5);
 	tween.tween_property($UI/CanvasLayer/Win, "position", pos, 0.5);

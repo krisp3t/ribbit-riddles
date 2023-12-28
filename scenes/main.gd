@@ -9,7 +9,6 @@ func _ready() -> void:
 	l.connect("refresh", _on_level_refresh);
 		
 func _on_level_refresh() -> void:
-	print_debug("level_vars", level_vars.current_level);
 	l.queue_free();
 	l = level.instantiate();
 	add_child(l);
