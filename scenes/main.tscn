@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://eng2ya2wr5v3"]
+[gd_scene load_steps=21 format=3 uid="uid://eng2ya2wr5v3"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_47t2f"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_ofg7h"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="4_ljcy3"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_1l3sk"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="5_t2tci"]
-[ext_resource type="Texture2D" uid="uid://cobhadix28jtk" path="res://assets/buttons/4x/Asset 30@4x.png" id="6_g3cuy"]
 [ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="6_vdf8d"]
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="7_pyfpy"]
 [ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="8_x4l4n"]
@@ -137,7 +136,7 @@ layout_mode = 2
 texture = ExtResource("6_vdf8d")
 expand_mode = 2
 
-[node name="DifficultyBackground" type="TextureRect" parent="UI/CanvasLayer"]
+[node name="DifficultyDisplayBackground" type="TextureRect" parent="UI/CanvasLayer"]
 offset_left = 424.0
 offset_top = 236.0
 offset_right = 599.0
@@ -158,12 +157,11 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
 text = "Difficulty: Tadpole"
 
-[node name="DifficultyTexture" type="TextureRect" parent="UI/CanvasLayer"]
+[node name="DifficultyProgressBar" type="TextureRect" parent="UI/CanvasLayer"]
 offset_left = 64.0
 offset_top = 256.0
 offset_right = 408.0
 offset_bottom = 317.0
-texture = ExtResource("6_g3cuy")
 expand_mode = 2
 
 [node name="Rules" type="Control" parent="UI/CanvasLayer"]

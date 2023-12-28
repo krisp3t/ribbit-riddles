@@ -43,6 +43,19 @@ static func get_difficulty_background(level: DIFFICULTY) -> String:
 			return "res://assets/bg_4.png";
 		_:
 			return "res://custom/bg.png";
+			
+static func get_difficulty_progress_bar(level: DIFFICULTY) -> String:
+	match level:
+		DIFFICULTY.EASY:
+			return "res://assets/difficulty/easy.png";
+		DIFFICULTY.INTERMEDIATE:
+			return "res://assets/difficulty/intermediate.png";
+		DIFFICULTY.HARD:
+			return "res://assets/difficulty/hard.png";
+		DIFFICULTY.EXPERT:
+			return "res://assets/difficulty/expert.png";
+		_:
+			return "";
 
 static func get_level_layout_dict(level: DIFFICULTY) -> Dictionary:
 	var json_file_path : String;

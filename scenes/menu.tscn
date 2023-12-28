@@ -1,13 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpa62fnjg4pxu"]
+[gd_scene load_steps=12 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="2_w4526"]
 [ext_resource type="Texture2D" uid="uid://dhnok5wxorneo" path="res://assets/bg_main_menu.png" id="3_i4hpv"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_xa7ve"]
+[ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="6_0t0ca"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ajuxe"]
 gradient = ExtResource("5_xa7ve")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8sbee"]
+texture = ExtResource("6_0t0ca")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qrw2a"]
+texture = ExtResource("6_0t0ca")
+modulate_color = Color(1, 1, 1, 0.345098)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5yluk"]
+texture = ExtResource("6_0t0ca")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xx3uo"]
+texture = ExtResource("6_0t0ca")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -101,6 +116,7 @@ text = "Made with 💖 by krisp3t"
 
 [node name="Sidebar" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -120,9 +136,11 @@ texture = SubResource("GradientTexture1D_ajuxe")
 expand_mode = 1
 
 [node name="DifficultyLabel" type="Label" parent="Sidebar"]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+offset_left = 150.0
 offset_top = 40.0
-offset_right = 350.0
+offset_right = 214.0
 offset_bottom = 114.0
 theme = ExtResource("1_v3ef7")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -178,6 +196,17 @@ text = "Play levels from Level Editor"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="CloseSidebarButton" type="Button" parent="Sidebar"]
+layout_mode = 2
+offset_left = 294.0
+offset_top = 8.0
+offset_right = 334.0
+offset_bottom = 48.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_8sbee")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
+theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
+
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
@@ -185,3 +214,4 @@ autowrap_mode = 2
 [connection signal="pressed" from="Sidebar/VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/ExpertButton" to="." method="_on_expert_button_pressed"]
 [connection signal="pressed" from="Sidebar/VBoxContainer/Custom/CustomButton" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="Sidebar/CloseSidebarButton" to="." method="_on_close_sidebar_button_pressed"]

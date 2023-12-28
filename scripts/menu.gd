@@ -24,6 +24,9 @@ func _on_play_pressed() -> void:
 	if !is_sidebar_open:
 		_change_sidebar_state(true);
 
+func _on_close_sidebar_button_pressed() -> void:
+	_change_sidebar_state(false);
+
 func _on_exit_pressed() -> void:
 	get_tree().quit();
 	
@@ -49,3 +52,4 @@ func _on_expert_button_pressed() -> void:
 func _on_custom_button_pressed() -> void:
 	level_vars.initialize(41);
 	_play();
+
