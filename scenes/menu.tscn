@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpa62fnjg4pxu"]
+[gd_scene load_steps=7 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="2_w4526"]
 [ext_resource type="Texture2D" uid="uid://dhnok5wxorneo" path="res://assets/bg_main_menu.png" id="3_i4hpv"]
+[ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_xa7ve"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ajuxe"]
+gradient = ExtResource("5_xa7ve")
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -29,7 +33,7 @@ expand_mode = 4
 stretch_mode = 6
 flip_h = true
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MainContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.2
@@ -43,39 +47,39 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 128
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer"]
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="Logo" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+[node name="Logo" type="TextureRect" parent="MainContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = ExtResource("2_gxpg1")
 stretch_mode = 4
 
-[node name="ButtonContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="Play" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="Play" type="Button" parent="MainContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
 text = "Play"
 
-[node name="MapEditor" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="MapEditor" type="Button" parent="MainContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
 text = "Level Editor"
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="Options" type="Button" parent="MainContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
 text = "Options"
 
-[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer/ButtonContainer"]
+[node name="Exit" type="Button" parent="MainContainer/VBoxContainer/ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("1_v3ef7")
 text = "Exit"
@@ -95,5 +99,55 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Made with 💖 by krisp3t"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
+[node name="Sidebar" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1570.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="SidebarBackground" type="TextureRect" parent="Sidebar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+texture = SubResource("GradientTexture1D_ajuxe")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sidebar"]
+layout_mode = 2
+offset_right = 350.0
+offset_bottom = 1080.0
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="BeginnerButton" type="Button" parent="Sidebar/VBoxContainer"]
+layout_mode = 2
+text = "Beginner"
+
+[node name="IntermediateButton" type="Button" parent="Sidebar/VBoxContainer"]
+layout_mode = 2
+text = "Intermediate"
+
+[node name="HardButton" type="Button" parent="Sidebar/VBoxContainer"]
+layout_mode = 2
+text = "Hard"
+
+[node name="ExpertButton" type="Button" parent="Sidebar/VBoxContainer"]
+layout_mode = 2
+text = "Expert"
+
+[node name="CustomButton" type="Button" parent="Sidebar/VBoxContainer"]
+layout_mode = 2
+text = "Custom"
+
+[connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/ExpertButton" to="." method="_on_expert_button_pressed"]
+[connection signal="pressed" from="Sidebar/VBoxContainer/CustomButton" to="." method="_on_custom_button_pressed"]

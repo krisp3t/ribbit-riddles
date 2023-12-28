@@ -22,6 +22,7 @@ func _animate_playfield() -> void:
 	position = get_viewport_rect().size / 2;
 	var tween = get_tree().create_tween();
 	tween.set_parallel(true);
+	tween.set_trans(Tween.TRANS_QUAD);
 	tween.tween_property($".", "scale", Vector2(1, 1), 0.5);
 	tween.tween_property($".", "position", _get_center_position(), 0.5);
 

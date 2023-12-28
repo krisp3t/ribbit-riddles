@@ -12,6 +12,9 @@ func initialize(level : int) -> void:
 	var new_difficulty : level_enum.DIFFICULTY = level_enum.get_level_difficulty(current_level);
 	var bg_path : String = level_enum.get_difficulty_background(new_difficulty);
 	background = ResourceLoader.load_threaded_get(bg_path);
+	# If background thread failed to load bg, load normally
+	if background == null:
+		background = load(bg_path);
 	difficulty = new_difficulty;
 	diff_layout = level_enum.get_level_layout_dict(difficulty);
 	level_layout = diff_layout[str(current_level)];

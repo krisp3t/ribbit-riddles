@@ -243,7 +243,19 @@ position = Vector2(200, 344)
 scale = Vector2(0.13625, 0.13625)
 texture = ExtResource("8_x4l4n")
 
-[node name="RestartLevelButton2" type="Button" parent="UI/CanvasLayer"]
+[node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = -184.0
+offset_right = 317.88
+offset_bottom = -122.0
+grow_vertical = 0
+theme = ExtResource("3_jcgo0")
+text = "Previous level"
+
+[node name="RestartLevelButton" type="Button" parent="UI/CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -271,7 +283,6 @@ theme_override_constants/separation = 16
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_jcgo0")
-disabled = true
 text = "Next level"
 
 [node name="FinishWarning" type="Label" parent="UI/CanvasLayer/VBoxContainer"]
@@ -296,7 +307,8 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton2" to="." method="_on_restart_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]
 
