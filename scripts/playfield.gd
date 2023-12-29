@@ -18,6 +18,7 @@ func _ready() -> void:
 	get_tree().root.connect("size_changed", _on_viewport_size_changed);
 	_instantiate_lilypads();
 	_draw_lines_between_lilypads(lilypads);
+	%SaveButton.text = "Save as Level %s" % level_vars.current_level;
 	
 func _animate_playfield() -> void:
 	scale = Vector2(0, 0);

@@ -63,7 +63,13 @@ static func get_level_info(level: int) -> Dictionary:
 		if info["difficulty_levels"].has(str(level)):
 			info["level_layout"] = info["difficulty_levels"][str(level)];
 		else:
-			info["level_layout"] = [];
+			info["level_layout"] = [
+				[0, 0, 0],
+				[0, 0],
+				[0, 0, 0],
+				[0, 0],
+				[0, 0, 0]
+			];
 		info["savegame_path"] = "";
 		info["savegame"] = {}
 	info["solved"] = info["savegame"].get(str(level), false);
