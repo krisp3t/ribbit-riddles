@@ -14,7 +14,6 @@ func _ready() -> void:
 	$Sidebar/DifficultyContainer/Expert/ExpertLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.HARD);
 	$Sidebar/DifficultyContainer/Custom/CustomButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
 	$Sidebar/DifficultyContainer/Custom/CustomLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
-	# TODO: disable if custom empty
 	
 func _change_sidebar_state(sidebar_node: Control, open: bool, callback: Callable, animate: bool = true) -> void:
 	var pos : Vector2 = Vector2(sidebar_node.position.x, sidebar_node.position.y);
@@ -148,7 +147,7 @@ func _on_reset_button_pressed() -> void:
 			dir.remove(file);
 	$Options/OptionsContainer/Reset/ResetButton.disabled = true;
 	$Options/OptionsContainer/Reset/ResetLabel.text = "Successfully reset game!";
-		
+	_ready();
 
 
 

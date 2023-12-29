@@ -92,8 +92,8 @@ func _instantiate_lilypads() -> void:
 			lilypad.attached_frog = frog;
 			frog.position = lilypad.position;
 			frog.red = (val == lilypad_enum.STATUS.RED);
-			frog.connect('drop_frog', _on_frog_drop);
 			add_child(frog);
+			frog.connect('drop_frog', _on_frog_drop);
 			frogs_left += 1;
 			
 func _get_lilypad(coord: Vector2i) -> Lilypad:
