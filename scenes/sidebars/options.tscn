@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://by0eh4smd8446"]
+
+[ext_resource type="Script" path="res://scripts/sidebars/options.gd" id="1_k3liq"]
+[ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="2_k0hu7"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k3liq")
+
+[node name="OptionsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="Soundtrack" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+
+[node name="SoundtrackProgressBar" type="ProgressBar" parent="OptionsContainer/Soundtrack"]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+
+[node name="SoundtrackHSlider" type="HSlider" parent="OptionsContainer/Soundtrack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+step = 20.0
+tick_count = 6
+
+[node name="SoundtrackLabel" type="Label" parent="OptionsContainer/Soundtrack"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("2_k0hu7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Soundtrack volume"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SFX" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+
+[node name="SFXProgressBar" type="ProgressBar" parent="OptionsContainer/SFX"]
+unique_name_in_owner = true
+layout_mode = 2
+step = 10.0
+
+[node name="SFXHSlider" type="HSlider" parent="OptionsContainer/SFX"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+step = 20.0
+tick_count = 6
+
+[node name="SFXLabel" type="Label" parent="OptionsContainer/SFX"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("2_k0hu7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Sound effects volume"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Reset" type="VBoxContainer" parent="OptionsContainer"]
+layout_mode = 2
+
+[node name="ResetButton" type="Button" parent="OptionsContainer/Reset"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_k0hu7")
+text = "Reset game"
+
+[node name="ResetLabel" type="Label" parent="OptionsContainer/Reset"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("2_k0hu7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Delete all saved progress"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="drag_ended" from="OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_drag_ended"]
+[connection signal="value_changed" from="OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_value_changed"]
+[connection signal="drag_ended" from="OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_drag_ended"]
+[connection signal="value_changed" from="OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
+[connection signal="pressed" from="OptionsContainer/Reset/ResetButton" to="." method="_on_reset_button_pressed"]

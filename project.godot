@@ -21,13 +21,14 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ConfigSystem="*res://scripts/config_system.gd"
-LevelSystem="*res://scripts/level_system.gd"
+LevelSystem="*res://scripts/systems/level_system.gd"
+ConfigSystem="*res://scripts/systems/config_system.gd"
 
 [debug]
 
-gdscript/warnings/untyped_declaration=1
-gdscript/warnings/inferred_declaration=1
+gdscript/quality/screen_space_aa=0
+gdscript/quality/msaa_2d=0
+gdscript/enable_file_logging.pc=true
 
 [display]
 

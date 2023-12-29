@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpa62fnjg4pxu"]
+[gd_scene load_steps=16 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
@@ -6,23 +6,26 @@
 [ext_resource type="Texture2D" uid="uid://dhnok5wxorneo" path="res://assets/bg_main_menu.png" id="3_i4hpv"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_xa7ve"]
 [ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="6_0t0ca"]
+[ext_resource type="PackedScene" uid="uid://b14smx1q5om3p" path="res://scenes/sidebars/difficulty_selector.tscn" id="6_8ocgp"]
 [ext_resource type="AudioStream" uid="uid://ca184cu7ajjb" path="res://assets/audio/main_menu.mp3" id="7_efx4i"]
+[ext_resource type="PackedScene" uid="uid://by0eh4smd8446" path="res://scenes/sidebars/options.tscn" id="8_wap4e"]
+[ext_resource type="PackedScene" uid="uid://cr5dg02h1qg23" path="res://scenes/sidebars/credits.tscn" id="9_bl5yy"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ajuxe"]
 gradient = ExtResource("5_xa7ve")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8sbee"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3eib2"]
 texture = ExtResource("6_0t0ca")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qrw2a"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qqxfc"]
 texture = ExtResource("6_0t0ca")
 modulate_color = Color(1, 1, 1, 0.345098)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5yluk"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xm7yl"]
 texture = ExtResource("6_0t0ca")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xx3uo"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq4e4"]
 texture = ExtResource("6_0t0ca")
 
 [node name="Menu" type="Control"]
@@ -132,7 +135,6 @@ theme_override_font_sizes/font_size = 36
 text = "Credits"
 
 [node name="Sidebar" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -153,13 +155,33 @@ size_flags_horizontal = 8
 texture = SubResource("GradientTexture1D_ajuxe")
 expand_mode = 1
 
-[node name="DifficultyLabel" type="Label" parent="Sidebar"]
+[node name="CloseSidebarButton" type="Button" parent="Sidebar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_3eib2")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qqxfc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xm7yl")
+theme_override_styles/focus = SubResource("StyleBoxTexture_bq4e4")
+
+[node name="SidebarLabel" type="Label" parent="Sidebar"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-offset_left = 150.0
-offset_top = 40.0
-offset_right = 214.0
-offset_bottom = 114.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 74.0
+grow_horizontal = 2
 theme = ExtResource("1_v3ef7")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -169,252 +191,23 @@ text = "Difficulty: "
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="DifficultyContainer" type="VBoxContainer" parent="Sidebar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 80
-alignment = 1
-
-[node name="BeginnerButton" type="Button" parent="Sidebar/DifficultyContainer"]
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-text = "Frogspawn"
-
-[node name="Intermediate" type="VBoxContainer" parent="Sidebar/DifficultyContainer"]
-layout_mode = 2
-
-[node name="IntermediateButton" type="Button" parent="Sidebar/DifficultyContainer/Intermediate"]
+[node name="DifficultySelector" parent="Sidebar" instance=ExtResource("6_8ocgp")]
 unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-text = "Tadpole"
-
-[node name="IntermediateLabel" type="Label" parent="Sidebar/DifficultyContainer/Intermediate"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Finish Frogspawn to unlock"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Hard" type="VBoxContainer" parent="Sidebar/DifficultyContainer"]
-layout_mode = 2
-
-[node name="HardButton" type="Button" parent="Sidebar/DifficultyContainer/Hard"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-text = "Froggy"
-
-[node name="HardLabel" type="Label" parent="Sidebar/DifficultyContainer/Hard"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Finish Tadpole to unlock"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Expert" type="VBoxContainer" parent="Sidebar/DifficultyContainer"]
-layout_mode = 2
-
-[node name="ExpertButton" type="Button" parent="Sidebar/DifficultyContainer/Expert"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-text = "Helltoad"
-
-[node name="ExpertLabel" type="Label" parent="Sidebar/DifficultyContainer/Expert"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Finish Froggy to unlock"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Custom" type="VBoxContainer" parent="Sidebar/DifficultyContainer"]
-layout_mode = 2
-
-[node name="CustomButton" type="Button" parent="Sidebar/DifficultyContainer/Custom"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-text = "Custom levels"
-
-[node name="CustomLabel" type="Label" parent="Sidebar/DifficultyContainer/Custom"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Create levels from Level Editor"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="CloseSidebarButton" type="Button" parent="Sidebar"]
-layout_mode = 2
-offset_left = 278.0
-offset_right = 350.0
-offset_bottom = 72.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_8sbee")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
-theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
-
-[node name="Options" type="Control" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -350.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_top = 88.0
 
-[node name="OptionsBackground" type="TextureRect" parent="Options"]
+[node name="Options" parent="Sidebar" instance=ExtResource("8_wap4e")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 8
-texture = SubResource("GradientTexture1D_ajuxe")
-expand_mode = 1
+offset_top = 88.0
 
-[node name="DifficultyLabel" type="Label" parent="Options"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-offset_left = 150.0
-offset_top = 40.0
-offset_right = 214.0
-offset_bottom = 114.0
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 64
-text = "Options:"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="OptionsContainer" type="VBoxContainer" parent="Options"]
+[node name="Credits" parent="Sidebar" instance=ExtResource("9_bl5yy")]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 55
-alignment = 1
-
-[node name="Soundtrack" type="VBoxContainer" parent="Options/OptionsContainer"]
-layout_mode = 2
-
-[node name="SoundtrackProgressBar" type="ProgressBar" parent="Options/OptionsContainer/Soundtrack"]
-unique_name_in_owner = true
-layout_mode = 2
-step = 10.0
-
-[node name="SoundtrackHSlider" type="HSlider" parent="Options/OptionsContainer/Soundtrack"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-step = 20.0
-tick_count = 6
-
-[node name="SoundtrackLabel" type="Label" parent="Options/OptionsContainer/Soundtrack"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Soundtrack volume"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="SFX" type="VBoxContainer" parent="Options/OptionsContainer"]
-layout_mode = 2
-
-[node name="SFXProgressBar" type="ProgressBar" parent="Options/OptionsContainer/SFX"]
-unique_name_in_owner = true
-layout_mode = 2
-step = 10.0
-
-[node name="SFXHSlider" type="HSlider" parent="Options/OptionsContainer/SFX"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-step = 20.0
-tick_count = 6
-
-[node name="SFXLabel" type="Label" parent="Options/OptionsContainer/SFX"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Sound effects volume"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="Reset" type="VBoxContainer" parent="Options/OptionsContainer"]
-layout_mode = 2
-
-[node name="ResetButton" type="Button" parent="Options/OptionsContainer/Reset"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-text = "Reset game"
-
-[node name="ResetLabel" type="Label" parent="Options/OptionsContainer/Reset"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-theme = ExtResource("1_v3ef7")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 33
-text = "Delete all saved progress"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="CloseOptionsButton" type="Button" parent="Options"]
-layout_mode = 2
-offset_left = 278.0
-offset_right = 350.0
-offset_bottom = 72.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_8sbee")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qrw2a")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
-theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
+offset_top = 106.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_efx4i")
@@ -424,16 +217,6 @@ autoplay = true
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Credits" to="." method="_on_exit_pressed"]
-[connection signal="pressed" from="Sidebar/DifficultyContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
-[connection signal="pressed" from="Sidebar/DifficultyContainer/Intermediate/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
-[connection signal="pressed" from="Sidebar/DifficultyContainer/Hard/HardButton" to="." method="_on_hard_button_pressed"]
-[connection signal="pressed" from="Sidebar/DifficultyContainer/Expert/ExpertButton" to="." method="_on_expert_button_pressed"]
-[connection signal="pressed" from="Sidebar/DifficultyContainer/Custom/CustomButton" to="." method="_on_custom_button_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Sidebar/CloseSidebarButton" to="." method="_on_close_sidebar_button_pressed"]
-[connection signal="drag_ended" from="Options/OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_drag_ended"]
-[connection signal="value_changed" from="Options/OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_value_changed"]
-[connection signal="drag_ended" from="Options/OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_drag_ended"]
-[connection signal="value_changed" from="Options/OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
-[connection signal="pressed" from="Options/OptionsContainer/Reset/ResetButton" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="Options/CloseOptionsButton" to="." method="_on_close_options_button_pressed"]
+[connection signal="audio_bg_change" from="Sidebar/Options" to="." method="_on_options_audio_bg_change"]

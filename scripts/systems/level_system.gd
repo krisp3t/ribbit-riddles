@@ -92,3 +92,24 @@ static func get_level_info(level: int) -> Dictionary:
 	new_info["solved"] = new_info["savegame"].get(str(level), false);
 		
 	return new_info;
+
+func is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
+	var savegame : Dictionary = {};
+	var custom_levels : Dictionary = {};
+	var level_info : Dictionary;
+	match difficulty:
+		level_enum.DIFFICULTY.EASY:
+			savegame = level_enum.load_savegame(level_enum.EASY_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_EASY);
+		level_enum.DIFFICULTY.INTERMEDIATE:
+			savegame = level_enum.load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_INTERMEDIATE);
+		level_enum.DIFFICULTY.HARD:
+			savegame = level_enum.load_savegame(level_enum.HARD_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_HARD);
+		level_enum.DIFFICULTY.EXPERT:
+			savegame = level_enum.load_savegame(level_enum.EXPERT_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_EXPERT);
+		_:
+			return false;
+	return savegame.size() == len(level_info["difficulty_levels"]);

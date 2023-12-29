@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr5dg02h1qg23"]
+
+[ext_resource type="Script" path="res://scripts/sidebars/credits.gd" id="1_3qifm"]
+[ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="2_qjcu7"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3qifm")
+
+[node name="CreditsContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="CreditsLabel" type="Label" parent="CreditsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("2_qjcu7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Delete all saved progress"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VersionLabel" type="Label" parent="CreditsContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("2_qjcu7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Version: x.x.x"
+horizontal_alignment = 1
+autowrap_mode = 2
