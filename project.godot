@@ -22,6 +22,12 @@ config/icon="res://icon.svg"
 [autoload]
 
 LevelVariables="*res://scripts/level_variables.gd"
+ConfigSystem="*res://scripts/config_system.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
 
 [display]
 

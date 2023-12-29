@@ -1,19 +1,24 @@
 extends Control
 @onready var level_vars : LevelVariables = $/root/LevelVariables;
+@onready var config : Config = $/root/ConfigSystem;
 var is_sidebar_open : bool = false;
 var is_options_open : bool = false;
 
 func _ready() -> void:
 	_change_sidebar_state($Sidebar, false, func(): is_sidebar_open = false, false);
 	_change_sidebar_state($Options, false, func(): is_options_open = false, false);
-	$Sidebar/DifficultyContainer/Intermediate/IntermediateButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.EASY);
-	$Sidebar/DifficultyContainer/Intermediate/IntermediateLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.EASY);
-	$Sidebar/DifficultyContainer/Hard/HardButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.INTERMEDIATE);
-	$Sidebar/DifficultyContainer/Hard/HardLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.INTERMEDIATE);
-	$Sidebar/DifficultyContainer/Expert/ExpertButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.HARD);
-	$Sidebar/DifficultyContainer/Expert/ExpertLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.HARD);
-	$Sidebar/DifficultyContainer/Custom/CustomButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
-	$Sidebar/DifficultyContainer/Custom/CustomLabel.visible = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
+	%IntermediateButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.EASY);
+	%IntermediateLabel.visible = %IntermediateButton.disabled;
+	%HardButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.INTERMEDIATE);
+	%HardLabel.visible = %HardButton.disabled;
+	%ExpertButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.HARD);
+	%ExpertLabel.visible = %ExpertButton.disabled;
+	%CustomButton.disabled = !_is_completed_difficulty(level_enum.DIFFICULTY.CUSTOM);
+	%CustomLabel.visible = %CustomButton.disabled;
+	%SFXHSlider.value = config.load_value("audio", "sfx") if config.load_value("audio", "sfx") != null else 100.0;
+	%SFXProgressBar.value = %SFXHSlider.value;
+	%SoundtrackHSlider.value = config.load_value("audio", "bg") if config.load_value("audio", "bg") != null else 100.0;
+	%SoundtrackProgressBar.value = %SoundtrackHSlider.value;
 	
 func _change_sidebar_state(sidebar_node: Control, open: bool, callback: Callable, animate: bool = true) -> void:
 	var pos : Vector2 = Vector2(sidebar_node.position.x, sidebar_node.position.y);
@@ -22,7 +27,7 @@ func _change_sidebar_state(sidebar_node: Control, open: bool, callback: Callable
 	else:
 		pos.x = sidebar_node.position.x + sidebar_node.size.x;
 	if animate:
-		var tween = get_tree().create_tween();
+		var tween : Tween = get_tree().create_tween();
 		tween.set_trans(Tween.TRANS_QUAD);
 		tween.tween_property(sidebar_node, "position", pos, 0.5);
 	else:
@@ -102,7 +107,7 @@ func _get_max_completed_level(difficulty: level_enum.DIFFICULTY) -> int:
 		return default_min;
 		
 	var max_solved: int = default_min;
-	for key in savegame:
+	for key: String in savegame:
 		if (int(key) >= default_max):
 			return default_max;
 		if (int(key) >= max_solved):
@@ -131,22 +136,28 @@ func _on_custom_button_pressed() -> void:
 	_play();
 	
 func _on_soundtrack_h_slider_value_changed(value: float) -> void:
-	$Options/OptionsContainer/Soundtrack/SoundtrackProgressBar.value = $Options/OptionsContainer/Soundtrack/SoundtrackHSlider.value;	
+	%SoundtrackProgressBar.value = %SoundtrackHSlider.value;	
 
 func _on_soundtrack_h_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
-		$Options/OptionsContainer/Soundtrack/SoundtrackProgressBar.value = $Options/OptionsContainer/Soundtrack/SoundtrackHSlider.value;	
+		%SoundtrackProgressBar.value = %SoundtrackHSlider.value;	
+		config.save_value("audio", "bg", %SoundtrackHSlider.value);
 
 func _on_sfxh_slider_value_changed(value: float) -> void:
-	$Options/OptionsContainer/SFX/SFXProgressBar.value = $Options/OptionsContainer/SFX/SFXHSlider.value;	
-	
+	%SFXProgressBar.value = %SFXHSlider.value;	
+
+func _on_sfxh_slider_drag_ended(value_changed: bool) -> void:
+	if value_changed:
+		%SFXProgressBar.value = %SFXHSlider.value;	
+		config.save_value("audio", "sfx", %SFXHSlider.value);
+			
 func _on_reset_button_pressed() -> void:
 	if (DirAccess.dir_exists_absolute("user://savegames")):
 		var dir : DirAccess = DirAccess.open("user://savegames");
-		for file in dir.get_files():
+		for file : String in dir.get_files():
 			dir.remove(file);
-	$Options/OptionsContainer/Reset/ResetButton.disabled = true;
-	$Options/OptionsContainer/Reset/ResetLabel.text = "Successfully reset game!";
+	%ResetButton.disabled = true;
+	%ResetLabel.text = "Successfully reset game!";
 	_ready();
 
 

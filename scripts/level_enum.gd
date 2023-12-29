@@ -6,10 +6,10 @@ const MAX_INTERMEDIATE : int = 20;
 const MAX_HARD : int = 30;
 const MAX_EXPERT : int = 40;
 
-const EASY_SAVEGAME = "user://savegames/easy.save";
-const INTERMEDIATE_SAVEGAME = "user://savegames/intermediate.save";
-const HARD_SAVEGAME = "user://savegames/hard.save";
-const EXPERT_SAVEGAME = "user://savegames/expert.save";
+const EASY_SAVEGAME : String = "user://savegames/easy.save";
+const INTERMEDIATE_SAVEGAME : String = "user://savegames/intermediate.save";
+const HARD_SAVEGAME : String = "user://savegames/hard.save";
+const EXPERT_SAVEGAME : String = "user://savegames/expert.save";
 
 static func load_savegame(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
