@@ -1,5 +1,5 @@
 extends Control
-@onready var level_vars : LevelVariables = $/root/LevelVariables;
+@onready var level_vars : LevelSystem = $/root/LevelSystem;
 @onready var config : Config = $/root/ConfigSystem;
 var is_sidebar_open : bool = false;
 var is_options_open : bool = false;

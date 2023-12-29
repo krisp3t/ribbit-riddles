@@ -1,5 +1,5 @@
 extends Node2D;
-@onready var level_vars : LevelVariables = $/root/LevelVariables;
+@onready var level_vars : LevelSystem = $/root/LevelSystem;
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new();
 var is_muted : bool = false;
@@ -36,15 +36,7 @@ func _ready() -> void:
 func _on_restart_level_button_pressed() -> void:
 	refresh.emit();
 	
-func save_game() -> void:
-	if !(DirAccess.dir_exists_absolute("user://savegames")):
-		var dir : DirAccess = DirAccess.open("user://");	
-		dir.make_dir("savegames");
-	var dict : Dictionary = level_vars["info"]["savegame"];
-	dict[level_vars.current_level] = true;
-	var json : String = JSON.stringify(dict);
-	var file : FileAccess = FileAccess.open(level_vars["info"]["savegame_path"], FileAccess.WRITE);
-	file.store_line(json);
+
 
 func _on_playfield_solved() -> void:
 	$WinPlayer.play();
@@ -64,7 +56,7 @@ func _on_playfield_solved() -> void:
 	tween.set_parallel(true);
 	tween.tween_property($UI/CanvasLayer/Win, "scale", Vector2(1, 1), 0.5);
 	tween.tween_property($UI/CanvasLayer/Win, "position", pos, 0.5);
-	save_game();
+	level_vars.save_savegame(level_vars.info["savegame_path"]);
 	
 func _on_previous_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.current_level - 1);

@@ -1,6 +1,6 @@
 extends Node2D
 @onready var level : PackedScene = load("res://scenes/level.tscn");
-@onready var level_vars : LevelVariables = $/root/LevelVariables;
+@onready var level_vars : LevelSystem = $/root/LevelSystem;
 @onready var l : Node2D;
 
 func _ready() -> void:

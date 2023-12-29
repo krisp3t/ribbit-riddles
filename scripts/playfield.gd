@@ -1,5 +1,5 @@
 extends Node2D;
-@onready var level_vars : LevelVariables = $/root/LevelVariables;
+@onready var level_vars : LevelSystem = $/root/LevelSystem;
 
 const LILYPADS_OFFSET : Vector2i = Vector2i(300, 145);
 const DROP_SHORTEST_DIST : int = 75;
