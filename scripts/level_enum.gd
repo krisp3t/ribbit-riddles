@@ -60,7 +60,10 @@ static func get_level_info(level: int) -> Dictionary:
 		info["difficulty_bg"] = "res://custom/bg.png";
 		info["difficulty_progress_bar"] = "";
 		info["difficulty_levels"] = read_JSON.get_dict("user://levels/levels.json");
-		info["level_layout"] = info["difficulty_levels"][str(level)];
+		if info["difficulty_levels"].has(str(level)):
+			info["level_layout"] = info["difficulty_levels"][str(level)];
+		else:
+			info["level_layout"] = [];
 		info["savegame"] = {};
 	info["solved"] = info["savegame"].get(str(level), false);
 		

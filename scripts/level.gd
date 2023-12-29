@@ -9,12 +9,16 @@ func _initialize() -> void:
 	$UI/CanvasLayer/ParallaxBackground/Background.texture = level_vars.background;
 	$UI/CanvasLayer/DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
 	# Is level already solved?
-	$UI/CanvasLayer/VBoxContainer/FinishWarning.visible = !info["solved"];
-	$UI/CanvasLayer/VBoxContainer/NextLevelButton.disabled = !info["solved"];
+	$UI/CanvasLayer/NextLevelContainer/FinishWarning.visible = !info["solved"];
+	$UI/CanvasLayer/NextLevelContainer/NextLevelButton.disabled = !info["solved"];
 	if info["solved"]:
 		$UI/CanvasLayer/LevelContainer/LevelSolved.texture = load("res://assets/buttons/4x/Asset 25@4x.png");
 	if level_vars.current_level == 1:
 		$UI/CanvasLayer/PreviousLevelButton.disabled = true;
+	# Max level in game (without custom)
+	if level_vars.current_level == level_enum.MAX_EXPERT:
+		$UI/CanvasLayer/NextLevelContainer/NextLevelButton.disabled = true;
+		$UI/CanvasLayer/NextLevelContainer/FinishWarning.visible = false;
 
 func _ready() -> void:
 	_initialize();
@@ -33,9 +37,15 @@ func save_game() -> void:
 	file.store_line(json);
 
 func _on_playfield_solved() -> void:
-	$UI/CanvasLayer/VBoxContainer/NextLevelButton.disabled = false;
-	$UI/CanvasLayer/VBoxContainer/FinishWarning.visible = false;
+	$WinPlayer.play();
+	$UI/CanvasLayer/NextLevelContainer/NextLevelButton.disabled = false;
+	$UI/CanvasLayer/NextLevelContainer/FinishWarning.visible = false;
 	$UI/CanvasLayer/LevelContainer/LevelSolved.texture = preload("res://assets/buttons/4x/Asset 25@4x.png");
+	
+	if level_vars.current_level == level_enum.MAX_EXPERT:
+		$UI/CanvasLayer/NextLevelContainer/NextLevelButton.disabled = true;
+		$UI/CanvasLayer/Win/GameCompleteLabel.visible = true;
+		$Playfield.visible = false;
 	$UI/CanvasLayer/Win.visible = true;
 	$UI/CanvasLayer/Win.scale = Vector2(0, 0);
 	var tween = get_tree().create_tween();

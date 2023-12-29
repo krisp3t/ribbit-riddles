@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=23 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_aluce"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="10_kae8m"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="11_5abmp"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="12_m65xv"]
+[ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="14_kujnr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuvsq"]
 texture = ExtResource("3_bak26")
@@ -100,51 +101,6 @@ offset_bottom = 167.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
-
-[node name="Win" type="Control" parent="UI/CanvasLayer"]
-visible = false
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -296.0
-offset_top = 216.0
-offset_right = 296.0
-offset_bottom = 384.0
-grow_horizontal = 2
-
-[node name="WinTexture" type="TextureRect" parent="UI/CanvasLayer/Win"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 8.0
-offset_bottom = 15.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_51sw0")
-
-[node name="WinLabel" type="Label" parent="UI/CanvasLayer/Win"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.447
-anchor_right = 0.5
-anchor_bottom = 0.452
-offset_left = -176.5
-offset_top = -57.5
-offset_right = 176.5
-offset_bottom = 57.5
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_3m6x0")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 100
-text = "Level solved!"
-horizontal_alignment = 1
 
 [node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5
@@ -307,31 +263,95 @@ grow_horizontal = 0
 theme = ExtResource("6_3m6x0")
 text = "Restart level"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/CanvasLayer"]
+[node name="NextLevelContainer" type="VBoxContainer" parent="UI/CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -328.0
 offset_top = 896.0
 offset_right = -72.0
-offset_bottom = 1001.0
+offset_bottom = 1011.0
 grow_horizontal = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
 
-[node name="NextLevelButton" type="Button" parent="UI/CanvasLayer/VBoxContainer"]
+[node name="NextLevelButton" type="Button" parent="UI/CanvasLayer/NextLevelContainer"]
 layout_mode = 2
 theme = ExtResource("6_3m6x0")
 text = "Next level"
 
-[node name="FinishWarning" type="Label" parent="UI/CanvasLayer/VBoxContainer"]
+[node name="FinishWarning" type="Label" parent="UI/CanvasLayer/NextLevelContainer"]
 layout_mode = 2
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Finish the level to proceed"
+horizontal_alignment = 1
+
+[node name="Win" type="Control" parent="UI/CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -296.0
+offset_top = 216.0
+offset_right = 296.0
+offset_bottom = 384.0
+grow_horizontal = 2
+
+[node name="WinTexture" type="TextureRect" parent="UI/CanvasLayer/Win"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 8.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_51sw0")
+
+[node name="WinLabel" type="Label" parent="UI/CanvasLayer/Win"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.447
+anchor_right = 0.5
+anchor_bottom = 0.452
+offset_left = -176.5
+offset_top = -57.5
+offset_right = 176.5
+offset_bottom = 57.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 100
+text = "Level solved!"
+horizontal_alignment = 1
+
+[node name="GameCompleteLabel" type="Label" parent="UI/CanvasLayer/Win"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -592.0
+offset_top = 312.0
+offset_right = 631.0
+offset_bottom = 545.0
+grow_horizontal = 2
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 100
+text = "You've completed all levels!
+Congratulations, you're the frog emperor!"
 horizontal_alignment = 1
 
 [node name="Playfield" parent="." instance=ExtResource("11_5abmp")]
@@ -346,10 +366,13 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
+[node name="WinPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_kujnr")
+
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/VBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/NextLevelContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]
 
 [editable path="Playfield"]

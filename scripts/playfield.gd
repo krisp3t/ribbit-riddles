@@ -4,6 +4,7 @@ extends Node2D;
 const LILYPADS_OFFSET : Vector2i = Vector2i(300, 145);
 const DROP_SHORTEST_DIST : int = 75;
 
+var rng : RandomNumberGenerator = RandomNumberGenerator.new();
 var frog_scene : PackedScene = preload("res://scenes/frog.tscn");
 var lilypad_scene : PackedScene = preload("res://scenes/lilypad.tscn");
 var lilypads : Array = [];
@@ -150,6 +151,9 @@ func _on_frog_drop(frog: Frog) -> void:
 		frog.attached_lilypad.attached_frog = null;
 		frog.attached_lilypad = lilypad;
 		lilypad.attached_frog = frog;
+		
+		$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
+		$JumpPlayer.play();
 		break;
 	
 	if _check_level_solved():

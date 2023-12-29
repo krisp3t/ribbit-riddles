@@ -61,7 +61,8 @@ func _is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
 	var level_info : Dictionary;
 	match difficulty:
 		level_enum.DIFFICULTY.EASY:
-			return true;
+			savegame = level_enum.load_savegame(level_enum.EASY_SAVEGAME);
+			level_info = level_enum.get_level_info(level_enum.MAX_EASY);
 		level_enum.DIFFICULTY.INTERMEDIATE:
 			savegame = level_enum.load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
 			level_info = level_enum.get_level_info(level_enum.MAX_INTERMEDIATE);
