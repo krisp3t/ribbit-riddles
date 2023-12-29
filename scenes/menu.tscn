@@ -56,6 +56,8 @@ anchor_left = 0.2
 anchor_top = 0.25
 anchor_right = 0.8
 anchor_bottom = 0.75
+offset_top = -274.0
+offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 16
@@ -100,7 +102,7 @@ layout_mode = 2
 theme = ExtResource("1_v3ef7")
 text = "Exit"
 
-[node name="Credits" type="Label" parent="."]
+[node name="CreditsLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.99
@@ -115,7 +117,22 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Made with 💖 by krisp3t"
 
+[node name="Credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = 64.0
+offset_right = -16.0
+offset_bottom = 106.0
+grow_horizontal = 0
+theme = ExtResource("1_v3ef7")
+theme_override_font_sizes/font_size = 36
+text = "Credits"
+
 [node name="Sidebar" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -266,6 +283,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_5yluk")
 theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
 
 [node name="Options" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -406,6 +424,7 @@ autoplay = true
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Sidebar/DifficultyContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
 [connection signal="pressed" from="Sidebar/DifficultyContainer/Intermediate/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
 [connection signal="pressed" from="Sidebar/DifficultyContainer/Hard/HardButton" to="." method="_on_hard_button_pressed"]

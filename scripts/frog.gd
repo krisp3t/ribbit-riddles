@@ -5,7 +5,7 @@ var selected : bool = false;
 @export var red : bool = false;
 @export var attached_lilypad : Lilypad = null;
 
-signal drop_frog(Vector2i);
+signal drop_frog(v: Vector2i);
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:

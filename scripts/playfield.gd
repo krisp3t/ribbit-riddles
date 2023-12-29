@@ -41,7 +41,7 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 		# Odd rows
 		if len(x) % 2 != 0:
 			var l : Line2D = Line2D.new();
-			for lilypad in x:
+			for lilypad: Lilypad in x:
 				l.add_point(lilypad.position);
 				# Connect upper and lower lilypad vertically
 				if lilypad.coord.x % 4 == 2:
@@ -53,7 +53,7 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 					add_child(li);
 			add_child(l);
 		else:
-			for lilypad in x:
+			for lilypad: Lilypad in x:
 				var c : Vector2i = lilypad.coord;
 				var to_draw : Array = [Vector2i(c.x - 1, c.y - 1), Vector2i(c.x - 1, c.y + 1), Vector2i(c.x + 1, c.y - 1), Vector2i(c.x + 1, c.y + 1)];
 				for t in to_draw:
@@ -64,7 +64,7 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 				
 		
 func _instantiate_lilypads() -> void:
-	var level_layout = level_vars["info"]["level_layout"];
+	var level_layout : Array = level_vars["info"]["level_layout"];
 	for y in level_layout.size():
 		lilypads.push_back([]);
 		for x in level_layout[y].size():

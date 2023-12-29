@@ -29,7 +29,7 @@ static func load_savegame(path: String) -> Dictionary:
 		return {};
 	return read_JSON.get_dict(path);
 
-func save_savegame(path: String) -> void:
+func save_savegame() -> void:
 	if !(DirAccess.dir_exists_absolute("user://savegames")):
 		var dir : DirAccess = DirAccess.open("user://");	
 		dir.make_dir("savegames");
