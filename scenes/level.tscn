@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=25 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="2_aluce"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="10_kae8m"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="11_5abmp"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="12_m65xv"]
+[ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="14_kowql"]
 [ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="14_kujnr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuvsq"]
@@ -38,6 +39,10 @@ modulate_color = Color(1, 1, 1, 0.756863)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2ybn"]
 texture = ExtResource("4_x8enm")
 modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_033ou"]
+texture = ExtResource("4_x8enm")
+modulate_color = Color(1, 1, 1, 0.439216)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7va1i"]
 gradient = ExtResource("7_jm048")
@@ -101,6 +106,7 @@ offset_bottom = 167.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
+theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
 
 [node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5
@@ -366,13 +372,18 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="WinPlayer" type="AudioStreamPlayer" parent="."]
+[node name="WinPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
 stream = ExtResource("14_kujnr")
 
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+stream = ExtResource("14_kowql")
+
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="jump" from="Playfield" to="." method="_on_playfield_jump"]
 [connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]
 
 [editable path="Playfield"]

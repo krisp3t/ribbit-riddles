@@ -77,7 +77,6 @@ func _is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
 	return savegame.size() == len(level_info["difficulty_levels"]);
 	
 func _get_max_completed_level(difficulty: level_enum.DIFFICULTY) -> int:
-	print_debug("a");
 	var savegame : Dictionary = {};
 	var default_min : int;
 	var default_max : int;

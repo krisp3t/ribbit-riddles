@@ -7,9 +7,14 @@ func _ready() -> void:
 	l = level.instantiate();
 	add_child(l);
 	l.connect("refresh", _on_level_refresh);
+	l.connect("mute", _on_mute);
 		
+func _on_mute(quiet: bool) -> void:
+	$AudioStreamPlayer.stream_paused = quiet;
+	
 func _on_level_refresh() -> void:
 	l.queue_free();
 	l = level.instantiate();
 	add_child(l);
 	l.connect("refresh", _on_level_refresh);
+	l.connect("mute", _on_mute);

@@ -4,6 +4,7 @@ var current_level : int;
 var info : Dictionary;
 var background : Resource;
 var next_background : Resource;
+var muted : bool = false;
 
 func initialize(level : int) -> void:
 	current_level = level;
