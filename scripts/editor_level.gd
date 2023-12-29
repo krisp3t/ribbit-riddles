@@ -4,6 +4,8 @@ extends Node2D;
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new();
 var is_muted : bool = false;
+var selected : Control = null;
+const CURSOR_OFFSET : Vector2 = Vector2(-60, -55);
 
 signal refresh;
 signal mute;
@@ -26,6 +28,7 @@ func _initialize() -> void:
 	if level_vars.current_level == level_enum.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%FinishWarning.visible = false;
+	%SaveButton.text = "Save as Level %s" % level_vars.current_level;
 
 func _ready() -> void:
 	_initialize();
@@ -63,4 +66,20 @@ func _on_mute_button_pressed() -> void:
 func _on_playfield_jump() -> void:
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
 	$JumpPlayer.play();
-	pass # Replace with function body.
+
+
+func _on_green_frog_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_action_pressed("click"):
+		selected = %GreenFrog;
+		selected.modulate = Color(1, 1, 1, 0.5);
+
+
+func _on_red_frog_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_action_pressed("click"):
+		selected = %RedFrog;
+		selected.modulate = Color(1, 1, 1, 0.5);
+	
+func _process(delta: float) -> void:
+	for c: Control in get_tree().get_nodes_in_group("EditorFrogs"):
+		if c == selected:
+			c.global_position = lerp(c.global_position, get_global_mouse_position() + CURSOR_OFFSET, 25 * delta);

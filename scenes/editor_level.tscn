@@ -199,15 +199,14 @@ anchor_right = 1.0
 offset_left = -416.0
 offset_top = 248.0
 offset_right = -64.0
-offset_bottom = 496.0
+offset_bottom = 448.0
 grow_horizontal = 0
 
-[node name="TextureRect2" type="TextureRect" parent="UI/CanvasLayer/Instructions"]
+[node name="InstructionsBackground" type="TextureRect" parent="UI/CanvasLayer/Instructions"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_w1ywx")
@@ -240,9 +239,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -176.0
-offset_top = -64.0
+offset_top = -48.0
 offset_right = 174.0
-offset_bottom = -27.0
+offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("5_g6vjh")
@@ -252,15 +251,38 @@ theme_override_font_sizes/font_size = 32
 text = "Right click to remove frog"
 horizontal_alignment = 1
 
-[node name="GreenFrog" type="Sprite2D" parent="UI/CanvasLayer/Instructions"]
-position = Vector2(88, 112)
-scale = Vector2(0.271, 0.271)
+[node name="GreenFrog" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -60.0
+offset_right = 168.0
+offset_bottom = 60.0
+grow_vertical = 2
 texture = ExtResource("7_ejejh")
+expand_mode = 1
+stretch_mode = 4
 
-[node name="RedFrog" type="Sprite2D" parent="UI/CanvasLayer/Instructions"]
-position = Vector2(256, 112)
-scale = Vector2(0.271, 0.271)
+[node name="RedFrog" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -60.0
+offset_right = -56.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("8_2c8s0")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -363,6 +385,8 @@ volume_db = -80.0
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="gui_input" from="UI/CanvasLayer/Instructions/GreenFrog" to="." method="_on_green_frog_gui_input"]
+[connection signal="gui_input" from="UI/CanvasLayer/Instructions/RedFrog" to="." method="_on_red_frog_gui_input"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 
