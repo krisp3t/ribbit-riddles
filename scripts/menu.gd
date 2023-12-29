@@ -1,4 +1,5 @@
 extends Control
+@onready var level_vars : LevelSystem = $/root/LevelSystem;
 @onready var config : Config = $/root/ConfigSystem;
 
 var is_sidebar_open : bool = false;
@@ -8,7 +9,6 @@ func _ready() -> void:
 	_close_all_sidebars();
 	$AudioStreamPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg"));
 	
-
 func _on_options_audio_bg_change() -> void:
 	$AudioStreamPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg"));
 
@@ -49,7 +49,10 @@ func _on_options_pressed() -> void:
 	if !is_sidebar_open:
 		_change_sidebar_state(true);
 		
-
+func _on_map_editor_pressed() -> void:
+	level_vars.initialize(level_enum.MAX_EXPERT + 1);
+	get_tree().change_scene_to_file("res://scenes/editor.tscn");
+	
 func _on_credits_pressed() -> void:
 	_close_all_sidebars();
 	%Credits.visible = true;
@@ -59,16 +62,6 @@ func _on_credits_pressed() -> void:
 	
 func _on_exit_pressed() -> void:
 	get_tree().quit();
-
-
-
-
-
-
-
-
-
-
 
 
 

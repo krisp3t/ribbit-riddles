@@ -215,6 +215,7 @@ volume_db = -80.0
 autoplay = true
 
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/MapEditor" to="." method="_on_map_editor_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
