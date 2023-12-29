@@ -1,5 +1,6 @@
 extends Node2D;
 @onready var level_vars : LevelSystem = $/root/LevelSystem;
+@onready var config : ConfigSystem = $/root/ConfigSystem;
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new();
 var is_muted : bool = false;
@@ -14,9 +15,11 @@ func _initialize() -> void:
 	$UI/CanvasLayer/DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];
 	$UI/CanvasLayer/ParallaxBackground/Background.texture = level_vars.background;
 	$UI/CanvasLayer/DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
-	# Set up muted / unmuted players
+	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
+	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx"));
+	$WinPlayer.volume_db = $JumpPlayer.volume_db;
 	# Is level already solved?
 	$UI/CanvasLayer/NextLevelContainer/FinishWarning.visible = !info["solved"];
 	$UI/CanvasLayer/NextLevelContainer/NextLevelButton.disabled = !info["solved"];
@@ -84,7 +87,7 @@ func _on_mute_button_pressed() -> void:
 		if (is_muted):
 			player.set_volume_db(-999.0);
 		else:
-			player.set_volume_db(0.0);
+			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx")));
 	mute.emit(is_muted);
 	level_vars.muted = is_muted;		
 

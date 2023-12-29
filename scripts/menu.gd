@@ -19,6 +19,7 @@ func _ready() -> void:
 	%SFXProgressBar.value = %SFXHSlider.value;
 	%SoundtrackHSlider.value = config.load_value("audio", "bg") if config.load_value("audio", "bg") != null else 100.0;
 	%SoundtrackProgressBar.value = %SoundtrackHSlider.value;
+	$AudioStreamPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg"));
 	
 func _change_sidebar_state(sidebar_node: Control, open: bool, callback: Callable, animate: bool = true) -> void:
 	var pos : Vector2 = Vector2(sidebar_node.position.x, sidebar_node.position.y);
@@ -142,6 +143,8 @@ func _on_soundtrack_h_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
 		%SoundtrackProgressBar.value = %SoundtrackHSlider.value;	
 		config.save_value("audio", "bg", %SoundtrackHSlider.value);
+	$AudioStreamPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg"));
+	
 
 func _on_sfxh_slider_value_changed(value: float) -> void:
 	%SFXProgressBar.value = %SFXHSlider.value;	

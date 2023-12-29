@@ -400,6 +400,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_xx3uo")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_efx4i")
+volume_db = -80.0
 autoplay = true
 
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]

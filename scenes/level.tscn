@@ -374,9 +374,11 @@ grow_vertical = 1
 
 [node name="WinPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
 stream = ExtResource("14_kujnr")
+volume_db = -80.0
 
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
 stream = ExtResource("14_kowql")
+volume_db = -80.0
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
