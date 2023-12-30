@@ -96,9 +96,9 @@ func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
 	
 	# Empty lilypads
 	if (val == lilypad_enum.STATUS.EMPTY):
-		var frog : Frog = lilypad.attached_frog;
-		if (frog != null):
-			frog.queue_free();
+		var froge : Frog = lilypad.attached_frog;
+		if (froge != null):
+			froge.queue_free();
 			lilypad.attached_frog = null;
 		return;
 	

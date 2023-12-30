@@ -406,7 +406,11 @@ layout_mode = 2
 theme = ExtResource("5_g6vjh")
 text = "Save & Test"
 
-[node name="TestWarning" type="Label" parent="UI/CanvasLayer/SaveTestContainer"]
+[node name="InfoTimer" type="Timer" parent="UI/CanvasLayer/SaveTestContainer"]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[node name="InfoLabel" type="Label" parent="UI/CanvasLayer/SaveTestContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("5_g6vjh")
@@ -446,5 +450,7 @@ volume_db = -80.0
 [connection signal="pressed" from="UI/CanvasLayer/ClearButton" to="." method="_on_clear_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="timeout" from="UI/CanvasLayer/SaveTestContainer/InfoTimer" to="." method="_on_info_timer_timeout"]
 
 [editable path="Playfield"]

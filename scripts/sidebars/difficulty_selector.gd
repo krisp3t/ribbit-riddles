@@ -42,19 +42,19 @@ func _get_max_completed_level(difficulty: level_enum.DIFFICULTY) -> int:
 	var default_max : int;
 	match difficulty:
 		level_enum.DIFFICULTY.EASY:
-			savegame = level_enum.load_savegame(level_enum.EASY_SAVEGAME);
+			savegame = level_vars.load_savegame(level_enum.EASY_SAVEGAME);
 			default_min = 1;
 			default_max = level_enum.MAX_EASY;
 		level_enum.DIFFICULTY.INTERMEDIATE:
-			savegame = level_enum.load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
+			savegame = level_vars.load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
 			default_min = level_enum.MAX_EASY + 1;
 			default_max = level_enum.MAX_INTERMEDIATE;
 		level_enum.DIFFICULTY.HARD:
-			savegame = level_enum.load_savegame(level_enum.HARD_SAVEGAME);
+			savegame = level_vars.load_savegame(level_enum.HARD_SAVEGAME);
 			default_min = level_enum.MAX_INTERMEDIATE + 1;
 			default_max = level_enum.MAX_HARD;
 		level_enum.DIFFICULTY.EXPERT:
-			savegame = level_enum.load_savegame(level_enum.EXPERT_SAVEGAME);
+			savegame = level_vars.load_savegame(level_enum.EXPERT_SAVEGAME);
 			default_min = level_enum.MAX_HARD + 1;
 			default_max = level_enum.MAX_EXPERT;
 		_:

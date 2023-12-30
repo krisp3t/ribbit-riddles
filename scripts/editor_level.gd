@@ -16,7 +16,6 @@ signal refresh;
 signal mute;
 
 func _initialize() -> void:
-	var info : Dictionary = level_enum.get_level_info(level_vars.current_level);
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.current_level;
 	%Background.texture = level_vars.background;
@@ -46,6 +45,7 @@ func _on_previous_level_button_pressed() -> void:
 func _on_next_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.current_level + 1);
 	refresh.emit();
+	
 	
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
@@ -146,8 +146,6 @@ func _on_item_drop(item: Control) -> void:
 		$Playfield.initialize_lilypad(ix, lilypad);
 		_check_valid_edit();
 
-	
-	
 func _process(delta: float) -> void:
 	for c: Control in get_tree().get_nodes_in_group("EditorFrogs"):
 		if c == selected:
@@ -161,6 +159,10 @@ func _process(delta: float) -> void:
 				"Eraser":
 					c.position = lerp(c.position, ERASER_INITIAL, 25 * delta);
 
+func _on_save_button_pressed() -> void:
+	level_vars.save_created_level();
+	%InfoLabel.text = "Level successfully saved!";
+	%InfoTimer.start();
 
-
-
+func _on_info_timer_timeout() -> void:
+	%InfoLabel.text = "";

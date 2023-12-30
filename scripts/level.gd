@@ -9,7 +9,7 @@ signal refresh;
 signal mute;
 
 func _initialize() -> void:
-	var info : Dictionary = level_enum.get_level_info(level_vars.current_level);
+	var info : Dictionary = level_vars.get_level_info(level_vars.current_level);
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.current_level;
 	%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];
@@ -32,6 +32,10 @@ func _initialize() -> void:
 	if level_vars.current_level == level_enum.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%FinishWarning.visible = false;
+	elif level_vars["info"]["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
+		if level_vars.current_level == level_enum.MAX_EXPERT + level_vars["info"]["difficulty_levels"].size():
+			%NextLevelButton.disabled = true;
+			%FinishWarning.visible = false;
 
 func _ready() -> void:
 	_initialize();
@@ -49,6 +53,10 @@ func _on_playfield_solved() -> void:
 		%NextLevelButton.disabled = true;
 		%GameCompleteLabel.visible = true;
 		$Playfield.visible = false;
+	elif level_vars["info"]["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
+		if level_vars.current_level == level_enum.MAX_EXPERT + level_vars["info"]["difficulty_levels"].size():
+			%NextLevelButton.disabled = true;
+			%FinishWarning.visible = false;
 	%Win.visible = true;
 	%Win.scale = Vector2(0, 0);
 	var tween = get_tree().create_tween();

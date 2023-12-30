@@ -8,7 +8,7 @@ var muted : bool = false;
 
 func initialize(level : int) -> void:
 	current_level = level;
-	info = level_enum.get_level_info(current_level);
+	info = get_level_info(current_level);
 	background = ResourceLoader.load_threaded_get(info["difficulty_bg"]);
 	# If background thread failed to load bg, load normally
 	if background == null:
@@ -16,20 +16,33 @@ func initialize(level : int) -> void:
 	queue_next_bg();
 	
 func queue_next_bg() -> void:
-	var next_info : Dictionary = level_enum.get_level_info(current_level + 1);
+	var next_info : Dictionary = get_level_info(current_level + 1);
 	ResourceLoader.load_threaded_request(next_info["difficulty_bg"]);
 	
 func _ready() -> void:
-	var next_info : Dictionary = level_enum.get_level_info(1);
+	var next_info : Dictionary = get_level_info(1);
 	ResourceLoader.load_threaded_request(next_info["difficulty_bg"]);
 	initialize(1);
 
+func save_created_level() -> void:
+	if !(DirAccess.dir_exists_absolute("user://levels")):
+		var dir : DirAccess = DirAccess.open("user://");	
+		dir.make_dir("levels");
+	var dict : Dictionary = info["difficulty_levels"];
+	dict[current_level] = info["level_layout"];
+	var json : String = JSON.stringify(dict);
+	var file : FileAccess = FileAccess.open(level_enum.CUSTOM_LEVELS_PATH, FileAccess.WRITE);
+	file.store_line(json);
+	
 static func load_savegame(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		return {};
 	return read_JSON.get_dict(path);
 
 func save_savegame() -> void:
+	if (info["difficulty"] == level_enum.DIFFICULTY.CUSTOM):
+		return;
+		
 	if !(DirAccess.dir_exists_absolute("user://savegames")):
 		var dir : DirAccess = DirAccess.open("user://");	
 		dir.make_dir("savegames");
@@ -82,7 +95,7 @@ static func get_level_info(level: int) -> Dictionary:
 		new_info["difficulty_name"] = "Custom";
 		new_info["difficulty_bg"] = "res://custom/bg.png";
 		new_info["difficulty_progress_bar"] = "";
-		new_info["difficulty_levels"] = read_JSON.get_dict("user://levels/levels.json");
+		new_info["difficulty_levels"] = read_JSON.get_dict(level_enum.CUSTOM_LEVELS_PATH);
 		if new_info["difficulty_levels"].has(str(level)):
 			new_info["level_layout"] = new_info["difficulty_levels"][str(level)];
 		else:
@@ -101,23 +114,23 @@ static func get_level_info(level: int) -> Dictionary:
 
 func is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
 	var savegame : Dictionary = {};
-	var custom_levels : Dictionary = {};
-	var level_info : Dictionary;
+	var custom_levels : Dictionary = read_JSON.get_dict(level_enum.CUSTOM_LEVELS_PATH);
+	var level_info : Dictionary = {};
 	match difficulty:
 		level_enum.DIFFICULTY.EASY:
-			savegame = level_enum.load_savegame(level_enum.EASY_SAVEGAME);
-			level_info = level_enum.get_level_info(level_enum.MAX_EASY);
+			savegame = load_savegame(level_enum.EASY_SAVEGAME);
+			level_info = get_level_info(level_enum.MAX_EASY);
 		level_enum.DIFFICULTY.INTERMEDIATE:
-			savegame = level_enum.load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
-			level_info = level_enum.get_level_info(level_enum.MAX_INTERMEDIATE);
+			savegame = load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
+			level_info = get_level_info(level_enum.MAX_INTERMEDIATE);
 		level_enum.DIFFICULTY.HARD:
-			savegame = level_enum.load_savegame(level_enum.HARD_SAVEGAME);
-			level_info = level_enum.get_level_info(level_enum.MAX_HARD);
+			savegame = load_savegame(level_enum.HARD_SAVEGAME);
+			level_info = get_level_info(level_enum.MAX_HARD);
 		level_enum.DIFFICULTY.EXPERT:
-			savegame = level_enum.load_savegame(level_enum.EXPERT_SAVEGAME);
-			level_info = level_enum.get_level_info(level_enum.MAX_EXPERT);
+			savegame = load_savegame(level_enum.EXPERT_SAVEGAME);
+			level_info = get_level_info(level_enum.MAX_EXPERT);
 		_:
-			return false;
+			return custom_levels.size() > 0;
 	return savegame.size() == len(level_info["difficulty_levels"]);
 	
 func get_lilypad_array_ix(coord: Vector2i) -> Vector2i:
