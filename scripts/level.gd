@@ -108,4 +108,5 @@ func _on_playfield_jump() -> void:
 	$JumpPlayer.play();
 
 func _on_edit_level_button_pressed() -> void:
+	print_debug(level_vars.current_level);
 	get_tree().change_scene_to_file("res://scenes/editor.tscn");

@@ -5,7 +5,6 @@ extends Node2D
 @onready var l : Node2D;
 
 func _ready() -> void:
-	level_vars.initialize(level_enum.MAX_EXPERT + 1);
 	l = level.instantiate();
 	add_child(l);
 	l.connect("refresh", _on_level_refresh);

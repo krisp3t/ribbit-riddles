@@ -183,7 +183,7 @@ text = "Created levels:"
 [node name="ScrollContainer" parent="UI/CanvasLayer/CreatedLevels" instance=ExtResource("8_tp5gi")]
 layout_mode = 0
 offset_top = 96.0
-offset_bottom = 512.0
+offset_bottom = 480.0
 pivot_offset = Vector2(32, 4)
 
 [node name="Instructions" type="Control" parent="UI/CanvasLayer"]
