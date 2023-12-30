@@ -9,6 +9,7 @@ var lilypad_scene : PackedScene = preload("res://scenes/lilypad.tscn");
 var lilypads : Array = [];
 var frogs_left : int = 0;
 var is_solved : bool = false;
+@export var is_editor : bool = false;
 
 signal solved;
 signal jump;
@@ -152,6 +153,9 @@ func _get_between_lilypad(start: Vector2i, target: Vector2i) -> Lilypad:
 	return _get_lilypad(between);
 	
 func _check_valid_move(between: Lilypad, target: Lilypad) -> bool:
+	if is_editor:
+		return (target.attached_frog == null);
+	
 	if (target.attached_frog != null || between == null):
 		return false;
 	if (between.attached_frog == null || between.attached_frog.red == true):
@@ -174,11 +178,13 @@ func _on_frog_drop(frog: Frog) -> void:
 		var between : Lilypad = _get_between_lilypad(start, target);
 		if (!_check_valid_move(between, _get_lilypad(target))):
 			break;
-			
+		
+		
 		# Jump over frog
-		frogs_left -= 1;
-		between.attached_frog.queue_free();
-		between.attached_frog = null;
+		if !is_editor:
+			frogs_left -= 1;
+			between.attached_frog.queue_free();
+			between.attached_frog = null;
 		frog.attached_lilypad.attached_frog = null;
 		frog.attached_lilypad = lilypad;
 		lilypad.attached_frog = frog;

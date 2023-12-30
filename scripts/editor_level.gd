@@ -11,6 +11,7 @@ const DROP_SHORTEST_DIST : int = 75;
 var rng : RandomNumberGenerator = RandomNumberGenerator.new();
 var is_muted : bool = false;
 var selected : Control = null;
+@onready var saved : bool = level_vars["info"]["difficulty_levels"].has(level_vars.current_level)
 
 signal refresh;
 signal mute;
@@ -26,13 +27,12 @@ func _initialize() -> void:
 	# Min level boundary
 	if level_vars.current_level == level_enum.MAX_EXPERT + 1:
 		%PreviousLevelButton.disabled = true;
-	# Max level boundary
-	# TODO: don't allow gaps
-	if level_vars.current_level == level_enum.MAX_EXPERT:
-		%NextLevelButton.disabled = true;
-		%FinishWarning.visible = false;
 	%SaveButton.text = "Save as Level %s" % level_vars.current_level;
 	_check_valid_edit();
+	# Don't allow gaps (e.g. level 43 and 44 don't exist, want to edit 45)
+	if level_vars.current_level >= level_enum.MAX_EXPERT + level_vars["info"]["difficulty_levels"].size() + 1:
+		%NextLevelButton.disabled = !saved;
+	
 
 func _ready() -> void:
 	_initialize();
@@ -126,7 +126,6 @@ func _check_valid_edit() -> void:
 	var red_valid : bool = number_red == 1;
 	var empty_valid : bool = number_empty >= 1;
 	var green_valid : bool = number_green >= 1;
-	print_debug(red_valid, empty_valid, green_valid)
 	%SaveButton.disabled = !(red_valid and empty_valid and green_valid);
 	%SaveTestButton.disabled = !(red_valid and empty_valid and green_valid);
 	
@@ -162,6 +161,7 @@ func _on_save_button_pressed() -> void:
 	level_vars.save_created_level();
 	%InfoLabel.text = "Level successfully saved!";
 	%InfoTimer.start();
+	%NextLevelButton.disabled = false;
 
 func _on_info_timer_timeout() -> void:
 	%InfoLabel.text = "";

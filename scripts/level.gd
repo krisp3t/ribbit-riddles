@@ -16,6 +16,7 @@ func _initialize() -> void:
 	if info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
 		%Difficulty.visible = false;
 	else:
+		%EditLevelButton.visible = false;
 		%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];	
 		%DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
 	# Set up muted / unmuted audio players
