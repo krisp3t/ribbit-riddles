@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://e72g0vpr0a1j"]
+
+[ext_resource type="Script" path="res://scripts/created_levels.gd" id="1_j1jey"]
+
+[node name="CreatedLevels" type="ScrollContainer"]
+offset_top = 72.0
+offset_right = 352.0
+offset_bottom = 488.0
+script = ExtResource("1_j1jey")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2

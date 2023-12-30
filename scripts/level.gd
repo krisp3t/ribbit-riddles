@@ -15,6 +15,7 @@ func _initialize() -> void:
 	%Background.texture = level_vars.background;
 	if info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
 		%Difficulty.visible = false;
+		%CreatedLevels.visible = true;
 	else:
 		%EditLevelButton.visible = false;
 		%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];	

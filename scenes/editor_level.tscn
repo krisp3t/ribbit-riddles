@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bv0vm8p6wevsy"]
+[gd_scene load_steps=26 format=3 uid="uid://bv0vm8p6wevsy"]
 
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://ideas/assets/logo.png" id="1_g3iuf"]
 [ext_resource type="Script" path="res://scripts/editor_level.gd" id="1_uj1bk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="5_g6vjh"]
 [ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://ideas/assets/frog_green.png" id="7_ejejh"]
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://ideas/assets/frog_red.png" id="8_2c8s0"]
+[ext_resource type="PackedScene" uid="uid://e72g0vpr0a1j" path="res://scenes/created_levels.tscn" id="8_tp5gi"]
 [ext_resource type="Texture2D" uid="uid://blpnntv0tuuyd" path="res://assets/eraser.png" id="9_tp1xl"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="10_lwhum"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="11_fbups"]
@@ -148,19 +149,19 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 56.0
 offset_top = 208.0
-offset_right = 317.0
-offset_bottom = 536.28
+offset_right = 352.0
+offset_bottom = 568.0
 size_flags_horizontal = 4
 
-[node name="TextureRect" type="TextureRect" parent="UI/CanvasLayer/CreatedLevels"]
+[node name="CreatedLevelsBackground" type="TextureRect" parent="UI/CanvasLayer/CreatedLevels"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 333.0
+offset_left = 354.0
 offset_top = -2.0
-offset_right = 542.0
-offset_bottom = 2.71997
+offset_right = 546.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
@@ -179,20 +180,11 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 60
 text = "Created levels:"
 
-[node name="RulesText" type="Label" parent="UI/CanvasLayer/CreatedLevels"]
-layout_mode = 2
-offset_left = 14.6
-offset_top = 85.84
-offset_right = 261.6
-offset_bottom = 411.84
-theme = ExtResource("5_g6vjh")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 38
-text = "1. Only            should remain in the pond
-2. Jump over           with           or
-3. No moves without jumping over      allowed"
-autowrap_mode = 2
+[node name="ScrollContainer" parent="UI/CanvasLayer/CreatedLevels" instance=ExtResource("8_tp5gi")]
+layout_mode = 0
+offset_top = 96.0
+offset_bottom = 512.0
+pivot_offset = Vector2(32, 4)
 
 [node name="Instructions" type="Control" parent="UI/CanvasLayer"]
 layout_mode = 3
@@ -210,6 +202,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 16.0
 offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -240,8 +233,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
+offset_left = 16.0
 offset_top = -60.0
-offset_right = 120.0
+offset_right = 136.0
 offset_bottom = 60.0
 grow_vertical = 2
 texture = ExtResource("7_ejejh")
@@ -256,9 +250,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -232.0
+offset_left = -224.0
 offset_top = -60.0
-offset_right = -112.0
+offset_right = -104.0
 offset_bottom = 60.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -274,9 +268,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -104.0
+offset_left = -96.0
 offset_top = -44.0
-offset_right = -16.0
+offset_right = -8.0
 offset_bottom = 44.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -300,6 +294,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_w1ywx")
@@ -310,10 +305,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -176.0
+offset_left = -160.0
 offset_top = 8.0
 offset_right = 174.0
-offset_bottom = 45.0
+offset_bottom = 165.0
 grow_horizontal = 2
 theme = ExtResource("5_g6vjh")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -327,9 +322,9 @@ horizontal_alignment = 1
 
 [node name="RulesGreenFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
 layout_mode = 1
-offset_left = 232.0
+offset_left = 240.0
 offset_top = 80.0
-offset_right = 288.0
+offset_right = 296.0
 offset_bottom = 140.0
 texture = ExtResource("7_ejejh")
 expand_mode = 1
@@ -337,9 +332,9 @@ stretch_mode = 4
 
 [node name="RulesRedFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
 layout_mode = 1
-offset_left = 232.0
+offset_left = 240.0
 offset_top = 40.0
-offset_right = 288.0
+offset_right = 296.0
 offset_bottom = 128.0
 texture = ExtResource("8_2c8s0")
 expand_mode = 1

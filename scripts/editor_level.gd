@@ -3,9 +3,9 @@ extends Node2D;
 @onready var config : ConfigSystem = $/root/ConfigSystem;
 
 const CURSOR_OFFSET : Vector2 = Vector2(-60, -55);
-const GREEN_INITIAL : Vector2 = Vector2(0, 40);
-const RED_INITIAL : Vector2 = Vector2(120, 40);
-const ERASER_INITIAL : Vector2 = Vector2(248, 56);
+const GREEN_INITIAL : Vector2 = Vector2(16, 40);
+const RED_INITIAL : Vector2 = Vector2(128, 40);
+const ERASER_INITIAL : Vector2 = Vector2(256, 56);
 const DROP_SHORTEST_DIST : int = 75;
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new();

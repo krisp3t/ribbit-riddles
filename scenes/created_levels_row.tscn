@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmoteldiiy05b"]
+
+[ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_35ln5"]
+[ext_resource type="Script" path="res://scripts/created_levels_row.gd" id="1_sv7ud"]
+[ext_resource type="Texture2D" uid="uid://ddwu3kdg8jem3" path="res://ideas/assets/buttons/4x/Asset 35@4x.png" id="2_731eu"]
+
+[sub_resource type="Gradient" id="Gradient_xl61h"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.141176)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1atpx"]
+gradient = SubResource("Gradient_xl61h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ohyb"]
+texture = ExtResource("2_731eu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2idvd"]
+texture = ExtResource("2_731eu")
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bh64x"]
+texture = ExtResource("2_731eu")
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fys47"]
+texture = ExtResource("2_731eu")
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[node name="Row" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 50)
+script = ExtResource("1_sv7ud")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="RowBackground" type="TextureRect" parent="Control"]
+layout_mode = 2
+offset_right = 352.0
+offset_bottom = 49.0
+texture = SubResource("GradientTexture1D_1atpx")
+
+[node name="LevelLabel" type="Label" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 14.0
+offset_top = -2.0
+offset_right = 110.0
+offset_bottom = 47.0
+theme = ExtResource("1_35ln5")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Level 41"
+
+[node name="PlayButton" type="Button" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 240.0
+offset_top = 4.0
+offset_right = 336.0
+offset_bottom = 44.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_1ohyb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2idvd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bh64x")
+theme_override_styles/focus = SubResource("StyleBoxTexture_fys47")
+
+[connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]
