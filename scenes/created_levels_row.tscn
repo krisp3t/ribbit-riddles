@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_35ln5"]
 [ext_resource type="Script" path="res://scripts/created_levels_row.gd" id="1_sv7ud"]
-[ext_resource type="Texture2D" uid="uid://ddwu3kdg8jem3" path="res://ideas/assets/buttons/4x/Asset 35@4x.png" id="2_731eu"]
+[ext_resource type="Texture2D" uid="uid://ddwu3kdg8jem3" path="res://assets/buttons/4x/Asset 35@4x.png" id="2_731eu"]
 
 [sub_resource type="Gradient" id="Gradient_xl61h"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.141176)

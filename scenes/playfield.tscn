@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://215fycacuk5o"]
 
-[ext_resource type="Texture2D" uid="uid://bukskk1o28qb4" path="res://ideas/assets/buttons/4x/Asset 4@4x.png" id="1_pbjdu"]
+[ext_resource type="Texture2D" uid="uid://bukskk1o28qb4" path="res://assets/buttons/4x/Asset 4@4x.png" id="1_pbjdu"]
 
 [node name="Playfield" type="Node2D"]
 position = Vector2(460, 125)

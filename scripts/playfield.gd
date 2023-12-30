@@ -185,7 +185,6 @@ func _on_frog_drop(frog: Frog) -> void:
 			frogs_left -= 1;
 			between.attached_frog.queue_free();
 			between.attached_frog = null;
-			var ix : Vector2i = level_vars.get_lilypad_array_ix(between.coord);
 		if is_editor:
 			level_vars.update_level_layout(frog.attached_lilypad.coord, lilypad_enum.STATUS.EMPTY);
 			level_vars.update_level_layout(lilypad.coord, lilypad_enum.STATUS.RED if frog.red else lilypad_enum.STATUS.GREEN);
