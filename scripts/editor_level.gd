@@ -2,10 +2,15 @@ extends Node2D;
 @onready var level_vars : LevelSystem = $/root/LevelSystem;
 @onready var config : ConfigSystem = $/root/ConfigSystem;
 
+const CURSOR_OFFSET : Vector2 = Vector2(-60, -55);
+const GREEN_INITIAL : Vector2 = Vector2(0, 40);
+const RED_INITIAL : Vector2 = Vector2(120, 40);
+const ERASER_INITIAL : Vector2 = Vector2(248, 56);
+const DROP_SHORTEST_DIST : int = 75;
+
 var rng : RandomNumberGenerator = RandomNumberGenerator.new();
 var is_muted : bool = false;
 var selected : Control = null;
-const CURSOR_OFFSET : Vector2 = Vector2(-60, -55);
 
 signal refresh;
 signal mute;
@@ -69,17 +74,70 @@ func _on_playfield_jump() -> void:
 
 
 func _on_green_frog_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_action_pressed("click"):
-		selected = %GreenFrog;
-		selected.modulate = Color(1, 1, 1, 0.5);
+	if event is InputEventMouseButton:
+		if (selected != %GreenFrog):
+			selected = %GreenFrog;
+			selected.modulate = Color(1, 1, 1, 0.5);
+			return;
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			_on_item_drop(selected);
+			selected.modulate = Color(1, 1, 1, 1);
+			selected = null;
 
 
 func _on_red_frog_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_action_pressed("click"):
-		selected = %RedFrog;
-		selected.modulate = Color(1, 1, 1, 0.5);
+	if event is InputEventMouseButton:
+		if (selected != %RedFrog):
+			selected = %RedFrog;
+			selected.modulate = Color(1, 1, 1, 0.5);
+			return;
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			_on_item_drop(selected);
+			selected.modulate = Color(1, 1, 1, 1);
+			selected = null;
+
+func _on_eraser_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if (selected != %Eraser):
+			selected = %Eraser;
+			selected.modulate = Color(1, 1, 1, 0.5);
+			return;
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
+			_on_item_drop(selected);
+			selected.modulate = Color(1, 1, 1, 1);
+			selected = null;
+			
+func _on_item_drop(item: Control) -> void:
+	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
+		var item_pos : Vector2 = item.global_position - CURSOR_OFFSET;
+		var distance : float = item_pos.distance_to(lilypad.global_position);
+		if distance >= DROP_SHORTEST_DIST:
+			continue;
+		
+		var coords : Vector2i = lilypad.coord;
+		var status : lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name)
+		level_vars.update_level_layout(coords, status);
+		$Playfield.initialize();
+		print_debug(level_vars["info"]["level_layout"]);
+		
+		# Drop to the lilypad close enough
+		#var start : Vector2i = item.attached_lilypad.coord;
+		#var target : Vector2i = lilypad.coord;
+		#if (!_check_valid_move(between, _get_lilypad(target))):
+			#break;
+
+	
 	
 func _process(delta: float) -> void:
 	for c: Control in get_tree().get_nodes_in_group("EditorFrogs"):
 		if c == selected:
 			c.global_position = lerp(c.global_position, get_global_mouse_position() + CURSOR_OFFSET, 25 * delta);
+		else:
+			match c.name:
+				"GreenFrog":
+					c.position = lerp(c.position, GREEN_INITIAL, 25 * delta);
+				"RedFrog":
+					c.position = lerp(c.position, RED_INITIAL, 25 * delta);
+				"Eraser":
+					c.position = lerp(c.position, ERASER_INITIAL, 25 * delta);
+

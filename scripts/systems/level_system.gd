@@ -119,3 +119,15 @@ func is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
 		_:
 			return false;
 	return savegame.size() == len(level_info["difficulty_levels"]);
+	
+func get_lilypad_array_ix(coord: Vector2i) -> Vector2i:
+	var y : int;
+	if (coord.x % 2 == 0):
+		y = floor(coord.y) / 2;
+	else:
+		y = floor(coord.y - 1) / 2;
+	return Vector2i(coord.x, y);
+
+func update_level_layout(coord: Vector2i, value: lilypad_enum.STATUS):
+	var lilypad : Vector2i = get_lilypad_array_ix(coord);
+	info["level_layout"][lilypad.x][lilypad.y] = value;

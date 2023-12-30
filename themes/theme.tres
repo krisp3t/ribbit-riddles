@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://c3n7aiaxcqhoo"]
 
-[ext_resource type="Texture2D" uid="uid://v356hmlwdr57" path="res://assets/buttons/4x/Asset 3@4x.png" id="1_2qlu5"]
-[ext_resource type="FontFile" uid="uid://eilaj3eix4dd" path="res://assets/MouseMemoirs-Regular.ttf" id="1_oj614"]
+[ext_resource type="Texture2D" uid="uid://v356hmlwdr57" path="res://ideas/assets/buttons/4x/Asset 3@4x.png" id="1_2qlu5"]
+[ext_resource type="FontFile" uid="uid://eilaj3eix4dd" path="res://ideas/assets/MouseMemoirs-Regular.ttf" id="1_oj614"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pebk5"]
 texture = ExtResource("1_2qlu5")

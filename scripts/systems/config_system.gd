@@ -10,7 +10,6 @@ func _ready() -> void:
 		config.set_value("audio", "bg", 100);
 		config.set_value("audio", "sfx", 100);
 		config.save(config_path);
-	print_debug(load_response);
 
 func save_value(section: String, key: String, value: Variant) -> void:
 	config.set_value(section, key, value);

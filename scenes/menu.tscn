@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
-[ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
+[ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://ideas/assets/logo_main_menu.png" id="2_gxpg1"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="2_w4526"]
-[ext_resource type="Texture2D" uid="uid://dhnok5wxorneo" path="res://assets/bg_main_menu.png" id="3_i4hpv"]
+[ext_resource type="Texture2D" uid="uid://dhnok5wxorneo" path="res://ideas/assets/bg_main_menu.png" id="3_i4hpv"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="5_xa7ve"]
-[ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="6_0t0ca"]
+[ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://ideas/assets/buttons/4x/Asset 26@4x.png" id="6_0t0ca"]
 [ext_resource type="PackedScene" uid="uid://b14smx1q5om3p" path="res://scenes/sidebars/difficulty_selector.tscn" id="6_8ocgp"]
-[ext_resource type="AudioStream" uid="uid://ca184cu7ajjb" path="res://assets/audio/main_menu.mp3" id="7_efx4i"]
+[ext_resource type="AudioStream" uid="uid://ca184cu7ajjb" path="res://ideas/assets/audio/main_menu.mp3" id="7_efx4i"]
 [ext_resource type="PackedScene" uid="uid://by0eh4smd8446" path="res://scenes/sidebars/options.tscn" id="8_wap4e"]
 [ext_resource type="PackedScene" uid="uid://cr5dg02h1qg23" path="res://scenes/sidebars/credits.tscn" id="9_bl5yy"]
 

@@ -1,17 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://bv0vm8p6wevsy"]
+[gd_scene load_steps=24 format=3 uid="uid://bv0vm8p6wevsy"]
 
-[ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://assets/logo.png" id="1_g3iuf"]
+[ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://ideas/assets/logo.png" id="1_g3iuf"]
 [ext_resource type="Script" path="res://scripts/editor_level.gd" id="1_uj1bk"]
-[ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://assets/buttons/4x/Asset 6@4x.png" id="2_4x8e7"]
-[ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="3_5gw2v"]
+[ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://ideas/assets/buttons/4x/Asset 6@4x.png" id="2_4x8e7"]
+[ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://ideas/assets/buttons/4x/Asset 12@4x.png" id="3_5gw2v"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="4_qc3gn"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="5_g6vjh"]
-[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="7_ejejh"]
-[ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="8_2c8s0"]
+[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://ideas/assets/frog_green.png" id="7_ejejh"]
+[ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://ideas/assets/frog_red.png" id="8_2c8s0"]
+[ext_resource type="Texture2D" uid="uid://blpnntv0tuuyd" path="res://assets/eraser.png" id="9_tp1xl"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="10_lwhum"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="11_fbups"]
-[ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="12_coe3d"]
-[ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="13_3io3k"]
+[ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://ideas/assets/audio/win.mp3" id="12_coe3d"]
+[ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://ideas/assets/audio/jump.mp3" id="13_3io3k"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqqi2"]
 texture = ExtResource("2_4x8e7")
@@ -207,6 +208,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_w1ywx")
@@ -227,28 +229,7 @@ theme = ExtResource("5_g6vjh")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "Left click to add frog"
-horizontal_alignment = 1
-
-[node name="RemoveInstructions" type="Label" parent="UI/CanvasLayer/Instructions"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -176.0
-offset_top = -48.0
-offset_right = 174.0
-offset_bottom = -11.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = ExtResource("5_g6vjh")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 32
-text = "Right click to remove frog"
+text = "Drag the item to use"
 horizontal_alignment = 1
 
 [node name="GreenFrog" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
@@ -257,9 +238,8 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 48.0
 offset_top = -60.0
-offset_right = 168.0
+offset_right = 120.0
 offset_bottom = 60.0
 grow_vertical = 2
 texture = ExtResource("7_ejejh")
@@ -274,13 +254,31 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -176.0
+offset_left = -232.0
 offset_top = -60.0
-offset_right = -56.0
+offset_right = -112.0
 offset_bottom = 60.0
 grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("8_2c8s0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Eraser" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -44.0
+offset_right = -16.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_tp1xl")
 expand_mode = 1
 stretch_mode = 4
 
@@ -387,6 +385,7 @@ volume_db = -80.0
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="gui_input" from="UI/CanvasLayer/Instructions/GreenFrog" to="." method="_on_green_frog_gui_input"]
 [connection signal="gui_input" from="UI/CanvasLayer/Instructions/RedFrog" to="." method="_on_red_frog_gui_input"]
+[connection signal="gui_input" from="UI/CanvasLayer/Instructions/Eraser" to="." method="_on_eraser_gui_input"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 

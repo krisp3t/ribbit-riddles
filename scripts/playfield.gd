@@ -13,10 +13,13 @@ var is_solved : bool = false;
 signal solved;
 signal jump;
 
+func initialize() -> void:
+	_instantiate_lilypads();
+	
 func _ready() -> void:
 	_animate_playfield();
 	get_tree().root.connect("size_changed", _on_viewport_size_changed);
-	_instantiate_lilypads();
+	initialize();
 	_draw_lines_between_lilypads(lilypads);
 
 	
@@ -57,7 +60,7 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 			for lilypad: Lilypad in x:
 				var c : Vector2i = lilypad.coord;
 				var to_draw : Array = [Vector2i(c.x - 1, c.y - 1), Vector2i(c.x - 1, c.y + 1), Vector2i(c.x + 1, c.y - 1), Vector2i(c.x + 1, c.y + 1)];
-				for t in to_draw:
+				for t : Vector2i in to_draw:
 					var l : Line2D = Line2D.new();
 					l.add_point(lilypad.position);
 					l.add_point(_get_lilypad(t).position);
@@ -131,8 +134,7 @@ func _check_level_solved() -> bool:
 	return frogs_left == 1;
 	
 func _on_frog_drop(frog: Frog) -> void:
-	for child in get_tree().get_nodes_in_group("lilypads"):
-		var lilypad : Lilypad = child;
+	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
 		var distance : float = frog.position.distance_to(lilypad.position);
 		
 		if distance >= DROP_SHORTEST_DIST:
