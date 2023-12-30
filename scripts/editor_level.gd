@@ -115,9 +115,10 @@ func _on_item_drop(item: Control) -> void:
 			continue;
 		
 		var coords : Vector2i = lilypad.coord;
+		var ix : Vector2i = level_vars.get_lilypad_array_ix(lilypad.coord);
 		var status : lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name)
 		level_vars.update_level_layout(coords, status);
-		$Playfield.initialize();
+		$Playfield.initialize_lilypad(ix, lilypad);
 		print_debug(level_vars["info"]["level_layout"]);
 		
 		# Drop to the lilypad close enough

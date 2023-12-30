@@ -66,7 +66,35 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 					l.add_point(_get_lilypad(t).position);
 					add_child(l);
 				
-		
+func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
+	var level_layout : Array = level_vars["info"]["level_layout"];
+	var val : int = level_layout[ix.y][ix.x];
+			
+	if (ix.y % 2 == 0): # Rows with odd lilypads
+		lilypad.coord = Vector2i(ix.y, ix.x * 2);
+		lilypad.position = Vector2(200 + ix.x * LILYPADS_OFFSET.x, 150 + ix.y * LILYPADS_OFFSET.y);
+	else: # Rows with even lilypads
+		lilypad.coord = Vector2i(ix.y, ix.x * 2 + 1);
+		# Centre the rows (have 1 lilypad less)				
+		lilypad.position = Vector2(200 + ix.x * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2.0), 150 + ix.y * LILYPADS_OFFSET.y);
+	
+	# Empty lilypads
+	if (val == lilypad_enum.STATUS.EMPTY):
+		var frog : Frog = lilypad.attached_frog;
+		if (frog != null):
+			frog.queue_free();
+			lilypad.attached_frog = null;
+		return;
+	
+	# Non-empty lilypads (have frogs)
+	var frog : Node2D = frog_scene.instantiate();
+	frog.attached_lilypad = lilypad;
+	lilypad.attached_frog = frog;
+	frog.position = lilypad.position;
+	frog.red = (val == lilypad_enum.STATUS.RED);
+	add_child(frog);
+	frog.connect('drop_frog', _on_frog_drop);
+	
 func _instantiate_lilypads() -> void:
 	var level_layout : Array = level_vars["info"]["level_layout"];
 	for y in level_layout.size():
@@ -74,31 +102,14 @@ func _instantiate_lilypads() -> void:
 		for x in level_layout[y].size():
 			var val : int = level_layout[y][x];
 			
-			# Instantiate lilypads
 			var lilypad : Node2D = lilypad_scene.instantiate();
-			if (y % 2 == 0): # Rows with odd lilypads
-				lilypad.coord = Vector2i(y, x * 2);
-				lilypad.position = Vector2(200 + x * LILYPADS_OFFSET.x, 150 + y * LILYPADS_OFFSET.y);
-			else: # Rows with even lilypads
-				lilypad.coord = Vector2i(y, x * 2 + 1);
-				# Centre the rows (have 1 lilypad less)				
-				lilypad.position = Vector2(200 + x * LILYPADS_OFFSET.x + (LILYPADS_OFFSET.x / 2.0), 150 + y * LILYPADS_OFFSET.y);
+			initialize_lilypad(Vector2i(x, y), lilypad);	
 			add_child(lilypad);
 			lilypads[y].push_back(lilypad);
 			
-			# Empty lilypads
-			if (val == lilypad_enum.STATUS.EMPTY): 
-				continue;
-			
-			# Non-empty lilypads (have frogs)
-			var frog : Node2D = frog_scene.instantiate();
-			frog.attached_lilypad = lilypad;
-			lilypad.attached_frog = frog;
-			frog.position = lilypad.position;
-			frog.red = (val == lilypad_enum.STATUS.RED);
-			add_child(frog);
-			frog.connect('drop_frog', _on_frog_drop);
-			frogs_left += 1;
+			if (val != lilypad_enum.STATUS.EMPTY): 
+				frogs_left += 1;
+
 			
 func _get_lilypad(coord: Vector2i) -> Lilypad:
 	var y : int;
