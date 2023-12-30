@@ -18,7 +18,6 @@ signal mute;
 func _initialize() -> void:
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.current_level;
-	%Background.texture = level_vars.background;
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
@@ -166,3 +165,7 @@ func _on_save_button_pressed() -> void:
 
 func _on_info_timer_timeout() -> void:
 	%InfoLabel.text = "";
+
+func _on_save_test_button_pressed() -> void:
+	_on_save_button_pressed();
+	get_tree().change_scene_to_file("res://scenes/main.tscn");

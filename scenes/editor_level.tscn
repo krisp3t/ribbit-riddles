@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://bv0vm8p6wevsy"]
+[gd_scene load_steps=25 format=3 uid="uid://bv0vm8p6wevsy"]
 
 [ext_resource type="Texture2D" uid="uid://kscgwh6fjjm0" path="res://ideas/assets/logo.png" id="1_g3iuf"]
 [ext_resource type="Script" path="res://scripts/editor_level.gd" id="1_uj1bk"]
 [ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://ideas/assets/buttons/4x/Asset 6@4x.png" id="2_4x8e7"]
+[ext_resource type="Texture2D" uid="uid://be2h7fmeirq5h" path="res://assets/bg_editor.jpg" id="2_a71xk"]
 [ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://ideas/assets/buttons/4x/Asset 12@4x.png" id="3_5gw2v"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="4_qc3gn"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="5_g6vjh"]
@@ -73,6 +74,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("2_a71xk")
 expand_mode = 2
 stretch_mode = 6
 
@@ -451,6 +453,7 @@ volume_db = -80.0
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/SaveTestContainer/SaveTestButton" to="." method="_on_save_test_button_pressed"]
 [connection signal="timeout" from="UI/CanvasLayer/SaveTestContainer/InfoTimer" to="." method="_on_info_timer_timeout"]
 
 [editable path="Playfield"]

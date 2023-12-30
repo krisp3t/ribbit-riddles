@@ -9,12 +9,15 @@ signal refresh;
 signal mute;
 
 func _initialize() -> void:
-	var info : Dictionary = level_vars.get_level_info(level_vars.current_level);
+	var info : Dictionary = level_vars["info"];
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.current_level;
-	%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];
 	%Background.texture = level_vars.background;
-	%DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
+	if info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
+		%Difficulty.visible = false;
+	else:
+		%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];	
+		%DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
@@ -32,8 +35,8 @@ func _initialize() -> void:
 	if level_vars.current_level == level_enum.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%FinishWarning.visible = false;
-	elif level_vars["info"]["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
-		if level_vars.current_level == level_enum.MAX_EXPERT + level_vars["info"]["difficulty_levels"].size():
+	elif info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
+		if level_vars.current_level == level_enum.MAX_EXPERT + info["difficulty_levels"].size():
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
 
@@ -101,4 +104,6 @@ func _on_mute_button_pressed() -> void:
 func _on_playfield_jump() -> void:
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
 	$JumpPlayer.play();
-	pass # Replace with function body.
+
+func _on_edit_level_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/editor.tscn");
