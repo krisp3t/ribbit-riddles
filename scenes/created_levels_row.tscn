@@ -25,42 +25,50 @@ modulate_color = Color(1, 1, 1, 0.588235)
 texture = ExtResource("2_731eu")
 modulate_color = Color(1, 1, 1, 0.588235)
 
-[node name="Row" type="MarginContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="Row" type="Panel"]
+custom_minimum_size = Vector2(0, 150)
+mouse_filter = 1
 script = ExtResource("1_sv7ud")
 
-[node name="Control" type="Control" parent="."]
+[node name="RowBackground" type="TextureRect" parent="."]
 layout_mode = 2
-
-[node name="RowBackground" type="TextureRect" parent="Control"]
-layout_mode = 2
-offset_right = 352.0
-offset_bottom = 49.0
+offset_right = 256.0
+offset_bottom = 150.0
 texture = SubResource("GradientTexture1D_1atpx")
 
-[node name="LevelLabel" type="Label" parent="Control"]
+[node name="LevelLabel" type="Label" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 14.0
-offset_top = -2.0
-offset_right = 110.0
-offset_bottom = 47.0
+offset_left = 21.0
+offset_top = 50.0
+offset_right = 125.0
+offset_bottom = 99.0
+grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_35ln5")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 42
 text = "Level 41"
 
-[node name="PlayButton" type="Button" parent="Control"]
+[node name="PlayButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
-offset_left = 240.0
-offset_top = 4.0
-offset_right = 336.0
-offset_bottom = 44.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 131.0
+offset_top = -28.0
+offset_right = 243.0
+offset_bottom = 28.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxTexture_1ohyb")
 theme_override_styles/hover = SubResource("StyleBoxTexture_2idvd")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_bh64x")
 theme_override_styles/focus = SubResource("StyleBoxTexture_fys47")
 
-[connection signal="pressed" from="Control/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

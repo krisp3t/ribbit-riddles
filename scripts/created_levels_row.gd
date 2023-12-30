@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Panel
 @export var level : int = 41;
 @onready var level_vars : LevelSystem = $/root/LevelSystem;
 

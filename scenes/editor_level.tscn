@@ -148,32 +148,15 @@ horizontal_alignment = 1
 layout_mode = 3
 anchors_preset = 0
 offset_left = 56.0
-offset_top = 208.0
+offset_top = 248.0
 offset_right = 352.0
-offset_bottom = 568.0
+offset_bottom = 608.0
 size_flags_horizontal = 4
-
-[node name="CreatedLevelsBackground" type="TextureRect" parent="UI/CanvasLayer/CreatedLevels"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 354.0
-offset_top = -2.0
-offset_right = 546.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
-texture = SubResource("GradientTexture1D_w1ywx")
-expand_mode = 1
 
 [node name="RulesLabel" type="Label" parent="UI/CanvasLayer/CreatedLevels"]
 layout_mode = 2
-offset_left = 14.6
-offset_top = -0.159973
-offset_right = 254.6
-offset_bottom = 69.84
+offset_right = 251.0
+offset_bottom = 70.0
 theme = ExtResource("5_g6vjh")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
@@ -183,6 +166,7 @@ text = "Created levels:"
 [node name="ScrollContainer" parent="UI/CanvasLayer/CreatedLevels" instance=ExtResource("8_tp5gi")]
 layout_mode = 0
 offset_top = 96.0
+offset_right = 262.0
 offset_bottom = 480.0
 pivot_offset = Vector2(32, 4)
 
