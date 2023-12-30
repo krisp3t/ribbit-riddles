@@ -65,7 +65,23 @@ func _draw_lines_between_lilypads(arr : Array) -> void:
 					l.add_point(lilypad.position);
 					l.add_point(_get_lilypad(t).position);
 					add_child(l);
-				
+
+func clear_playfield() -> void:
+	level_vars["info"]["level_layout"] = [
+		[0, 0, 0],
+		[0, 0],
+		[0, 0, 0],
+		[0, 0],
+		[0, 0, 0]
+	];
+	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
+		var frog : Frog = lilypad.attached_frog;
+		if (frog != null):
+			frog.queue_free();
+			lilypad.attached_frog = null;
+		
+	
+	
 func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
 	var level_layout : Array = level_vars["info"]["level_layout"];
 	var val : int = level_layout[ix.y][ix.x];
@@ -97,6 +113,7 @@ func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
 	
 func _instantiate_lilypads() -> void:
 	var level_layout : Array = level_vars["info"]["level_layout"];
+	frogs_left = 0;		
 	for y in level_layout.size():
 		lilypads.push_back([]);
 		for x in level_layout[y].size():

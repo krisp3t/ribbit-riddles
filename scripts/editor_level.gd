@@ -34,6 +34,7 @@ func _initialize() -> void:
 		%NextLevelButton.disabled = true;
 		%FinishWarning.visible = false;
 	%SaveButton.text = "Save as Level %s" % level_vars.current_level;
+	_check_valid_edit();
 
 func _ready() -> void:
 	_initialize();
@@ -72,7 +73,10 @@ func _on_playfield_jump() -> void:
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
 	$JumpPlayer.play();
 
-
+func _on_clear_button_pressed() -> void:
+	$Playfield.clear_playfield();
+	_check_valid_edit();
+	
 func _on_green_frog_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if (selected != %GreenFrog):
@@ -107,6 +111,26 @@ func _on_eraser_gui_input(event: InputEvent) -> void:
 			selected.modulate = Color(1, 1, 1, 1);
 			selected = null;
 			
+func _check_valid_edit() -> void:
+	var number_green : int = 0;
+	var number_red : int = 0;
+	var number_empty : int = 0;
+	for y : Array in level_vars["info"]["level_layout"]:
+		for val : lilypad_enum.STATUS in y:
+			match val:
+				lilypad_enum.STATUS.RED:
+					number_red += 1;
+				lilypad_enum.STATUS.EMPTY:
+					number_empty += 1;
+				lilypad_enum.STATUS.GREEN:
+					number_green += 1;
+	var red_valid : bool = number_red == 1;
+	var empty_valid : bool = number_empty >= 1;
+	var green_valid : bool = number_green >= 1;
+	print_debug(red_valid, empty_valid, green_valid)
+	%SaveButton.disabled = !(red_valid and empty_valid and green_valid);
+	%SaveTestButton.disabled = !(red_valid and empty_valid and green_valid);
+	
 func _on_item_drop(item: Control) -> void:
 	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
 		var item_pos : Vector2 = item.global_position - CURSOR_OFFSET;
@@ -117,15 +141,10 @@ func _on_item_drop(item: Control) -> void:
 		var coords : Vector2i = lilypad.coord;
 		var ix : Vector2i = level_vars.get_lilypad_array_ix(lilypad.coord);
 		var status : lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name)
+		
 		level_vars.update_level_layout(coords, status);
 		$Playfield.initialize_lilypad(ix, lilypad);
-		print_debug(level_vars["info"]["level_layout"]);
-		
-		# Drop to the lilypad close enough
-		#var start : Vector2i = item.attached_lilypad.coord;
-		#var target : Vector2i = lilypad.coord;
-		#if (!_check_valid_move(between, _get_lilypad(target))):
-			#break;
+		_check_valid_edit();
 
 	
 	
@@ -141,4 +160,7 @@ func _process(delta: float) -> void:
 					c.position = lerp(c.position, RED_INITIAL, 25 * delta);
 				"Eraser":
 					c.position = lerp(c.position, ERASER_INITIAL, 25 * delta);
+
+
+
 
