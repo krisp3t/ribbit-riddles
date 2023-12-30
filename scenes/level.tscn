@@ -152,6 +152,7 @@ expand_mode = 2
 
 [node name="CreatedLevels" type="Control" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 56.0

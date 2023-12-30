@@ -16,18 +16,21 @@ func _initialize() -> void:
 	if info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
 		%Difficulty.visible = false;
 		%CreatedLevels.visible = true;
+		%NextLevelButton.disabled = false;
+		%FinishWarning.visible = false;
 	else:
 		%EditLevelButton.visible = false;
 		%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];	
 		%DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
+		# Is level already solved?
+		%FinishWarning.visible = !info["solved"];
+		%NextLevelButton.disabled = !info["solved"];
+	
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
 	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx"));
 	$WinPlayer.volume_db = $JumpPlayer.volume_db;
-	# Is level already solved?
-	%FinishWarning.visible = !info["solved"];
-	%NextLevelButton.disabled = !info["solved"];
 	if info["solved"]:
 		%LevelSolved.texture = load("res://assets/buttons/4x/Asset 25@4x.png");
 	# Min level boundary
@@ -71,6 +74,7 @@ func _on_playfield_solved() -> void:
 	tween.tween_property(%Win, "scale", Vector2(1, 1), 0.5);
 	tween.tween_property(%Win, "position", pos, 0.5);
 	level_vars.save_savegame();
+	level_vars["info"]["solved"] = true;
 	
 func _on_previous_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.current_level - 1);
