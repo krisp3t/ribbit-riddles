@@ -32,7 +32,7 @@ func _initialize() -> void:
 	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx"));
 	$WinPlayer.volume_db = $JumpPlayer.volume_db;
 	if info["solved"]:
-		%LevelSolved.texture = load("res://assets/buttons/4x/Asset 25@4x.png");
+		%LevelSolved.texture = load("res://assets/buttons/4x/Asset 14@4x.png");
 	# Min level boundary
 	if level_vars.current_level == 1:
 		%PreviousLevelButton.disabled = true;

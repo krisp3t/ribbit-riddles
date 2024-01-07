@@ -1,15 +1,19 @@
-[gd_scene load_steps=26 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=47 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_aluce"]
 [ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://assets/buttons/4x/Asset 6@4x.png" id="3_bak26"]
+[ext_resource type="Texture2D" uid="uid://b24jo2j46xtpk" path="res://assets/buttons/4x/Asset 7@4x.png" id="3_wj4g1"]
 [ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="4_x8enm"]
 [ext_resource type="Texture2D" uid="uid://btia1q1jl7ui" path="res://assets/buttons/4x/Asset 24@4x.png" id="5_51sw0"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="6_3m6x0"]
+[ext_resource type="Texture2D" uid="uid://crqdt1h8pf7pw" path="res://assets/buttons/4x/Asset 7-b@4x.png" id="6_l4bcf"]
+[ext_resource type="Texture2D" uid="uid://gam8ccamtqep" path="res://assets/buttons/4x/Asset 16@4x.png" id="7_jb8ke"]
+[ext_resource type="Texture2D" uid="uid://b8o74k2vm0rla" path="res://assets/buttons/4x/Asset 17@4x.png" id="7_jhwl7"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="7_jm048"]
-[ext_resource type="Texture2D" uid="uid://caoymo6b4pxhl" path="res://assets/buttons/4x/Asset 26@4x.png" id="8_covac"]
 [ext_resource type="PackedScene" uid="uid://e72g0vpr0a1j" path="res://scenes/created_levels.tscn" id="8_xhkpp"]
 [ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="9_8uv82"]
+[ext_resource type="Texture2D" uid="uid://csgadng1kfr25" path="res://assets/buttons/4x/Asset 15@4x.png" id="9_fr3qw"]
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="10_kae8m"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="11_5abmp"]
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="12_m65xv"]
@@ -44,6 +48,66 @@ modulate_color = Color(1, 1, 1, 0.756863)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_033ou"]
 texture = ExtResource("4_x8enm")
 modulate_color = Color(1, 1, 1, 0.439216)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aobvd"]
+texture = ExtResource("3_wj4g1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2u1du"]
+texture = ExtResource("3_wj4g1")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dk74w"]
+texture = ExtResource("3_wj4g1")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hc2on"]
+texture = ExtResource("3_wj4g1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hy4pt"]
+texture = ExtResource("7_jhwl7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qjpc2"]
+texture = ExtResource("7_jhwl7")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k1qxv"]
+texture = ExtResource("7_jhwl7")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqi2u"]
+texture = ExtResource("7_jhwl7")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjrnx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p8w6"]
+texture = ExtResource("6_l4bcf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_srlcf"]
+texture = ExtResource("6_l4bcf")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ntt4k"]
+texture = ExtResource("6_l4bcf")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2dux"]
+texture = ExtResource("6_l4bcf")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8v57c"]
+texture = ExtResource("7_jb8ke")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4t1cg"]
+texture = ExtResource("7_jb8ke")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fv8vq"]
+texture = ExtResource("7_jb8ke")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4waq2"]
+texture = ExtResource("7_jb8ke")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7va1i"]
 gradient = ExtResource("7_jm048")
@@ -112,18 +176,121 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
 
-[node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -128.0
-offset_top = 24.0
-offset_right = 128.0
-offset_bottom = 96.0
-grow_horizontal = 2
-texture = SubResource("GradientTexture1D_7va1i")
+[node name="UndoButton" type="Button" parent="UI/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -331.0
+offset_top = 797.0
+offset_right = -223.0
+offset_bottom = 904.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_aobvd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2u1du")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dk74w")
+theme_override_styles/focus = SubResource("StyleBoxTexture_hc2on")
 
-[node name="LevelContainer" type="HBoxContainer" parent="UI/CanvasLayer"]
+[node name="UndoLabel" type="Label" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -306.0
+offset_top = 909.0
+offset_right = -229.0
+offset_bottom = 958.0
+grow_horizontal = 0
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Undo"
+
+[node name="PreviousLevelLabel" type="Label" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 33.0
+offset_top = 909.0
+offset_right = 198.0
+offset_bottom = 958.0
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Previous level"
+
+[node name="RestartLevelLabel2" type="Label" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 237.0
+offset_top = 909.0
+offset_right = 334.0
+offset_bottom = 958.0
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Restart"
+
+[node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 51.0
+offset_top = 797.0
+offset_right = 159.0
+offset_bottom = 904.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_hy4pt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qjpc2")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_k1qxv")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_rqi2u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
+
+[node name="RestartLevelButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 228.0
+offset_top = 797.0
+offset_right = 336.0
+offset_bottom = 904.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_2p8w6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_srlcf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ntt4k")
+theme_override_styles/focus = SubResource("StyleBoxTexture_j2dux")
+
+[node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -192.0
+offset_top = 797.0
+offset_right = -84.0
+offset_bottom = 904.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_8v57c")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4t1cg")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fv8vq")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_4waq2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
+
+[node name="NextLevelLabel" type="Label" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -201.0
+offset_top = 909.0
+offset_right = -84.0
+offset_bottom = 958.0
+grow_horizontal = 0
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Next level"
+
+[node name="LevelContainer" type="Control" parent="UI/CanvasLayer"]
+layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -132,11 +299,24 @@ offset_top = 30.0
 offset_right = 96.5
 offset_bottom = 58.0
 grow_horizontal = 2
-theme_override_constants/separation = 32
+
+[node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer/LevelContainer"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = -6.0
+offset_right = 128.0
+offset_bottom = 66.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture1D_7va1i")
 
 [node name="LevelLabel" type="Label" parent="UI/CanvasLayer/LevelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+offset_right = 103.0
+offset_bottom = 58.0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
@@ -147,7 +327,10 @@ horizontal_alignment = 1
 [node name="LevelSolved" type="TextureRect" parent="UI/CanvasLayer/LevelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("8_covac")
+offset_left = 135.0
+offset_right = 193.0
+offset_bottom = 58.0
+texture = ExtResource("9_fr3qw")
 expand_mode = 2
 
 [node name="CreatedLevels" type="Control" parent="UI/CanvasLayer"]
@@ -189,14 +372,15 @@ unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
 offset_left = 424.0
-offset_top = 236.0
+offset_top = 261.0
 offset_right = 464.0
-offset_bottom = 276.0
+offset_bottom = 301.0
 
 [node name="DifficultyDisplayBackground" type="TextureRect" parent="UI/CanvasLayer/Difficulty"]
 layout_mode = 0
-offset_right = 175.0
-offset_bottom = 370.0
+offset_left = -17.0
+offset_right = 158.0
+offset_bottom = 349.0
 rotation = 1.5708
 texture = SubResource("GradientTexture1D_d71m5")
 expand_mode = 1
@@ -204,9 +388,9 @@ expand_mode = 1
 [node name="DifficultyLabel" type="Label" parent="UI/CanvasLayer/Difficulty"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -352.0
+offset_left = -348.0
 offset_top = 100.0
-offset_right = 42.0
+offset_right = 46.0
 offset_bottom = 170.0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -218,10 +402,10 @@ text = "Difficulty: Tadpole"
 [node name="DifficultyProgressBar" type="TextureRect" parent="UI/CanvasLayer/Difficulty"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -360.0
+offset_left = -353.0
 offset_top = 20.0
-offset_right = -16.0
-offset_bottom = 81.0
+offset_right = -33.0
+offset_bottom = 74.0
 expand_mode = 2
 
 [node name="Rules" type="Control" parent="UI/CanvasLayer"]
@@ -310,56 +494,23 @@ texture = ExtResource("9_8uv82")
 
 [node name="EditLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 56.0
-offset_top = 800.0
-offset_right = 317.88
-offset_bottom = 862.0
+offset_left = 57.0
+offset_top = 666.0
+offset_right = 318.88
+offset_bottom = 728.0
 theme = ExtResource("6_3m6x0")
 text = "Edit level"
 
-[node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
+[node name="FinishWarning" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 56.0
-offset_top = 896.0
-offset_right = 317.88
-offset_bottom = 958.0
-theme = ExtResource("6_3m6x0")
-text = "Previous level"
-
-[node name="RestartLevelButton" type="Button" parent="UI/CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -328.0
-offset_top = 800.0
-offset_right = -66.1201
-offset_bottom = 862.0
+offset_left = -332.0
+offset_top = 984.0
+offset_right = -76.0
+offset_bottom = 1021.0
 grow_horizontal = 0
-theme = ExtResource("6_3m6x0")
-text = "Restart level"
-
-[node name="NextLevelContainer" type="VBoxContainer" parent="UI/CanvasLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -328.0
-offset_top = 896.0
-offset_right = -72.0
-offset_bottom = 1011.0
-grow_horizontal = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 16
-
-[node name="NextLevelButton" type="Button" parent="UI/CanvasLayer/NextLevelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("6_3m6x0")
-text = "Next level"
-
-[node name="FinishWarning" type="Label" parent="UI/CanvasLayer/NextLevelContainer"]
-unique_name_in_owner = true
-layout_mode = 2
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -456,10 +607,10 @@ volume_db = -80.0
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/EditLevelButton" to="." method="_on_edit_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/NextLevelContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/EditLevelButton" to="." method="_on_edit_level_button_pressed"]
 [connection signal="jump" from="Playfield" to="." method="_on_playfield_jump"]
 [connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]
 
