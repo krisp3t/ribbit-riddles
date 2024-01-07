@@ -99,7 +99,9 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [connection signal="drag_ended" from="OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_drag_ended"]
+[connection signal="gui_input" from="OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_gui_input"]
 [connection signal="value_changed" from="OptionsContainer/Soundtrack/SoundtrackHSlider" to="." method="_on_soundtrack_h_slider_value_changed"]
 [connection signal="drag_ended" from="OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_drag_ended"]
+[connection signal="gui_input" from="OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_gui_input"]
 [connection signal="value_changed" from="OptionsContainer/SFX/SFXHSlider" to="." method="_on_sfxh_slider_value_changed"]
 [connection signal="pressed" from="OptionsContainer/Reset/ResetButton" to="." method="_on_reset_button_pressed"]
