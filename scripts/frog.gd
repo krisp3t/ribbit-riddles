@@ -5,7 +5,8 @@ var selected : bool = false;
 @export var red : bool = false;
 @export var attached_lilypad : Lilypad = null;
 
-signal drop_frog(v: Vector2i);
+signal drop_frog(frog: Frog);
+signal hover_frog(frog: Frog);
 
 func _input(event: InputEvent):
 	if event is InputEventMouseButton:
@@ -28,7 +29,8 @@ func _process(delta: float) -> void:
 	if selected:
 		# While dragging, follow cursor		
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta);
+		hover_frog.emit(self);
 	else:
 		# Animate back to current lilypad
 		position = lerp(position, attached_lilypad.position, 10 * delta);
-	
+

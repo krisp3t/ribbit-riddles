@@ -1,15 +1,17 @@
 extends Node2D;
 @onready var level_vars : LevelSystem = $/root/LevelSystem;
 
+@export var is_editor : bool = false;
+
 const LILYPADS_OFFSET : Vector2i = Vector2i(300, 145);
-const DROP_SHORTEST_DIST : int = 75;
+const DROP_SHORTEST_DIST : int = 100;
 
 var frog_scene : PackedScene = preload("res://scenes/frog.tscn");
 var lilypad_scene : PackedScene = preload("res://scenes/lilypad.tscn");
 var lilypads : Array = [];
 var frogs_left : int = 0;
 var is_solved : bool = false;
-@export var is_editor : bool = false;
+var last_modulated_lilypad : Lilypad = null;
 
 signal solved;
 signal jump;
@@ -111,6 +113,7 @@ func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
 	frog.red = (val == lilypad_enum.STATUS.RED);
 	add_child(frog);
 	frog.connect('drop_frog', _on_frog_drop);
+	frog.connect('hover_frog', _on_frog_hover);
 	
 func _instantiate_lilypads() -> void:
 	var level_layout : Array = level_vars["info"]["level_layout"];
@@ -166,6 +169,7 @@ func _check_level_solved() -> bool:
 	return frogs_left == 1;
 	
 func _on_frog_drop(frog: Frog) -> void:
+	_reset_lilypad_hovers();
 	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
 		var distance : float = frog.position.distance_to(lilypad.position);
 		
@@ -200,6 +204,39 @@ func _on_frog_drop(frog: Frog) -> void:
 		if (!is_solved):
 			solved.emit();
 			is_solved = true;
+			
+func _reset_lilypad_hovers() -> void:
+	if last_modulated_lilypad != null:
+		last_modulated_lilypad.modulate = Color.WHITE;
+		last_modulated_lilypad = null;
+		
+func _modulate_lilypad(lilypad: Lilypad, color: Color) -> void:
+	last_modulated_lilypad = lilypad;
+	lilypad.modulate = color;
 	
+func _on_frog_hover(frog: Frog) -> void:
+	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
+		var distance : float = frog.position.distance_to(lilypad.position);
+		
+		if distance >= DROP_SHORTEST_DIST:
+			continue;
+		
+		var start : Vector2i = frog.attached_lilypad.coord;
+		var target : Vector2i = lilypad.coord;
+		var between : Lilypad = _get_between_lilypad(start, target);
+		_reset_lilypad_hovers();
+		# Starting position
+		if start == target:
+			_modulate_lilypad(lilypad, Color(1, 1, 1, 0.5));
+			return;
+		# Do not modulate lilypads with frogs on them (obvious you can't drop on them)		
+		if lilypad.attached_frog != null:
+			return;
+		if between == null or !_check_valid_move(between, _get_lilypad(target)):
+			# Invalid move
+			_modulate_lilypad(lilypad, Color(1, 0, 0, 0.5));
+		else:
+			# Valid move
+			_modulate_lilypad(lilypad, Color(0, 1, 0, 0.5));
 
 
