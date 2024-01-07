@@ -5,3 +5,4 @@ ideas/
 *.keystore
 *.apk
 android/
+export/

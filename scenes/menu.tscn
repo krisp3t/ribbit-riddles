@@ -118,7 +118,7 @@ grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "Made with 💖 by krisp3t"
+text = "Made with <3 by krisp3t"
 
 [node name="Credits" type="Button" parent="."]
 layout_mode = 1
