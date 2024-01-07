@@ -235,10 +235,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 261.0
+offset_left = 260.0
 offset_top = -2.0
-offset_right = 470.0
-offset_bottom = -69.28
+offset_right = 426.0
+offset_bottom = -70.28
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
@@ -258,42 +258,49 @@ text = "Rules:"
 
 [node name="RulesText" type="Label" parent="UI/CanvasLayer/Rules"]
 layout_mode = 2
-offset_left = 14.6
-offset_top = 85.84
-offset_right = 261.6
-offset_bottom = 411.84
+offset_left = 15.0
+offset_top = 86.0
+offset_right = 257.0
+offset_bottom = 520.0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 5
+theme_override_constants/line_spacing = -5
 theme_override_font_sizes/font_size = 38
-text = "1. Only            should remain in the pond
-2. Jump over           with           or
-3. No moves without jumping over      allowed"
+text = "1. Move only by jumping over
+
+2. Jump over           with           or      
+
+3. Only           must remain in the pond
+
+
+
+"
 autowrap_mode = 2
 
 [node name="FrogGreen" type="Sprite2D" parent="UI/CanvasLayer/Rules"]
-position = Vector2(192, 200)
-scale = Vector2(0.13625, 0.13625)
+position = Vector2(188.469, 221.531)
+scale = Vector2(0.122125, 0.122125)
 texture = ExtResource("9_8uv82")
 
 [node name="FrogRed" type="Sprite2D" parent="UI/CanvasLayer/Rules"]
-position = Vector2(125, 104)
-scale = Vector2(0.13625, 0.13625)
+position = Vector2(125, 341)
+scale = Vector2(0.122, 0.122)
 texture = ExtResource("10_kae8m")
 
 [node name="FrogRed2" type="Sprite2D" parent="UI/CanvasLayer/Rules"]
-position = Vector2(192, 248)
-scale = Vector2(0.13625, 0.13625)
+position = Vector2(191, 265)
+scale = Vector2(0.122, 0.122)
 texture = ExtResource("10_kae8m")
 
 [node name="FrogGreen2" type="Sprite2D" parent="UI/CanvasLayer/Rules"]
-position = Vector2(96.0001, 248)
-scale = Vector2(0.13625, 0.13625)
+position = Vector2(96, 265)
+scale = Vector2(0.122, 0.122)
 texture = ExtResource("9_8uv82")
 
 [node name="FrogGreen3" type="Sprite2D" parent="UI/CanvasLayer/Rules"]
-position = Vector2(200, 344)
-scale = Vector2(0.13625, 0.13625)
+position = Vector2(193, 148)
+scale = Vector2(0.122, 0.122)
 texture = ExtResource("9_8uv82")
 
 [node name="EditLevelButton" type="Button" parent="UI/CanvasLayer"]

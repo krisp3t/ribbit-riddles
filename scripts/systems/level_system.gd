@@ -144,4 +144,3 @@ func get_lilypad_array_ix(coord: Vector2i) -> Vector2i:
 func update_level_layout(coord: Vector2i, value: lilypad_enum.STATUS):
 	var lilypad : Vector2i = get_lilypad_array_ix(coord);
 	info["level_layout"][lilypad.y][lilypad.x] = value;
-	print_debug(info["level_layout"]);

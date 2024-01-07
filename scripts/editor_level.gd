@@ -130,7 +130,6 @@ func _check_valid_edit() -> void:
 	%SaveTestButton.disabled = !(red_valid and empty_valid and green_valid);
 	
 func _on_item_drop(item: Control) -> void:
-	
 	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
 		var item_pos : Vector2 = item.global_position - CURSOR_OFFSET;
 		var distance : float = item_pos.distance_to(lilypad.global_position);
@@ -139,7 +138,10 @@ func _on_item_drop(item: Control) -> void:
 		
 		var coords : Vector2i = lilypad.coord;
 		var ix : Vector2i = level_vars.get_lilypad_array_ix(lilypad.coord);
-		var status : lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name)
+		var status : lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name);
+		
+		if lilypad.attached_frog != null:
+			lilypad.attached_frog.queue_free();
 		
 		level_vars.update_level_layout(coords, status);
 		$Playfield.initialize_lilypad(ix, lilypad);
@@ -152,11 +154,11 @@ func _process(delta: float) -> void:
 		else:
 			match c.name:
 				"GreenFrog":
-					c.position = lerp(c.position, GREEN_INITIAL, 25 * delta);
+					c.position = GREEN_INITIAL;
 				"RedFrog":
-					c.position = lerp(c.position, RED_INITIAL, 25 * delta);
+					c.position = RED_INITIAL;
 				"Eraser":
-					c.position = lerp(c.position, ERASER_INITIAL, 25 * delta);
+					c.position = ERASER_INITIAL;
 
 func _on_save_button_pressed() -> void:
 	level_vars.save_created_level();
