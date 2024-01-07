@@ -163,8 +163,7 @@ size_flags_horizontal = 4
 
 [node name="RulesLabel" type="Label" parent="UI/CanvasLayer/CreatedLevels"]
 layout_mode = 2
-offset_left = 24.0
-offset_right = 275.0
+offset_right = 251.0
 offset_bottom = 70.0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
@@ -174,9 +173,15 @@ text = "Created levels:"
 
 [node name="ScrollContainer" parent="UI/CanvasLayer/CreatedLevels" instance=ExtResource("8_xhkpp")]
 layout_mode = 0
-offset_top = 96.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -1.0
+offset_top = 93.0
 offset_right = 262.0
-offset_bottom = 480.0
+offset_bottom = 477.0
+grow_horizontal = 1
+grow_vertical = 1
 pivot_offset = Vector2(32, 4)
 
 [node name="Difficulty" type="Control" parent="UI/CanvasLayer"]

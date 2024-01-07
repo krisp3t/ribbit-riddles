@@ -7,8 +7,10 @@ func _ready() -> void:
 	var keys : Array = [];
 	for key in created_levels:
 		keys.push_back(key);
+	%PlaceholderBackground.visible = len(keys) == 0;	
 	keys.sort();
 	for key in keys:
 		var row : Control = row_scene.instantiate();
 		row.level = key;
 		$VBoxContainer.add_child(row);
+	
