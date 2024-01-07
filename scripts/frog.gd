@@ -23,14 +23,16 @@ func _ready():
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
 		selected = true;
-		modulate = Color(1, 1, 1, 0.5);
+		modulate = Color(1, 1, 1, 1);
 	
 func _process(delta: float) -> void:
 	if selected:
+		z_index = 100;
 		# While dragging, follow cursor		
 		global_position = lerp(global_position, get_global_mouse_position(), 25 * delta);
 		hover_frog.emit(self);
 	else:
+		z_index = 10;
 		# Animate back to current lilypad
 		position = lerp(position, attached_lilypad.position, 10 * delta);
 

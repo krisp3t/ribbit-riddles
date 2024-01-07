@@ -227,16 +227,16 @@ func _on_frog_hover(frog: Frog) -> void:
 		_reset_lilypad_hovers();
 		# Starting position
 		if start == target:
-			_modulate_lilypad(lilypad, Color(1, 1, 1, 0.5));
+			_modulate_lilypad(lilypad, Color(0.8, 0.8, 0.8, 1));
 			return;
 		# Do not modulate lilypads with frogs on them (obvious you can't drop on them)		
 		if lilypad.attached_frog != null:
 			return;
 		if between == null or !_check_valid_move(between, _get_lilypad(target)):
 			# Invalid move
-			_modulate_lilypad(lilypad, Color(1, 0, 0, 0.5));
+			_modulate_lilypad(lilypad, Color(1, 0.2, 0.2, 1));
 		else:
 			# Valid move
-			_modulate_lilypad(lilypad, Color(0, 1, 0, 0.5));
+			_modulate_lilypad(lilypad, Color(0.8, 0.8, 0.8, 1));
 
 
