@@ -3,7 +3,10 @@ extends Control
 @onready var config : Config = $/root/ConfigSystem;
 
 func _play() -> void:
-	get_tree().change_scene_to_file("res://scenes/main.tscn");
+	if (!config.load_value('tutorial', 'level', true)):
+		get_tree().change_scene_to_file("res://scenes/main.tscn");
+	else:
+		get_tree().change_scene_to_file("res://scenes/tutorial_level.tscn");
 	
 func _ready() -> void:
 	%IntermediateButton.disabled = !level_vars.is_completed_difficulty(level_enum.DIFFICULTY.EASY);

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw5m5oy7q26c3"]
+[gd_scene load_steps=5 format=3 uid="uid://dw5m5oy7q26c3"]
 
 [ext_resource type="Texture2D" uid="uid://bukskk1o28qb4" path="res://assets/buttons/4x/Asset 4@4x.png" id="1_2w2ue"]
 [ext_resource type="Texture2D" uid="uid://dd27s6p0eo4u1" path="res://assets/bg_1.jpg" id="1_ii3b7"]
+[ext_resource type="Script" path="res://scripts/tutorial_level.gd" id="1_qn2i1"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="2_6tuuo"]
 
 [node name="TutorialLevel" type="Control"]
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qn2i1")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -26,37 +28,39 @@ expand_mode = 2
 stretch_mode = 6
 
 [node name="TutorialContainer" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 576.0
-offset_top = 189.0
-offset_right = 576.0
-offset_bottom = 189.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -350.0
+offset_right = 500.0
+offset_bottom = 450.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.424421, 0.642804)
 
 [node name="TextureRect" type="TextureRect" parent="TutorialContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.5
-offset_top = -2.0
-offset_right = 1.5
-offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_2w2ue")
 
 [node name="TutorialLabel" type="Label" parent="TutorialContainer"]
-layout_mode = 0
-offset_left = 362.0
-offset_top = 53.0
-offset_right = 579.0
-offset_bottom = 164.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = 78.0
+offset_right = 109.0
+offset_bottom = 189.0
+grow_horizontal = 2
 theme = ExtResource("2_6tuuo")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
