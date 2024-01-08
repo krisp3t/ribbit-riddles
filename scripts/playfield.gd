@@ -39,7 +39,7 @@ func _animate_playfield() -> void:
 
 func _get_center_position() -> Vector2:
 	var x : int = (get_viewport_rect().size.x - $PlayfieldBackground.size.x) / 2;
-	var y : int = 125;
+	var y : int = (get_viewport_rect().size.y - $PlayfieldBackground.size.x) / 2 + 100;
 	return Vector2(x, y);
 	
 func _on_viewport_size_changed() -> void:

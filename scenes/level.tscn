@@ -181,14 +181,17 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
 
 [node name="UndoButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -372.0
-offset_top = 823.0
-offset_right = -252.0
-offset_bottom = 943.0
+anchor_bottom = 1.0
+offset_left = -365.0
+offset_top = -260.0
+offset_right = -245.0
+offset_bottom = -140.0
 grow_horizontal = 0
+grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_aobvd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_2u1du")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dk74w")
@@ -198,14 +201,17 @@ disabled = true
 
 [node name="UndoLabel" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -375.0
-offset_top = 942.0
-offset_right = -244.0
-offset_bottom = 991.0
+anchor_bottom = 1.0
+offset_left = -365.0
+offset_top = -138.0
+offset_right = -234.0
+offset_bottom = -89.0
 grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -215,10 +221,14 @@ text = "Undo move"
 
 [node name="PreviousLevelLabel" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 34.0
-offset_top = 942.0
-offset_right = 199.0
-offset_bottom = 991.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -138.0
+offset_right = 201.0
+offset_bottom = -89.0
+grow_vertical = 0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -226,12 +236,16 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 42
 text = "Previous level"
 
-[node name="RestartLevelLabel2" type="Label" parent="UI/CanvasLayer"]
+[node name="RestartLevelLabel" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 241.0
-offset_top = 942.0
+offset_top = -138.0
 offset_right = 338.0
-offset_bottom = 991.0
+offset_bottom = -89.0
+grow_vertical = 0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -241,10 +255,14 @@ text = "Restart"
 
 [node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 46.0
-offset_top = 823.0
-offset_right = 166.0
-offset_bottom = 943.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -260.0
+offset_right = 170.0
+offset_bottom = -140.0
+grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_hy4pt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qjpc2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k1qxv")
@@ -253,10 +271,14 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
 
 [node name="RestartLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 230.0
-offset_top = 823.0
-offset_right = 350.0
-offset_bottom = 943.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 226.0
+offset_top = -260.0
+offset_right = 346.0
+offset_bottom = -140.0
+grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_2p8w6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_srlcf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ntt4k")
@@ -264,14 +286,17 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_j2dux")
 
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -186.0
-offset_top = 823.0
-offset_right = -66.0
-offset_bottom = 943.0
+anchor_bottom = 1.0
+offset_left = -189.0
+offset_top = -260.0
+offset_right = -69.0
+offset_bottom = -140.0
 grow_horizontal = 0
+grow_vertical = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_8v57c")
 theme_override_styles/hover = SubResource("StyleBoxTexture_4t1cg")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fv8vq")
@@ -280,14 +305,17 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
 
 [node name="NextLevelLabel" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -183.0
-offset_top = 942.0
-offset_right = -66.0
-offset_bottom = 991.0
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -138.0
+offset_right = -71.0
+offset_bottom = -89.0
 grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -509,14 +537,17 @@ text = "Edit level"
 
 [node name="FinishWarning" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -354.0
-offset_top = 1006.0
-offset_right = -98.0
-offset_bottom = 1043.0
+anchor_bottom = 1.0
+offset_left = -353.0
+offset_top = -72.0
+offset_right = -97.0
+offset_bottom = -35.0
 grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
