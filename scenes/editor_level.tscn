@@ -332,57 +332,74 @@ stretch_mode = 4
 
 [node name="ClearButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -400.0
-offset_top = 696.0
+offset_top = -370.0
 offset_right = -66.0
-offset_bottom = 758.0
+offset_bottom = -308.0
 grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("5_g6vjh")
 text = "Clear level"
 
 [node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 56.0
-offset_top = 800.0
-offset_right = 317.88
-offset_bottom = 862.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -270.0
+offset_right = 313.88
+offset_bottom = -208.0
+grow_vertical = 0
 theme = ExtResource("5_g6vjh")
 text = "Previous level"
 
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-offset_left = 56.0
-offset_top = 896.0
-offset_right = 317.88
-offset_bottom = 958.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -170.0
+offset_right = 313.88
+offset_bottom = -108.0
+grow_vertical = 0
 theme = ExtResource("5_g6vjh")
 text = "Next level"
 
 [node name="SaveButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -400.0
-offset_top = 800.0
+offset_top = -270.0
 offset_right = -66.0
-offset_bottom = 862.0
+offset_bottom = -208.0
 grow_horizontal = 0
+grow_vertical = 0
 theme = ExtResource("5_g6vjh")
 text = "Save as Level 41"
 
 [node name="SaveTestContainer" type="VBoxContainer" parent="UI/CanvasLayer"]
-anchors_preset = 1
+anchors_preset = 3
 anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
-offset_left = -400.0
-offset_top = 896.0
-offset_right = -72.0
-offset_bottom = 1011.0
+anchor_bottom = 1.0
+offset_left = -402.0
+offset_top = -170.0
+offset_right = -74.0
+offset_bottom = -55.0
 grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 16
