@@ -6,3 +6,4 @@ ideas/
 *.apk
 android/
 export/
+.DS_Store
