@@ -29,7 +29,7 @@ func _initialize() -> void:
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
-	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx"));
+	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	$WinPlayer.volume_db = $JumpPlayer.volume_db;
 	if info["solved"]:
 		%LevelSolved.texture = load("res://assets/buttons/4x/Asset 14@4x.png");
@@ -103,7 +103,7 @@ func _on_mute_button_pressed() -> void:
 		if (is_muted):
 			player.set_volume_db(-999.0);
 		else:
-			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx")));
+			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
 	mute.emit(is_muted);
 	level_vars.muted = is_muted;		
 

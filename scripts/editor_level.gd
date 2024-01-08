@@ -22,7 +22,7 @@ func _initialize() -> void:
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
-	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx"));
+	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	$WinPlayer.volume_db = $JumpPlayer.volume_db;
 	# Min level boundary
 	if level_vars.current_level == level_enum.MAX_EXPERT + 1:
@@ -64,7 +64,7 @@ func _on_mute_button_pressed() -> void:
 		if (is_muted):
 			player.set_volume_db(-999.0);
 		else:
-			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx")));
+			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
 	mute.emit(is_muted);
 	level_vars.muted = is_muted;		
 

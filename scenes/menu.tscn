@@ -196,19 +196,22 @@ autowrap_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_top = 88.0
+offset_top = 129.0
 
 [node name="Options" parent="Sidebar" instance=ExtResource("8_wap4e")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_top = 88.0
+offset_top = 132.0
+offset_right = -2.0
 
 [node name="Credits" parent="Sidebar" instance=ExtResource("9_bl5yy")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_top = 106.0
+offset_left = 16.0
+offset_top = 128.0
+offset_right = -16.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_efx4i")

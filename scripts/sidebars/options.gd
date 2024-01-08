@@ -5,9 +5,9 @@ extends Control
 signal audio_bg_change;
 
 func _ready() -> void:
-	%SFXHSlider.value = config.load_value("audio", "sfx") if config.load_value("audio", "sfx") != null else 100.0;
+	%SFXHSlider.value = config.load_value("audio", "sfx", 100.0);
 	%SFXProgressBar.value = %SFXHSlider.value;
-	%SoundtrackHSlider.value = config.load_value("audio", "bg") if config.load_value("audio", "bg") != null else 100.0;
+	%SoundtrackHSlider.value = config.load_value("audio", "bg", 100.0);
 	%SoundtrackProgressBar.value = %SoundtrackHSlider.value;
 
 ### Soundtrack
