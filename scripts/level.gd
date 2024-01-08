@@ -54,6 +54,7 @@ func _on_restart_level_button_pressed() -> void:
 func _on_playfield_solved() -> void:
 	$WinPlayer.play();
 	%NextLevelButton.disabled = false;
+	%UndoButton.disabled = true;
 	%FinishWarning.visible = false;
 	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 25@4x.png");
 	
@@ -112,7 +113,6 @@ func _on_playfield_jump() -> void:
 	$JumpPlayer.play();
 
 func _on_edit_level_button_pressed() -> void:
-	print_debug(level_vars.current_level);
 	get_tree().change_scene_to_file("res://scenes/editor.tscn");
 
 func _on_undo_button_pressed():

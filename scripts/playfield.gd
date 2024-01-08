@@ -86,7 +86,6 @@ func clear_playfield() -> void:
 			lilypad.attached_frog = null;
 		
 	
-	
 func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
 	var level_layout : Array = level_vars["info"]["level_layout"];
 	var val : int = level_layout[ix.y][ix.x];
@@ -244,7 +243,7 @@ func _on_frog_hover(frog: Frog) -> void:
 			return;
 		if between == null or !_check_valid_move(between, _get_lilypad(target)):
 			# Invalid move
-			_modulate_lilypad(lilypad, Color(1, 0.2, 0.2, 1));
+			_modulate_lilypad(lilypad, Color(1, 0.3, 0.3, 1));
 		else:
 			# Valid move
 			_modulate_lilypad(lilypad, Color(0.8, 0.8, 0.8, 1));
@@ -263,14 +262,12 @@ func move_undo(from: Vector2i, to: Vector2i) -> void:
 	to_lilypad.attached_frog = null;
 	# Move to start position	
 	frog_end.attached_lilypad = from_lilypad;
+	from_lilypad.attached_frog = frog_end;
 	# Restore frog in between
 	var between_frog : Frog = _instantiate_frog(between_lilypad);
 	add_child(between_frog);
-	between_frog.connect('drop_frog', _on_frog_drop);
-	between_frog.connect('hover_frog', _on_frog_hover);
 	
 	frogs_left += 1;
 	undo.emit();
-	print_debug(from_lilypad, to_lilypad);
 
 
