@@ -41,7 +41,7 @@ func _update_step() -> void:
 			%FrogRed.visible = true;
 			%FrogRed.position = Vector2(695, 425);
 			%ImageDisplay.texture = preload("res://assets/tutorial/tutorial_3.jpg");
-			%Instructions.text = "To solve the level, only           must remain. Have fun hopping!";
+			%Instructions.text = "To solve the level,\nonly           must remain. Have fun hopping!";
 		_:
 			config.save_value('tutorial', 'level', false);
 			level.initialize(1);

@@ -56,7 +56,7 @@ func _on_playfield_solved() -> void:
 	%NextLevelButton.disabled = false;
 	%UndoButton.disabled = true;
 	%FinishWarning.visible = false;
-	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 25@4x.png");
+	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 14@4x.png");
 	
 	if level_vars.current_level == level_enum.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
