@@ -41,6 +41,7 @@ func _on_reset_button_pressed() -> void:
 		for file : String in dir.get_files():
 			dir.remove(file);
 	get_tree().reload_current_scene();
+	config.save_value("tutorial", "level", true);
 	%ResetButton.disabled = true;
 	%ResetLabel.text = "Successfully reset game!";
 
