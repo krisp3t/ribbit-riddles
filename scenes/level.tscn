@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=48 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_aluce"]
@@ -59,6 +59,10 @@ modulate_color = Color(1, 1, 1, 0.756863)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dk74w"]
 texture = ExtResource("3_wj4g1")
 modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o1cq"]
+texture = ExtResource("3_wj4g1")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqk2d"]
 
@@ -176,6 +180,7 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
 theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
 
 [node name="UndoButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -187,7 +192,9 @@ grow_horizontal = 0
 theme_override_styles/normal = SubResource("StyleBoxTexture_aobvd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_2u1du")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dk74w")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7o1cq")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sqk2d")
+disabled = true
 
 [node name="UndoLabel" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -584,6 +591,7 @@ Congratulations, you're the frog emperor!"
 horizontal_alignment = 1
 
 [node name="Playfield" parent="." instance=ExtResource("11_5abmp")]
+unique_name_in_owner = true
 script = ExtResource("12_m65xv")
 
 [node name="PlayfieldBackground" parent="Playfield" index="0"]
@@ -606,11 +614,13 @@ volume_db = -80.0
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/UndoButton" to="." method="_on_undo_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/EditLevelButton" to="." method="_on_edit_level_button_pressed"]
 [connection signal="jump" from="Playfield" to="." method="_on_playfield_jump"]
 [connection signal="solved" from="Playfield" to="." method="_on_playfield_solved"]
+[connection signal="undo" from="Playfield" to="." method="_on_playfield_undo"]
 
 [editable path="Playfield"]

@@ -2,6 +2,7 @@ extends Node2D;
 @onready var level_vars : LevelSystem = $/root/LevelSystem;
 
 @export var is_editor : bool = false;
+@export var moves : Array = [];
 
 const LILYPADS_OFFSET : Vector2i = Vector2i(300, 145);
 const DROP_SHORTEST_DIST : int = 100;
@@ -15,6 +16,7 @@ var last_modulated_lilypad : Lilypad = null;
 
 signal solved;
 signal jump;
+signal undo;
 
 func initialize() -> void:
 	_instantiate_lilypads();
@@ -106,14 +108,18 @@ func initialize_lilypad(ix: Vector2i, lilypad: Lilypad) -> void:
 		return;
 	
 	# Non-empty lilypads (have frogs)
+	var frog : Frog = _instantiate_frog(lilypad, val == lilypad_enum.STATUS.RED);
+	add_child(frog);
+
+func _instantiate_frog(lilypad: Lilypad, red: bool = false) -> Frog:
 	var frog : Node2D = frog_scene.instantiate();
 	frog.attached_lilypad = lilypad;
 	lilypad.attached_frog = frog;
 	frog.position = lilypad.position;
-	frog.red = (val == lilypad_enum.STATUS.RED);
-	add_child(frog);
+	frog.red = red;
 	frog.connect('drop_frog', _on_frog_drop);
 	frog.connect('hover_frog', _on_frog_hover);
+	return frog;
 	
 func _instantiate_lilypads() -> void:
 	var level_layout : Array = level_vars["info"]["level_layout"];
@@ -197,6 +203,7 @@ func _on_frog_drop(frog: Frog) -> void:
 		frog.attached_lilypad = lilypad;
 		lilypad.attached_frog = frog;
 		
+		moves.push_back([start, target]);
 		jump.emit();
 		break;
 	
@@ -241,5 +248,29 @@ func _on_frog_hover(frog: Frog) -> void:
 		else:
 			# Valid move
 			_modulate_lilypad(lilypad, Color(0.8, 0.8, 0.8, 1));
+
+func undo_last() -> void:
+	var last_move : Array = moves.pop_back()
+	move_undo(last_move[0], last_move[1]);
+	
+func move_undo(from: Vector2i, to: Vector2i) -> void:
+	var from_lilypad : Lilypad = _get_lilypad(from);
+	var to_lilypad : Lilypad = _get_lilypad(to);
+	var between_lilypad : Lilypad = _get_between_lilypad(from, to);
+	
+	# Empty out end position
+	var frog_end : Frog = to_lilypad.attached_frog;
+	to_lilypad.attached_frog = null;
+	# Move to start position	
+	frog_end.attached_lilypad = from_lilypad;
+	# Restore frog in between
+	var between_frog : Frog = _instantiate_frog(between_lilypad);
+	add_child(between_frog);
+	between_frog.connect('drop_frog', _on_frog_drop);
+	between_frog.connect('hover_frog', _on_frog_hover);
+	
+	frogs_left += 1;
+	undo.emit();
+	print_debug(from_lilypad, to_lilypad);
 
 

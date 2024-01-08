@@ -106,11 +106,19 @@ func _on_mute_button_pressed() -> void:
 	mute.emit(is_muted);
 	level_vars.muted = is_muted;		
 
-
 func _on_playfield_jump() -> void:
+	%UndoButton.disabled = len(%Playfield.moves) == 0;
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
 	$JumpPlayer.play();
 
 func _on_edit_level_button_pressed() -> void:
 	print_debug(level_vars.current_level);
 	get_tree().change_scene_to_file("res://scenes/editor.tscn");
+
+func _on_undo_button_pressed():
+	%Playfield.undo_last();
+
+func _on_playfield_undo():
+	%UndoButton.disabled = len(%Playfield.moves) == 0;
+	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
+	$JumpPlayer.play();
