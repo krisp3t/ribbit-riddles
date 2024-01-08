@@ -1,9 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw5m5oy7q26c3"]
+[gd_scene load_steps=20 format=3 uid="uid://dw5m5oy7q26c3"]
 
 [ext_resource type="Texture2D" uid="uid://bukskk1o28qb4" path="res://assets/buttons/4x/Asset 4@4x.png" id="1_2w2ue"]
 [ext_resource type="Texture2D" uid="uid://dd27s6p0eo4u1" path="res://assets/bg_1.jpg" id="1_ii3b7"]
 [ext_resource type="Script" path="res://scripts/tutorial_level.gd" id="1_qn2i1"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="2_6tuuo"]
+[ext_resource type="Texture2D" uid="uid://gam8ccamtqep" path="res://assets/buttons/4x/Asset 16@4x.png" id="5_v63r6"]
+[ext_resource type="Texture2D" uid="uid://cxmib0owbng5j" path="res://assets/tutorial/tutorial_1.jpg" id="6_3j7m7"]
+[ext_resource type="Texture2D" uid="uid://b8o74k2vm0rla" path="res://assets/buttons/4x/Asset 17@4x.png" id="6_bky1t"]
+[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="7_22trv"]
+[ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="8_ssmrt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5g00l"]
+texture = ExtResource("5_v63r6")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1d23l"]
+texture = ExtResource("5_v63r6")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o8pni"]
+texture = ExtResource("5_v63r6")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_irfxk"]
+texture = ExtResource("5_v63r6")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmbyt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5t2f"]
+texture = ExtResource("6_bky1t")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xcqkj"]
+texture = ExtResource("6_bky1t")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ma5on"]
+texture = ExtResource("6_bky1t")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4ner"]
+texture = ExtResource("6_bky1t")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nea8e"]
 
 [node name="TutorialLevel" type="Control"]
 layout_mode = 3
@@ -30,19 +69,16 @@ stretch_mode = 6
 [node name="TutorialContainer" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -500.0
-offset_top = -350.0
-offset_right = 500.0
-offset_bottom = 450.0
+offset_left = -560.0
+offset_top = 76.0
+offset_right = 557.0
+offset_bottom = 990.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="TutorialContainer"]
+[node name="ContainerBackground" type="TextureRect" parent="TutorialContainer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,10 +92,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -108.0
-offset_top = 78.0
-offset_right = 109.0
-offset_bottom = 189.0
+offset_left = -112.0
+offset_top = 79.0
+offset_right = 105.0
+offset_bottom = 190.0
 grow_horizontal = 2
 theme = ExtResource("2_6tuuo")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -67,3 +103,137 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 96
 text = "Tutorial"
+
+[node name="NextStepLabel" type="Label" parent="TutorialContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -166.0
+offset_right = -118.0
+offset_bottom = -117.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_6tuuo")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Next "
+
+[node name="PreviousStepLabel" type="Label" parent="TutorialContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -933.0
+offset_top = -166.0
+offset_right = -830.0
+offset_bottom = -117.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("2_6tuuo")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 42
+text = "Previous"
+
+[node name="NextStepButton" type="Button" parent="TutorialContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -206.0
+offset_top = -276.0
+offset_right = -86.0
+offset_bottom = -156.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_5g00l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_1d23l")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_o8pni")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_irfxk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qmbyt")
+
+[node name="PreviousStepButton" type="Button" parent="TutorialContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -950.0
+offset_top = -276.0
+offset_right = -830.0
+offset_bottom = -156.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_k5t2f")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xcqkj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ma5on")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_l4ner")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nea8e")
+
+[node name="ImageDisplay" type="TextureRect" parent="TutorialContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 109.0
+offset_top = 238.0
+offset_right = 534.0
+offset_bottom = 612.0
+texture = ExtResource("6_3j7m7")
+expand_mode = 1
+
+[node name="Instructions" type="Label" parent="TutorialContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1.5
+offset_top = 239.0
+offset_right = 467.5
+offset_bottom = 619.0
+grow_horizontal = 2
+theme = ExtResource("2_6tuuo")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 64
+text = "Jump with            or
+over"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="FrogGreen" type="Sprite2D" parent="TutorialContainer"]
+unique_name_in_owner = true
+position = Vector2(814, 385.766)
+scale = Vector2(0.247062, 0.247062)
+texture = ExtResource("7_22trv")
+
+[node name="FrogGreen2" type="Sprite2D" parent="TutorialContainer"]
+unique_name_in_owner = true
+position = Vector2(702, 469.766)
+scale = Vector2(0.247062, 0.247062)
+texture = ExtResource("7_22trv")
+
+[node name="FrogRed" type="Sprite2D" parent="TutorialContainer"]
+unique_name_in_owner = true
+position = Vector2(983, 385)
+scale = Vector2(0.247, 0.247)
+texture = ExtResource("8_ssmrt")
+
+[connection signal="pressed" from="TutorialContainer/NextStepButton" to="." method="_on_next_step_button_pressed"]
+[connection signal="pressed" from="TutorialContainer/PreviousStepButton" to="." method="_on_previous_step_button_pressed"]
