@@ -7,6 +7,7 @@ var step : int = 1;
 func _ready() -> void:
 	step = 1;
 	_animate_tutorial();
+	_update_step();
 
 func _animate_tutorial() -> void:
 	%TutorialContainer.scale = Vector2(0, 0);
@@ -51,8 +52,6 @@ func _on_next_step_button_pressed() -> void:
 	step += 1;
 	_update_step();
 
-
 func _on_previous_step_button_pressed() -> void:
 	step -= 1;
 	_update_step();
-	pass # Replace with function body.

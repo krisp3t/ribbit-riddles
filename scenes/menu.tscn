@@ -14,7 +14,7 @@
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ajuxe"]
 gradient = ExtResource("5_xa7ve")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3eib2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq4e4"]
 texture = ExtResource("6_0t0ca")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qqxfc"]
@@ -25,7 +25,7 @@ modulate_color = Color(1, 1, 1, 0.345098)
 texture = ExtResource("6_0t0ca")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bq4e4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3eib2"]
 texture = ExtResource("6_0t0ca")
 
 [node name="Menu" type="Control"]
@@ -183,10 +183,10 @@ offset_top = 57.0
 offset_right = -40.0
 offset_bottom = 113.0
 grow_horizontal = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_3eib2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_bq4e4")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qqxfc")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_xm7yl")
-theme_override_styles/focus = SubResource("StyleBoxTexture_bq4e4")
+theme_override_styles/normal = SubResource("StyleBoxTexture_3eib2")
 
 [node name="SidebarLabel" type="Label" parent="Sidebar"]
 unique_name_in_owner = true

@@ -269,5 +269,3 @@ func move_undo(from: Vector2i, to: Vector2i) -> void:
 	
 	frogs_left += 1;
 	undo.emit();
-
-

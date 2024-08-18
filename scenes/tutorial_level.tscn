@@ -10,8 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="7_22trv"]
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="8_ssmrt"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5g00l"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmbyt"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_irfxk"]
 texture = ExtResource("5_v63r6")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1d23l"]
 texture = ExtResource("5_v63r6")
@@ -21,14 +24,14 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("5_v63r6")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_irfxk"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5g00l"]
 texture = ExtResource("5_v63r6")
-modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmbyt"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nea8e"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5t2f"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4ner"]
 texture = ExtResource("6_bky1t")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xcqkj"]
 texture = ExtResource("6_bky1t")
@@ -38,11 +41,8 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("6_bky1t")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4ner"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k5t2f"]
 texture = ExtResource("6_bky1t")
-modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nea8e"]
 
 [node name="TutorialLevel" type="Control"]
 layout_mode = 3
@@ -112,9 +112,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -185.0
+offset_left = -210.0
 offset_top = -166.0
-offset_right = -118.0
+offset_right = -143.0
 offset_bottom = -117.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -133,9 +133,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -933.0
+offset_left = -957.0
 offset_top = -166.0
-offset_right = -830.0
+offset_right = -854.0
 offset_bottom = -117.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -154,17 +154,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -206.0
+offset_left = -231.0
 offset_top = -276.0
-offset_right = -86.0
+offset_right = -111.0
 offset_bottom = -156.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_5g00l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qmbyt")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_irfxk")
 theme_override_styles/hover = SubResource("StyleBoxTexture_1d23l")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_o8pni")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_irfxk")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qmbyt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_5g00l")
 
 [node name="PreviousStepButton" type="Button" parent="TutorialContainer"]
 unique_name_in_owner = true
@@ -174,17 +174,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -950.0
+offset_left = -974.0
 offset_top = -276.0
-offset_right = -830.0
+offset_right = -854.0
 offset_bottom = -156.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_k5t2f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_nea8e")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_l4ner")
 theme_override_styles/hover = SubResource("StyleBoxTexture_xcqkj")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ma5on")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_l4ner")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nea8e")
+theme_override_styles/normal = SubResource("StyleBoxTexture_k5t2f")
 
 [node name="ImageDisplay" type="TextureRect" parent="TutorialContainer"]
 unique_name_in_owner = true
