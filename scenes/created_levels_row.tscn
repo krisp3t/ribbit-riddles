@@ -10,8 +10,9 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.141176)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1atpx"]
 gradient = SubResource("Gradient_qgivt")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ohyb"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fys47"]
 texture = ExtResource("2_731eu")
+modulate_color = Color(1, 1, 1, 0.588235)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2idvd"]
 texture = ExtResource("2_731eu")
@@ -21,9 +22,8 @@ modulate_color = Color(1, 1, 1, 0.588235)
 texture = ExtResource("2_731eu")
 modulate_color = Color(1, 1, 1, 0.588235)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fys47"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ohyb"]
 texture = ExtResource("2_731eu")
-modulate_color = Color(1, 1, 1, 0.588235)
 
 [node name="Row" type="Panel"]
 custom_minimum_size = Vector2(0, 150)
@@ -61,9 +61,9 @@ offset_top = 52.0
 offset_right = 246.0
 offset_bottom = 101.0
 mouse_filter = 1
-theme_override_styles/normal = SubResource("StyleBoxTexture_1ohyb")
+theme_override_styles/focus = SubResource("StyleBoxTexture_fys47")
 theme_override_styles/hover = SubResource("StyleBoxTexture_2idvd")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_bh64x")
-theme_override_styles/focus = SubResource("StyleBoxTexture_fys47")
+theme_override_styles/normal = SubResource("StyleBoxTexture_1ohyb")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="12_coe3d"]
 [ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="13_3io3k"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqqi2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hq4tj"]
 texture = ExtResource("2_4x8e7")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0nnl1"]
@@ -27,11 +27,12 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("2_4x8e7")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hq4tj"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqqi2"]
 texture = ExtResource("2_4x8e7")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0rul"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6c7kr"]
 texture = ExtResource("3_5gw2v")
+modulate_color = Color(1, 1, 1, 0.439216)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7nx4k"]
 texture = ExtResource("3_5gw2v")
@@ -41,9 +42,8 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("3_5gw2v")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6c7kr"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0rul"]
 texture = ExtResource("3_5gw2v")
-modulate_color = Color(1, 1, 1, 0.439216)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_50n33"]
 gradient = ExtResource("4_qc3gn")
@@ -96,10 +96,10 @@ offset_left = 56.0
 offset_top = 40.0
 offset_right = 184.0
 offset_bottom = 167.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_tqqi2")
+theme_override_styles/focus = SubResource("StyleBoxTexture_hq4tj")
 theme_override_styles/hover = SubResource("StyleBoxTexture_0nnl1")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_an1rx")
-theme_override_styles/focus = SubResource("StyleBoxTexture_hq4tj")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tqqi2")
 
 [node name="MuteButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -107,10 +107,10 @@ offset_left = 208.0
 offset_top = 40.0
 offset_right = 336.0
 offset_bottom = 167.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_y0rul")
+theme_override_styles/focus = SubResource("StyleBoxTexture_6c7kr")
 theme_override_styles/hover = SubResource("StyleBoxTexture_7nx4k")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6qlwg")
-theme_override_styles/focus = SubResource("StyleBoxTexture_6c7kr")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y0rul")
 
 [node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5

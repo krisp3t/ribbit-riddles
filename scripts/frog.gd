@@ -35,4 +35,3 @@ func _process(delta: float) -> void:
 		z_index = 10;
 		# Animate back to current lilypad
 		position = lerp(position, attached_lilypad.position, 10 * delta);
-

@@ -46,7 +46,7 @@ func _update_step() -> void:
 		_:
 			config.save_value('tutorial', 'level', false);
 			level.initialize(1);
-			get_tree().change_scene_to_file("res://scenes/main.tscn");
+			get_tree().change_scene_to_file("res://scenes/level.tscn");
 
 func _on_next_step_button_pressed() -> void:
 	step += 1;

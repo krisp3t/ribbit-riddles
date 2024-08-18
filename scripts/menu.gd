@@ -7,10 +7,10 @@ var is_sidebar_open : bool = false;
 func _ready() -> void:
 	_change_sidebar_state(false, false);
 	_close_all_sidebars();
-	$AudioStreamPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
+	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
 	
 func _on_options_audio_bg_change() -> void:
-	$AudioStreamPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
+	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
 
 func _change_sidebar_state(open: bool, animate: bool = true) -> void:
 	var sidebar_node : Control = $Sidebar;

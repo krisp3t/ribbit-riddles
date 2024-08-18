@@ -230,7 +230,8 @@ offset_left = 16.0
 offset_top = 128.0
 offset_right = -16.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("7_efx4i")
 volume_db = -80.0
 autoplay = true

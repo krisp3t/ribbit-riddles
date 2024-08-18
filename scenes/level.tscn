@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=49 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_aluce"]
@@ -19,8 +19,9 @@
 [ext_resource type="Script" path="res://scripts/playfield.gd" id="12_m65xv"]
 [ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="14_kowql"]
 [ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="14_kujnr"]
+[ext_resource type="AudioStream" uid="uid://c054yerkblx7m" path="res://assets/audio/soundtrack.mp3" id="20_svia1"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuvsq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t47x"]
 texture = ExtResource("3_bak26")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gfxrr"]
@@ -31,11 +32,12 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("3_bak26")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t47x"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuvsq"]
 texture = ExtResource("3_bak26")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea1sm"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_033ou"]
 texture = ExtResource("4_x8enm")
+modulate_color = Color(1, 1, 1, 0.439216)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fxw67"]
 texture = ExtResource("4_x8enm")
@@ -45,12 +47,14 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("4_x8enm")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_033ou"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea1sm"]
 texture = ExtResource("4_x8enm")
-modulate_color = Color(1, 1, 1, 0.439216)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aobvd"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqk2d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o1cq"]
 texture = ExtResource("3_wj4g1")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2u1du"]
 texture = ExtResource("3_wj4g1")
@@ -60,14 +64,14 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("3_wj4g1")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7o1cq"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aobvd"]
 texture = ExtResource("3_wj4g1")
-modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqk2d"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjrnx"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hy4pt"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqi2u"]
 texture = ExtResource("7_jhwl7")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qjpc2"]
 texture = ExtResource("7_jhwl7")
@@ -77,13 +81,10 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("7_jhwl7")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rqi2u"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hy4pt"]
 texture = ExtResource("7_jhwl7")
-modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gjrnx"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p8w6"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2dux"]
 texture = ExtResource("6_l4bcf")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_srlcf"]
@@ -94,11 +95,12 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("6_l4bcf")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j2dux"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2p8w6"]
 texture = ExtResource("6_l4bcf")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8v57c"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4waq2"]
 texture = ExtResource("7_jb8ke")
+modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4t1cg"]
 texture = ExtResource("7_jb8ke")
@@ -108,9 +110,8 @@ modulate_color = Color(1, 1, 1, 0.756863)
 texture = ExtResource("7_jb8ke")
 modulate_color = Color(1, 1, 1, 0.756863)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4waq2"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8v57c"]
 texture = ExtResource("7_jb8ke")
-modulate_color = Color(0.486275, 0.486275, 0.486275, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_7va1i"]
 gradient = ExtResource("7_jm048")
@@ -163,10 +164,10 @@ offset_left = 56.0
 offset_top = 40.0
 offset_right = 184.0
 offset_bottom = 167.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_kuvsq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_7t47x")
 theme_override_styles/hover = SubResource("StyleBoxTexture_gfxrr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_xksdq")
-theme_override_styles/focus = SubResource("StyleBoxTexture_7t47x")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kuvsq")
 
 [node name="MuteButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -174,10 +175,10 @@ offset_left = 208.0
 offset_top = 40.0
 offset_right = 336.0
 offset_bottom = 167.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
+theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
 theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
-theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
 
 [node name="UndoButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -192,11 +193,11 @@ offset_right = -245.0
 offset_bottom = -140.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_aobvd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sqk2d")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7o1cq")
 theme_override_styles/hover = SubResource("StyleBoxTexture_2u1du")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_dk74w")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_7o1cq")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_sqk2d")
+theme_override_styles/normal = SubResource("StyleBoxTexture_aobvd")
 disabled = true
 
 [node name="UndoLabel" type="Label" parent="UI/CanvasLayer"]
@@ -263,11 +264,11 @@ offset_top = -260.0
 offset_right = 170.0
 offset_bottom = -140.0
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_hy4pt")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_rqi2u")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qjpc2")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_k1qxv")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_rqi2u")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_hy4pt")
 
 [node name="RestartLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -279,10 +280,10 @@ offset_top = -260.0
 offset_right = 346.0
 offset_bottom = -140.0
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_2p8w6")
+theme_override_styles/focus = SubResource("StyleBoxTexture_j2dux")
 theme_override_styles/hover = SubResource("StyleBoxTexture_srlcf")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_ntt4k")
-theme_override_styles/focus = SubResource("StyleBoxTexture_j2dux")
+theme_override_styles/normal = SubResource("StyleBoxTexture_2p8w6")
 
 [node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -297,11 +298,11 @@ offset_right = -69.0
 offset_bottom = -140.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_8v57c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_4waq2")
 theme_override_styles/hover = SubResource("StyleBoxTexture_4t1cg")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_fv8vq")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_4waq2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gjrnx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_8v57c")
 
 [node name="NextLevelLabel" type="Label" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -433,6 +434,20 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
 text = "Difficulty: Tadpole"
 
+[node name="DifficultyLabel2" type="Label" parent="UI/CanvasLayer/Difficulty"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -348.0
+offset_top = 100.0
+offset_right = 46.0
+offset_bottom = 170.0
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 50
+text = "Difficulty: Tadpole"
+
 [node name="DifficultyProgressBar" type="TextureRect" parent="UI/CanvasLayer/Difficulty"]
 unique_name_in_owner = true
 layout_mode = 0
@@ -468,17 +483,6 @@ rotation = 1.5708
 texture = SubResource("GradientTexture1D_d71m5")
 expand_mode = 1
 
-[node name="RulesLabel" type="Label" parent="UI/CanvasLayer/Rules"]
-layout_mode = 2
-offset_left = -11.4
-offset_top = -0.159973
-offset_right = 228.6
-offset_bottom = 69.84
-theme = ExtResource("6_3m6x0")
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 6
-text = "Rules:"
-
 [node name="RulesText" type="Label" parent="UI/CanvasLayer/Rules"]
 layout_mode = 2
 offset_left = -11.0
@@ -487,8 +491,8 @@ offset_right = 247.0
 offset_bottom = 520.0
 theme = ExtResource("6_3m6x0")
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
 theme_override_constants/line_spacing = -5
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 38
 text = "1. Move only by jumping over
 
@@ -500,6 +504,16 @@ text = "1. Move only by jumping over
 
 "
 autowrap_mode = 2
+
+[node name="RulesLabel" type="Label" parent="UI/CanvasLayer/Rules"]
+layout_mode = 0
+offset_left = -11.0
+offset_right = 196.0
+offset_bottom = 79.0
+theme = ExtResource("6_3m6x0")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+text = "Rules:"
 
 [node name="FrogGreen" type="Sprite2D" parent="UI/CanvasLayer/Rules"]
 position = Vector2(162.469, 221.531)
@@ -646,6 +660,11 @@ volume_db = -80.0
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
 stream = ExtResource("14_kowql")
 volume_db = -80.0
+
+[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_svia1")
+volume_db = -80.0
+autoplay = true
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]

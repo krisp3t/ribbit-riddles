@@ -10,6 +10,8 @@ signal mute;
 
 func _initialize() -> void:
 	var info : Dictionary = level_vars["info"];
+	Logger.info("Loading level");
+	# TODO: add asserts
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.current_level;
 	%Background.texture = level_vars.background;
@@ -47,9 +49,11 @@ func _initialize() -> void:
 
 func _ready() -> void:
 	_initialize();
+	print_debug("level ready");
 
 func _on_restart_level_button_pressed() -> void:
-	refresh.emit();
+	get_tree().reload_current_scene();
+	# refresh.emit();
 	
 func _on_playfield_solved() -> void:
 	$WinPlayer.play();

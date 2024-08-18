@@ -20,4 +20,3 @@ func save_value(section: String, key: String, value: Variant) -> void:
 
 func load_value(section: String, key: String, default : Variant) -> Variant:
 	return config.get_value(section, key, default);
-
