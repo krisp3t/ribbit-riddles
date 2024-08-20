@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqb6d2rgcwhd8"]
 
 [ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="1_84tpa"]
-[ext_resource type="Script" path="res://scripts/frog.gd" id="2_s8wbr"]
+[ext_resource type="Script" path="res://scenes/frog.gd" id="2_s8wbr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ltlb"]
 radius = 245.855

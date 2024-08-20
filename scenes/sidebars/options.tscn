@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://by0eh4smd8446"]
 
-[ext_resource type="Script" path="res://scripts/sidebars/options.gd" id="1_k3liq"]
+[ext_resource type="Script" path="res://scenes/sidebars/options.gd" id="1_k3liq"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="2_k0hu7"]
 
 [node name="Options" type="Control"]

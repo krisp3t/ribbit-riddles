@@ -8,13 +8,17 @@ var load_response : Error = config.load(config_path);
 func _ready() -> void:
 	# If config doesn't exist, create it
 	if load_response != 0:
+		Logger.warn("Config doesn't exist, creating default one");
 		config.set_value("audio", "bg", 100);
 		config.set_value("audio", "sfx", 100);
 		config.set_value("tutorial", "level", true);
 		config.set_value("tutorial", "editor", true);
 		config.save(config_path);
+	else:
+		Logger.info("Config file successfully loaded!\n" + config.encode_to_text());
 
 func save_value(section: String, key: String, value: Variant) -> void:
+	Logger.info("Setting config value %s to %s" % [key, value]);
 	config.set_value(section, key, value);
 	config.save(config_path);
 

@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://b14smx1q5om3p"]
 
-[ext_resource type="Script" path="res://scripts/sidebars/difficulty_selector.gd" id="1_8l7b1"]
+[ext_resource type="Script" path="res://scenes/sidebars/difficulty.gd" id="1_8l7b1"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="3_3c7c7"]
 
-[node name="DifficultySelector" type="Control"]
+[node name="Difficulty" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

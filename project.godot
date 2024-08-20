@@ -22,8 +22,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-LevelSystem="*res://scripts/systems/level_system.gd"
-ConfigSystem="*res://scripts/systems/config_system.gd"
+LevelSystem="*res://scripts/level_system.gd"
+ConfigSystem="*res://scripts/config_system.gd"
 
 [debug]
 

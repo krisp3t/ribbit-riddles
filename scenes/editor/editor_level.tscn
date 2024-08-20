@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=3 uid="uid://bv0vm8p6wevsy"]
 
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="1_g3iuf"]
-[ext_resource type="Script" path="res://scripts/editor_level.gd" id="1_uj1bk"]
+[ext_resource type="Script" path="res://scenes/editor/editor_level.gd" id="1_uj1bk"]
 [ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://assets/buttons/4x/Asset 6@4x.png" id="2_4x8e7"]
 [ext_resource type="Texture2D" uid="uid://be2h7fmeirq5h" path="res://assets/bg_editor.jpg" id="2_a71xk"]
 [ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="3_5gw2v"]
@@ -9,10 +9,10 @@
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="5_g6vjh"]
 [ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="7_ejejh"]
 [ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="8_2c8s0"]
-[ext_resource type="PackedScene" uid="uid://e72g0vpr0a1j" path="res://scenes/created_levels.tscn" id="8_tp5gi"]
+[ext_resource type="PackedScene" uid="uid://e72g0vpr0a1j" path="res://scenes/editor/created_levels.tscn" id="8_tp5gi"]
 [ext_resource type="Texture2D" uid="uid://blpnntv0tuuyd" path="res://assets/eraser.png" id="9_tp1xl"]
 [ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="10_lwhum"]
-[ext_resource type="Script" path="res://scripts/playfield.gd" id="11_fbups"]
+[ext_resource type="Script" path="res://scenes/playfield.gd" id="11_fbups"]
 [ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="12_coe3d"]
 [ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="13_3io3k"]
 
