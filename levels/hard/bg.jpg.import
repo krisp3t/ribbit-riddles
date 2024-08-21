@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dohr2po3ymmgp"
-path="res://.godot/imported/beginner.png-ed1ceaf6691f60438378776d36681190.ctex"
+uid="uid://bpbceu1p3q0xc"
+path="res://.godot/imported/bg.jpg-40f05e98184f3181106dd62889f627c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/difficulty/beginner.png"
-dest_files=["res://.godot/imported/beginner.png-ed1ceaf6691f60438378776d36681190.ctex"]
+source_file="res://levels/hard/bg.jpg"
+dest_files=["res://.godot/imported/bg.jpg-40f05e98184f3181106dd62889f627c7.ctex"]
 
 [params]
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmfhwylpx6ats"]
+
+[ext_resource type="AudioStream" uid="uid://c054yerkblx7m" path="res://assets/audio/soundtrack.mp3" id="1_0homl"]
+[ext_resource type="Script" path="res://scripts/editor.gd" id="1_kinir"]
+
+[node name="Editor" type="Node2D"]
+script = ExtResource("1_kinir")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_0homl")
+volume_db = -80.0
+autoplay = true

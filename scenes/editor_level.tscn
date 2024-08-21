@@ -1,0 +1,462 @@
+[gd_scene load_steps=26 format=3 uid="uid://dr3glkwbuhxfe"]
+
+[ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="1_g3iuf"]
+[ext_resource type="Script" path="res://scripts/editor_level.gd" id="1_uj1bk"]
+[ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://assets/buttons/4x/Asset 6@4x.png" id="2_4x8e7"]
+[ext_resource type="Texture2D" uid="uid://be2h7fmeirq5h" path="res://assets/bg_editor.jpg" id="2_a71xk"]
+[ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="3_5gw2v"]
+[ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="4_qc3gn"]
+[ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="5_g6vjh"]
+[ext_resource type="Texture2D" uid="uid://c4eej1nx372fe" path="res://assets/frog_green.png" id="7_ejejh"]
+[ext_resource type="Texture2D" uid="uid://cvqfhyi31fdx6" path="res://assets/frog_red.png" id="8_2c8s0"]
+[ext_resource type="PackedScene" uid="uid://canje33764ww7" path="res://scenes/created_levels.tscn" id="8_tp5gi"]
+[ext_resource type="Texture2D" uid="uid://blpnntv0tuuyd" path="res://assets/eraser.png" id="9_tp1xl"]
+[ext_resource type="PackedScene" uid="uid://215fycacuk5o" path="res://scenes/playfield.tscn" id="10_lwhum"]
+[ext_resource type="Script" path="res://scripts/playfield.gd" id="11_fbups"]
+[ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="12_coe3d"]
+[ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="13_3io3k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hq4tj"]
+texture = ExtResource("2_4x8e7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0nnl1"]
+texture = ExtResource("2_4x8e7")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_an1rx"]
+texture = ExtResource("2_4x8e7")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqqi2"]
+texture = ExtResource("2_4x8e7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6c7kr"]
+texture = ExtResource("3_5gw2v")
+modulate_color = Color(1, 1, 1, 0.439216)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7nx4k"]
+texture = ExtResource("3_5gw2v")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6qlwg"]
+texture = ExtResource("3_5gw2v")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0rul"]
+texture = ExtResource("3_5gw2v")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_50n33"]
+gradient = ExtResource("4_qc3gn")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w1ywx"]
+gradient = ExtResource("4_qc3gn")
+
+[node name="EditorLevel" type="Node2D"]
+script = ExtResource("1_uj1bk")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UI"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="UI/CanvasLayer"]
+
+[node name="Background" type="TextureRect" parent="UI/CanvasLayer/ParallaxBackground"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a71xk")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="Logo" type="TextureRect" parent="UI/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -352.0
+offset_top = 8.0
+offset_right = -91.0
+offset_bottom = 199.0
+grow_horizontal = 0
+texture = ExtResource("1_g3iuf")
+expand_mode = 2
+
+[node name="MenuButton" type="Button" parent="UI/CanvasLayer"]
+offset_left = 56.0
+offset_top = 40.0
+offset_right = 184.0
+offset_bottom = 167.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_hq4tj")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0nnl1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_an1rx")
+theme_override_styles/normal = SubResource("StyleBoxTexture_tqqi2")
+
+[node name="MuteButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+offset_left = 208.0
+offset_top = 40.0
+offset_right = 336.0
+offset_bottom = 167.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_6c7kr")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7nx4k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6qlwg")
+theme_override_styles/normal = SubResource("StyleBoxTexture_y0rul")
+
+[node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 96.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture1D_50n33")
+
+[node name="LevelContainer" type="HBoxContainer" parent="UI/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 30.0
+offset_right = 49.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_constants/separation = 32
+
+[node name="LevelLabel" type="Label" parent="UI/CanvasLayer/LevelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_g6vjh")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 50
+text = "Level: 1"
+horizontal_alignment = 1
+
+[node name="CreatedLevels" type="Control" parent="UI/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 56.0
+offset_top = 248.0
+offset_right = 352.0
+offset_bottom = 608.0
+size_flags_horizontal = 4
+
+[node name="RulesLabel" type="Label" parent="UI/CanvasLayer/CreatedLevels"]
+layout_mode = 2
+offset_right = 251.0
+offset_bottom = 70.0
+theme = ExtResource("5_g6vjh")
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 60
+text = "Created levels:"
+
+[node name="ScrollContainer" parent="UI/CanvasLayer/CreatedLevels" instance=ExtResource("8_tp5gi")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -2.0
+offset_top = 96.0
+offset_right = 262.0
+offset_bottom = 480.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(32, 4)
+
+[node name="Instructions" type="Control" parent="UI/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_top = 248.0
+offset_right = -64.0
+offset_bottom = 448.0
+grow_horizontal = 0
+
+[node name="InstructionsBackground" type="TextureRect" parent="UI/CanvasLayer/Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_w1ywx")
+expand_mode = 1
+
+[node name="AddInstructions" type="Label" parent="UI/CanvasLayer/Instructions"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -176.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme = ExtResource("5_g6vjh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Drag the item to use"
+horizontal_alignment = 1
+
+[node name="GreenFrog" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -60.0
+offset_right = 136.0
+offset_bottom = 60.0
+grow_vertical = 2
+texture = ExtResource("7_ejejh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RedFrog" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -60.0
+offset_right = -104.0
+offset_bottom = 60.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("8_2c8s0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Eraser" type="TextureRect" parent="UI/CanvasLayer/Instructions" groups=["EditorFrogs"]]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -44.0
+offset_right = -8.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_tp1xl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Rules" type="Control" parent="UI/CanvasLayer"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -416.0
+offset_top = 440.0
+offset_right = -64.0
+offset_bottom = 640.0
+grow_horizontal = 0
+
+[node name="RulesBackground" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_w1ywx")
+expand_mode = 1
+
+[node name="AddInstructions" type="Label" parent="UI/CanvasLayer/Rules"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 8.0
+offset_right = 174.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme = ExtResource("5_g6vjh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Level must have:
+1. Exactly 1
+2. At least 1
+3. At least 1 empty lilypad"
+horizontal_alignment = 1
+
+[node name="RulesGreenFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 1
+offset_left = 240.0
+offset_top = 80.0
+offset_right = 296.0
+offset_bottom = 140.0
+texture = ExtResource("7_ejejh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RulesRedFrog" type="TextureRect" parent="UI/CanvasLayer/Rules"]
+layout_mode = 1
+offset_left = 240.0
+offset_top = 40.0
+offset_right = 296.0
+offset_bottom = 128.0
+texture = ExtResource("8_2c8s0")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ClearButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -370.0
+offset_right = -66.0
+offset_bottom = -308.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("5_g6vjh")
+text = "Clear level"
+
+[node name="PreviousLevelButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -270.0
+offset_right = 313.88
+offset_bottom = -208.0
+grow_vertical = 0
+theme = ExtResource("5_g6vjh")
+text = "Previous level"
+
+[node name="NextLevelButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -170.0
+offset_right = 313.88
+offset_bottom = -108.0
+grow_vertical = 0
+theme = ExtResource("5_g6vjh")
+text = "Next level"
+
+[node name="SaveButton" type="Button" parent="UI/CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -270.0
+offset_right = -66.0
+offset_bottom = -208.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("5_g6vjh")
+text = "Save as Level 41"
+
+[node name="SaveTestContainer" type="VBoxContainer" parent="UI/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -402.0
+offset_top = -170.0
+offset_right = -74.0
+offset_bottom = -55.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+
+[node name="SaveTestButton" type="Button" parent="UI/CanvasLayer/SaveTestContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_g6vjh")
+text = "Save & Test"
+
+[node name="InfoTimer" type="Timer" parent="UI/CanvasLayer/SaveTestContainer"]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[node name="InfoLabel" type="Label" parent="UI/CanvasLayer/SaveTestContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("5_g6vjh")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Please make sure level is solvable!"
+horizontal_alignment = 1
+
+[node name="Playfield" parent="." instance=ExtResource("10_lwhum")]
+script = ExtResource("11_fbups")
+is_editor = true
+
+[node name="PlayfieldBackground" parent="Playfield" index="0"]
+modulate = Color(1, 1, 1, 1)
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="WinPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+stream = ExtResource("12_coe3d")
+volume_db = -80.0
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+stream = ExtResource("13_3io3k")
+volume_db = -80.0
+
+[connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="gui_input" from="UI/CanvasLayer/Instructions/GreenFrog" to="." method="_on_green_frog_gui_input"]
+[connection signal="gui_input" from="UI/CanvasLayer/Instructions/RedFrog" to="." method="_on_red_frog_gui_input"]
+[connection signal="gui_input" from="UI/CanvasLayer/Instructions/Eraser" to="." method="_on_eraser_gui_input"]
+[connection signal="pressed" from="UI/CanvasLayer/ClearButton" to="." method="_on_clear_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="UI/CanvasLayer/SaveTestContainer/SaveTestButton" to="." method="_on_save_test_button_pressed"]
+[connection signal="timeout" from="UI/CanvasLayer/SaveTestContainer/InfoTimer" to="." method="_on_info_timer_timeout"]
+
+[editable path="Playfield"]

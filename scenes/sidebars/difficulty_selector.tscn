@@ -1,0 +1,122 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnwwtv840r6of"]
+
+[ext_resource type="Script" path="res://scripts/sidebars/difficulty_selector.gd" id="1_8l7b1"]
+[ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="3_3c7c7"]
+
+[node name="DifficultySelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8l7b1")
+
+[node name="DifficultyContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="BeginnerButton" type="Button" parent="DifficultyContainer"]
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+text = "Frogspawn"
+
+[node name="Intermediate" type="VBoxContainer" parent="DifficultyContainer"]
+layout_mode = 2
+
+[node name="IntermediateButton" type="Button" parent="DifficultyContainer/Intermediate"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+text = "Tadpole"
+
+[node name="IntermediateLabel" type="Label" parent="DifficultyContainer/Intermediate"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Finish Frogspawn to unlock"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Hard" type="VBoxContainer" parent="DifficultyContainer"]
+layout_mode = 2
+
+[node name="HardButton" type="Button" parent="DifficultyContainer/Hard"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+text = "Froggy"
+
+[node name="HardLabel" type="Label" parent="DifficultyContainer/Hard"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Finish Tadpole to unlock"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Expert" type="VBoxContainer" parent="DifficultyContainer"]
+layout_mode = 2
+
+[node name="ExpertButton" type="Button" parent="DifficultyContainer/Expert"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+text = "Helltoad"
+
+[node name="ExpertLabel" type="Label" parent="DifficultyContainer/Expert"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Finish Froggy to unlock"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Custom" type="VBoxContainer" parent="DifficultyContainer"]
+layout_mode = 2
+
+[node name="CustomButton" type="Button" parent="DifficultyContainer/Custom"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+text = "Custom levels"
+
+[node name="CustomLabel" type="Label" parent="DifficultyContainer/Custom"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "Create levels from Level Editor"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="DifficultyContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
+[connection signal="pressed" from="DifficultyContainer/Intermediate/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
+[connection signal="pressed" from="DifficultyContainer/Hard/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="DifficultyContainer/Expert/ExpertButton" to="." method="_on_expert_button_pressed"]
+[connection signal="pressed" from="DifficultyContainer/Custom/CustomButton" to="." method="_on_custom_button_pressed"]

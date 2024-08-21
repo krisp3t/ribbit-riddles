@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://canje33764ww7"]
+
+[ext_resource type="Script" path="res://scripts/created_levels.gd" id="1_j1jey"]
+
+[sub_resource type="Gradient" id="Gradient_xl61h"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.141176)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vu1ye"]
+gradient = SubResource("Gradient_xl61h")
+
+[node name="CreatedLevels" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1349.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlaceholderBackground" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_vu1ye")
+
+[node name="CreatedLevelsScroll" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j1jey")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreatedLevelsScroll"]
+layout_mode = 2
