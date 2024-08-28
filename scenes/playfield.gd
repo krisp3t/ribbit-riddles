@@ -126,8 +126,7 @@ func _instantiate_lilypads() -> void:
 	for y in layout.size():
 		lilypads.push_back([]);
 		for x in layout[y].size():
-			var val: int = layout;
-			
+			var val: int = layout[y][x];
 			var lilypad: Node2D = lilypad_scene.instantiate();
 			initialize_lilypad(Vector2i(x, y), lilypad);
 			add_child(lilypad);

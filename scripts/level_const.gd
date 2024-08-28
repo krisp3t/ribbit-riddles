@@ -10,28 +10,38 @@ const LEVELS_PATH: String = "res://levels/";
 const INFO: Dictionary = {
 	DIFFICULTY.EASY: {
 		"difficulty": DIFFICULTY.EASY,
-		"folder_name": "easy",
 		"name": "Frogspawn",
+		"path": LEVELS_PATH + "easy/",
+		"path_layout": LEVELS_PATH + "easy/layout.json",
+		"path_savegame": SAVEGAME_PATH + "easy.json",
 	},
 	DIFFICULTY.INTERMEDIATE: {
 		"difficulty": DIFFICULTY.INTERMEDIATE,
-		"folder_name": "intermediate",
 		"name": "Tadpole",
+		"path": LEVELS_PATH + "intermediate/",
+		"path_layout": LEVELS_PATH + "intermediate/layout.json",
+		"path_savegame": SAVEGAME_PATH + "intermediate.json",
 	},
 	DIFFICULTY.HARD: {
 		"difficulty": DIFFICULTY.HARD,
-		"folder_name": "hard",
 		"name": "Froglet",
+		"path": LEVELS_PATH + "hard/",
+		"path_layout": LEVELS_PATH + "hard/layout.json",
+		"path_savegame": SAVEGAME_PATH + "hard.json",
 	},
 	DIFFICULTY.EXPERT: {
 		"difficulty": DIFFICULTY.EXPERT,
-		"folder_name": "expert",
 		"name": "Helltoad",
+		"path": LEVELS_PATH + "expert/",
+		"path_layout": LEVELS_PATH + "expert/layout.json",
+		"path_savegame": SAVEGAME_PATH + "expert.json",
 	},
 	DIFFICULTY.CUSTOM: {
 		"difficulty": DIFFICULTY.CUSTOM,
-		"folder_name": "custom",
 		"name": "Custom",
+		"path": LEVELS_PATH + "custom/",
+		"path_layout": CUSTOM_LEVELS_PATH,
+		"path_savegame": SAVEGAME_PATH + "custom.json",
 	},
 }
 

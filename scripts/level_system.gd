@@ -39,7 +39,7 @@ func save_created_level() -> void:
 	file.store_line(json);
 	
 func load_savegame(path: String) -> Dictionary:
-	Logger.info("Loading savegame from: " + path);
+	Logger.log("Loading savegame from: " + path);
 	if not FileAccess.file_exists(path):
 		return {};
 	return read_JSON.get_dict(path);
@@ -52,17 +52,18 @@ func save_savegame() -> void:
 		Logger.warn("Savegames directory does not exist, creating...");
 		var dir: DirAccess = DirAccess.open("user://");
 		dir.make_dir("savegames");
-	var dict: Dictionary = level_info["path_savegame"];
+	var dict: Dictionary = level_info["savegame"];
 	dict[level_num] = true;
 	var json: String = JSON.stringify(dict);
-	var file: FileAccess = FileAccess.open(level_info["savegame_path"], FileAccess.WRITE);
+	var file: FileAccess = FileAccess.open(level_info["path_savegame"], FileAccess.WRITE);
 	file.store_line(json);
+	Logger.info("Saved game to: " + level_info["path_savegame"]);
 
 func get_max_completed_level(difficulty: level_const.DIFFICULTY) -> int:
 	var cmp: int = get_max_level(difficulty);
 	var info: Dictionary = get_level_info(cmp);
 	if (info["savegame"].size() == 0):
-		return cmp - info["all_levels"].size();
+		return cmp - info["all_levels"].size() + 1;
 	return max(info["savegame"].keys()) + 1;
 
 func get_level_info(level: int) -> Dictionary:
@@ -77,13 +78,12 @@ func get_level_info(level: int) -> Dictionary:
 		dict = level_const.get_default_info(level_const.DIFFICULTY.EXPERT);
 	else:
 		dict = level_const.get_default_info(level_const.DIFFICULTY.CUSTOM);
-
-	if (!dict.has("path") or len(dict["path"]) == 0):
-		dict["path"] = dict["name"];
-
-	dict["path_bg"] = level_const.LEVELS_PATH + dict["folder_name"] + "/bg.jpg";
-	dict["path_progress_bar"] = level_const.LEVELS_PATH + dict["folder_name"] + "/progress_bar.png";
-	dict["all_levels"] = read_JSON.get_dict(level_const.CUSTOM_LEVELS_PATH + dict["folder_name"] + "/layout.json");
+		
+	if (!dict.has("path_bg")):
+		dict["path_bg"] = dict["path"] + "bg.jpg";
+	if (!dict.has("path_progress_bar")):
+		dict["path_progress_bar"] = dict["path"] + "progress_bar.png";
+	dict["all_levels"] = read_JSON.get_dict(dict["path"] + "/layout.json");
 	if dict["all_levels"].has(str(level)):
 		dict["layout"] = dict["all_levels"][str(level)];
 	else:
@@ -95,7 +95,7 @@ func get_level_info(level: int) -> Dictionary:
 			[0, 0],
 			[0, 0, 0]
 		];
-	dict["savegame"] = load_savegame(level_const.SAVEGAME_PATH + dict["folder_name"] + ".json");
+	dict["savegame"] = load_savegame(dict["path_savegame"]);
 	dict["solved"] = dict["savegame"].get(str(level), false);
 	return dict;
 

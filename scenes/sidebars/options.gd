@@ -36,12 +36,11 @@ func _on_sfxh_slider_gui_input(event: InputEvent) -> void:
 		_on_sfxh_slider_drag_ended(true);
 	
 func _on_reset_button_pressed() -> void:
-	Logger.warn("Reset button pressed");
+	Logger.warn("Resetting save data");
 	if (DirAccess.dir_exists_absolute("user://savegames")):
 		var dir: DirAccess = DirAccess.open("user://savegames");
 		for file: String in dir.get_files():
 			dir.remove(file);
-		Logger.info("Deleted all savegames");
 	get_tree().reload_current_scene();
 	config.save_value("tutorial", "level", true);
 	%ResetButton.disabled = true;

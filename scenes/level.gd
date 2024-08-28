@@ -10,7 +10,7 @@ signal mute;
 
 func _initialize() -> void:
 	var info: Dictionary = level_vars["level_info"];
-	Logger.info("Loading level");
+	Logger.info("Loading level %d" % level_vars.level_num);
 	# TODO: add asserts
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.level_num;
@@ -29,7 +29,8 @@ func _initialize() -> void:
 		%NextLevelButton.disabled = !info["solved"];
 	
 	# Set up muted / unmuted audio players
-	is_muted = !level_vars.muted;
+	# TODO: is_muted
+	# is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
 	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	$WinPlayer.volume_db = $JumpPlayer.volume_db;
@@ -49,7 +50,6 @@ func _initialize() -> void:
 
 func _ready() -> void:
 	_initialize();
-	print_debug("level ready");
 
 func _on_restart_level_button_pressed() -> void:
 	get_tree().reload_current_scene();
@@ -62,7 +62,7 @@ func _on_playfield_solved() -> void:
 	%FinishWarning.visible = false;
 	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 14@4x.png");
 
-	if level_vars["level_info"]["difficulty"] == level_vars.DIFFICULTY.CUSTOM:
+	if level_vars["level_info"]["difficulty"] == level_const.DIFFICULTY.CUSTOM:
 		if level_vars.level_num >= max(level_vars["level_info"]["all_levels"].keys()):
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
@@ -98,22 +98,22 @@ func _on_menu_button_pressed() -> void:
 
 func _on_mute_button_pressed() -> void:
 	var texture_path: String;
-	is_muted = !is_muted;
-	if is_muted:
-		texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
-	else:
-		texture_path = "res://assets/buttons/4x/Asset 12@4x.png";
+	#is_muted = !is_muted;
+	#if is_muted:
+	#	texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
+	#else:
+	#	texture_path = "res://assets/buttons/4x/Asset 12@4x.png";
 	%MuteButton["theme_override_styles/normal"].texture = load(texture_path);
 	%MuteButton["theme_override_styles/hover"].texture = load(texture_path);
 	%MuteButton["theme_override_styles/pressed"].texture = load(texture_path);
 	%MuteButton["theme_override_styles/focus"].texture = load(texture_path);
-	for player in get_tree().get_nodes_in_group("AudioStreamPlayers"):
-		if (is_muted):
-			player.set_volume_db(-999.0);
-		else:
-			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
-	mute.emit(is_muted);
-	level_vars.muted = is_muted;
+	#for player in get_tree().get_nodes_in_group("AudioStreamPlayers"):
+		#if (is_muted):
+		#	player.set_volume_db(-999.0);
+		#else:
+		#	player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
+	#mute.emit(is_muted);
+	#level_vars.muted = is_muted;
 
 func _on_playfield_jump() -> void:
 	%UndoButton.disabled = len(%Playfield.moves) == 0;

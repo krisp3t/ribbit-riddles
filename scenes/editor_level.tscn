@@ -427,7 +427,6 @@ horizontal_alignment = 1
 [node name="Playfield" parent="." instance=ExtResource("10_lwhum")]
 script = ExtResource("11_fbups")
 is_editor = true
-moves = null
 
 [node name="PlayfieldBackground" parent="Playfield" index="0"]
 modulate = Color(1, 1, 1, 1)
