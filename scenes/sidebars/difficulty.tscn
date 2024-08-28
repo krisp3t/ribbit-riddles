@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://b14smx1q5om3p"]
+[gd_scene load_steps=3 format=3 uid="uid://b4vpgc7vu3n1h"]
 
 [ext_resource type="Script" path="res://scenes/sidebars/difficulty.gd" id="1_8l7b1"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="3_3c7c7"]
@@ -22,10 +22,27 @@ grow_vertical = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="BeginnerButton" type="Button" parent="DifficultyContainer"]
+[node name="Beginner" type="VBoxContainer" parent="DifficultyContainer"]
+layout_mode = 2
+
+[node name="BeginnerButton" type="Button" parent="DifficultyContainer/Beginner"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_3c7c7")
 text = "Frogspawn"
+
+[node name="BeginnerLabel" type="Label" parent="DifficultyContainer/Beginner"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme = ExtResource("3_3c7c7")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 33
+text = "x / x solved"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Intermediate" type="VBoxContainer" parent="DifficultyContainer"]
 layout_mode = 2
@@ -56,7 +73,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3_3c7c7")
-text = "Froggy"
+text = "Froglet"
 
 [node name="HardLabel" type="Label" parent="DifficultyContainer/Hard"]
 unique_name_in_owner = true
@@ -115,7 +132,7 @@ text = "Create levels from Level Editor"
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[connection signal="pressed" from="DifficultyContainer/BeginnerButton" to="." method="_on_beginner_button_pressed"]
+[connection signal="pressed" from="DifficultyContainer/Beginner/BeginnerButton" to="." method="_on_beginner_button_pressed"]
 [connection signal="pressed" from="DifficultyContainer/Intermediate/IntermediateButton" to="." method="_on_intermediate_button_pressed"]
 [connection signal="pressed" from="DifficultyContainer/Hard/HardButton" to="." method="_on_hard_button_pressed"]
 [connection signal="pressed" from="DifficultyContainer/Expert/ExpertButton" to="." method="_on_expert_button_pressed"]

@@ -39,7 +39,7 @@ func save_created_level() -> void:
 	file.store_line(json);
 	
 func load_savegame(path: String) -> Dictionary:
-	Logger.log("Loading " + path);
+	Logger.log("Loading  " + path);
 	if not FileAccess.file_exists(path):
 		return {};
 	return read_JSON.get_dict(path);
@@ -118,6 +118,10 @@ func is_completed_difficulty(difficulty: level_const.DIFFICULTY) -> bool:
 	if (difficulty == level_const.DIFFICULTY.CUSTOM):
 		return dict["all_levels"].size() > 0;
 	return dict["savegame"].size() == len(dict["all_levels"]);
+
+func get_completed_levels(difficulty: level_const.DIFFICULTY) -> Vector2i:
+	var dict: Dictionary = get_level_info(get_max_level(difficulty));
+	return Vector2i(dict["savegame"].size(), dict["all_levels"].size());
 	
 func get_lilypad_array_ix(coord: Vector2i) -> Vector2i:
 	var y: int;

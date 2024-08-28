@@ -13,6 +13,8 @@ func _initialize() -> void:
 	# TODO: add asserts
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.level_num;
+	var completed_levels: Vector2i = level_vars.get_completed_levels(level_vars["level_info"]["difficulty"]);
+	%DifficultySolvedLabel.text = "%d / %d solved" % [completed_levels.x, completed_levels.y];
 	%Background.texture = level_vars.background;
 	if info["difficulty"] == level_const.DIFFICULTY.CUSTOM:
 		%Difficulty.visible = false;
@@ -26,10 +28,6 @@ func _initialize() -> void:
 		# If level is already solved, proceeding to next level is available
 		%FinishWarning.visible = !info["solved"];
 		%NextLevelButton.disabled = !info["solved"];
-	
-	_toggle_mute(is_muted);
-	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
-	%WinPlayer.volume_db = %JumpPlayer.volume_db;
 	if info["solved"]:
 		%LevelSolved.texture = load("res://assets/buttons/4x/Asset 14@4x.png");
 	# Min level boundary
@@ -43,6 +41,11 @@ func _initialize() -> void:
 		if level_vars.level_num == info["all_levels"].size():
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
+	# Audio system
+	_toggle_mute(is_muted);
+	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
+	%WinPlayer.volume_db = %JumpPlayer.volume_db;
+
 
 func _ready() -> void:
 	_initialize();
