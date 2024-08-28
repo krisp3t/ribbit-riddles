@@ -7,8 +7,10 @@ var sidebar_is_open: bool = true;
 func _ready() -> void:
 	_toggle_sidebar(false, false);
 	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
+	%Options.audio_bg_change.connect(_on_options_audio_bg_change);
 	
 func _on_options_audio_bg_change() -> void:
+	Logger.log("Handling audio_bg_change");
 	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
 
 func _toggle_sidebar(will_open: bool, animate: bool = true, node: Control = null) -> void:
