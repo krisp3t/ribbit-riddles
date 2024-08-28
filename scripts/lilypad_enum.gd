@@ -12,4 +12,3 @@ static func node_to_status(name: String) -> lilypad_enum.STATUS:
 		_:
 			return lilypad_enum.STATUS.EMPTY;
 			
-

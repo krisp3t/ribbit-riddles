@@ -45,7 +45,7 @@ func load_savegame(path: String) -> Dictionary:
 	return read_JSON.get_dict(path);
 
 func save_savegame() -> void:
-	if (level_info["difficulty"] == level_enum.DIFFICULTY.CUSTOM):
+	if (level_info["difficulty"] == level_const.DIFFICULTY.CUSTOM):
 		return ;
 		
 	if !(DirAccess.dir_exists_absolute("user://savegames")):
@@ -59,90 +59,42 @@ func save_savegame() -> void:
 	file.store_line(json);
 		
 func get_level_info(level: int) -> Dictionary:
-	var dict: Dictionary = {};
+	var dict: Dictionary;
 	if (level >= 1 and level <= MAX_EASY):
-		dict["difficulty"] = level_const.DIFFICULTY.EASY;
-		dict["name"] = "Frogspawn";
-		dict["path"] = "res://levels/easy";
-		dict["dif"] = "res://assets/bg_1.jpg";
-		dict["difficulty_progress_bar"] = "res://assets/difficulty/easy.png";
-		dict["difficulty_levels"] = read_JSON.get_dict("res://levels/easy.json");
-		dict["path_savegame"] = "user://savegames/easy.json";
-		dict["level_layout"] = dict["difficulty_levels"][str(level)];
-		dict["savegame"] = load_savegame(new_info["savegame_path"]);
-	elif (level >= MAX_EASY + 1 and level <= MAX_INTERMEDIATE):
-		dict["difficulty"] = level_const.DIFFICULTY.INTERMEDIATE;
-		dict["path"] = "res://levels/intermediate";
-		dict["path_savegame"] = "user://savegames/intermediate.json";
-		dict["name"] = "Tadpole";
+		dict = level_const.INFO[level_const.DIFFICULTY.EASY];
 	elif (level >= MAX_INTERMEDIATE + 1 and level <= MAX_HARD):
-		dict["difficulty"] = level_const.DIFFICULTY.HARD;
-		dict["path"] = "res://levels/hard";
-		dict["path_savegame"] = "user://savegames/hard.json";
-		dict["name"] = "Froglet";
+		dict = level_const.INFO[level_const.DIFFICULTY.HARD];
 	elif (level >= MAX_HARD + 1 and level <= MAX_EXPERT):
-		dict["difficulty"] = level_const.DIFFICULTY.EXPERT;
-		dict["path"] = "res://levels/expert";
-		dict["path_savegame"] = "user://savegames/expert.json";
-		dict["name"] = "Helltoad";
+		dict = level_const.INFO[level_const.DIFFICULTY.EXPERT];
 	else:
-		dict["difficulty"] = level_const.DIFFICULTY.CUSTOM;
-		dict["path"] = level_const.CUSTOM_LEVEL_PATH;
-		dict["name"] = "Custom";
+		dict = level_const.INFO[level_const.DIFFICULTY.CUSTOM];
 
-	if (!dict[path]):
-		dict["path"] = "res://levels/" + dict["name"];
-		dict["user_path"] = "user://levels/" + dict["name"];
-		dict["path_savegame"] = "user://savegames/" + dict["name"] + ".json";
-	
-	dict["path_bg"] = dict["path"] + "/bg.jpg";
-	dict["path_progress_bar"] = dict["path"] + "/progress_bar.png";
-	dict["path_"]
-	dict["layout"] = read_JSON.get_dict(dict["path"] + "/layout.json")[str(level)];
-	
-	# 	new_info["difficulty"] = level_enum.DIFFICULTY.CUSTOM;
-	# 	new_info["difficulty_name"] = "Custom";
-	# 	new_info["difficulty_bg"] = "res://custom/bg.png";
-	# 	new_info["difficulty_progress_bar"] = "";
-	# 	new_info["difficulty_levels"] = read_JSON.get_dict(level_enum.CUSTOM_LEVELS_PATH);
-	# 	if new_info["difficulty_levels"].has(str(level)):
-	# 		new_info["level_layout"] = new_info["difficulty_levels"][str(level)];
-	# 	else:
-	# 		new_info["level_layout"] = [
-	# 			[0, 0, 0],
-	# 			[0, 0],
-	# 			[0, 0, 0],
-	# 			[0, 0],
-	# 			[0, 0, 0]
-	# 		];
-	# 	new_info["savegame_path"] = "";
-	# 	new_info["savegame"] = {}
-	# new_info["solved"] = new_info["savegame"].get(str(level), false);
-	dict["path"] = "res://levels/" + dict["name"];
-	dict["path_bg"] = dict["path"] + "/bg.jpg";
-	dict["path_progress_bar"] = dict["path"] + "/progress_bar.png";
+	if (!dict["path"]):
+		dict["path"] = dict["name"];
+
+	dict["path_bg"] = level_const.LEVELS_PATH + dict["folder_name"] + "/bg.jpg";
+	dict["path_progress_bar"] = level_const.LEVELS_PATH + dict["folder_name"] + "/progress_bar.png";
+	dict["all_levels"] = read_JSON.get_dict(level_const.CUSTOM_LEVELS_PATH + dict["folder_name"] + "/layout.json");
+	if dict["all_levels"].has(str(level)):
+		dict["layout"] = dict["all_levels"][str(level)];
+	else:
+		# New custom level does not have a layout already
+		dict["layout"] = [
+			[0, 0, 0],
+			[0, 0],
+			[0, 0, 0],
+			[0, 0],
+			[0, 0, 0]
+		];
+	dict["savegame"] = load_savegame(level_const.SAVEGAME_PATH + dict["folder_name"] + ".json");
+	dict["solved"] = dict["savegame"].get(str(level), false);
 	return dict;
 
-func is_completed_difficulty(difficulty: level_enum.DIFFICULTY) -> bool:
-	var savegame: Dictionary = {};
-	var custom_levels: Dictionary = read_JSON.get_dict(level_enum.CUSTOM_LEVELS_PATH);
-	var level_info: Dictionary = {};
-	match difficulty:
-		level_enum.DIFFICULTY.EASY:
-			savegame = load_savegame(level_enum.EASY_SAVEGAME);
-			level_info = get_level_info(level_enum.MAX_EASY);
-		level_enum.DIFFICULTY.INTERMEDIATE:
-			savegame = load_savegame(level_enum.INTERMEDIATE_SAVEGAME);
-			level_info = get_level_info(level_enum.MAX_INTERMEDIATE);
-		level_enum.DIFFICULTY.HARD:
-			savegame = load_savegame(level_enum.HARD_SAVEGAME);
-			level_info = get_level_info(level_enum.MAX_HARD);
-		level_enum.DIFFICULTY.EXPERT:
-			savegame = load_savegame(level_enum.EXPERT_SAVEGAME);
-			level_info = get_level_info(level_enum.MAX_EXPERT);
-		_:
-			return custom_levels.size() > 0;
-	return savegame.size() == len(level_info["difficulty_levels"]);
+func is_completed_difficulty(difficulty: level_const.DIFFICULTY) -> bool:
+	var dict: Dictionary = get_level_info(difficulty);
+	if (difficulty == level_const.DIFFICULTY.CUSTOM):
+		return dict["all_levels"].size() > 0;
+	return dict["savegame"].size() == len(dict["all_levels"]);
 	
 func get_lilypad_array_ix(coord: Vector2i) -> Vector2i:
 	var y: int;
@@ -154,4 +106,4 @@ func get_lilypad_array_ix(coord: Vector2i) -> Vector2i:
 
 func update_level_layout(coord: Vector2i, value: lilypad_enum.STATUS):
 	var lilypad: Vector2i = get_lilypad_array_ix(coord);
-	info["level_layout"][lilypad.y][lilypad.x] = value;
+	level_info["layout"][lilypad.y][lilypad.x] = value;

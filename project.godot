@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 
 LevelSystem="*res://scripts/level_system.gd"
 ConfigSystem="*res://scripts/config_system.gd"
+LevelConst="*res://scripts/level_const.gd"
 
 [debug]
 

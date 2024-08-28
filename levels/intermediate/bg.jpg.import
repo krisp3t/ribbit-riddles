@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3gyvmnv44f3r"
-path="res://.godot/imported/bg.jpg-57c833e706868ef76bcd597dec0d0a7a.ctex"
+path="res://.godot/imported/bg.jpg-bec8c4f12347f81f8e623895c644e50a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/intermediate/bg.jpg"
-dest_files=["res://.godot/imported/bg.jpg-57c833e706868ef76bcd597dec0d0a7a.ctex"]
+source_file="res://levels/tadpole/bg.jpg"
+dest_files=["res://.godot/imported/bg.jpg-bec8c4f12347f81f8e623895c644e50a.ctex"]
 
 [params]
 
