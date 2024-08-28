@@ -39,7 +39,7 @@ func save_created_level() -> void:
 	file.store_line(json);
 	
 func load_savegame(path: String) -> Dictionary:
-	Logger.log("Loading savegame from: " + path);
+	Logger.log("Loading " + path);
 	if not FileAccess.file_exists(path):
 		return {};
 	return read_JSON.get_dict(path);
@@ -49,7 +49,7 @@ func save_savegame() -> void:
 		return ;
 		
 	if !(DirAccess.dir_exists_absolute("user://savegames")):
-		Logger.warn("Savegames directory does not exist, creating...");
+		Logger.warn("user://savegames does not exist, creating...");
 		var dir: DirAccess = DirAccess.open("user://");
 		dir.make_dir("savegames");
 	var dict: Dictionary = level_info["savegame"];
@@ -57,7 +57,7 @@ func save_savegame() -> void:
 	var json: String = JSON.stringify(dict);
 	var file: FileAccess = FileAccess.open(level_info["path_savegame"], FileAccess.WRITE);
 	file.store_line(json);
-	Logger.info("Saved game to: " + level_info["path_savegame"]);
+	Logger.info("Saved " + level_info["path_savegame"]);
 
 func get_max_completed_level(difficulty: level_const.DIFFICULTY) -> int:
 	var cmp: int = get_max_level(difficulty);

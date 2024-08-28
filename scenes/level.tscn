@@ -640,14 +640,17 @@ grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="WinPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+unique_name_in_owner = true
 stream = ExtResource("14_kujnr")
 volume_db = -80.0
 
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+unique_name_in_owner = true
 stream = ExtResource("14_kowql")
 volume_db = -80.0
 
 [node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("20_svia1")
 volume_db = -80.0
 autoplay = true

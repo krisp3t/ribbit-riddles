@@ -9,21 +9,19 @@ const ERASER_INITIAL: Vector2 = Vector2(256, 56);
 const DROP_SHORTEST_DIST: int = 75;
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
-var is_muted: bool = false;
+@onready var is_muted: bool = false;
 var selected: Control = null;
 @onready var saved: bool = level_vars["level_info"]["all_levels"].has(level_vars.level_num)
-
-signal refresh;
-signal mute;
 
 func _initialize() -> void:
 	# Set up labels and textures
 	%LevelLabel.text = "Level: %d" % level_vars.level_num;
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
-	_on_mute_button_pressed();
-	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
-	$WinPlayer.volume_db = $JumpPlayer.volume_db;
+	_toggle_mute(is_muted);
+	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
+	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
+	%WinPlayer.volume_db = %JumpPlayer.volume_db;
 	# Min level boundary
 	if level_vars.level_num == level_vars.MAX_EXPERT + 1:
 		%PreviousLevelButton.disabled = true;
@@ -39,19 +37,20 @@ func _ready() -> void:
 
 func _on_previous_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.level_num - 1);
-	refresh.emit();
 	
 func _on_next_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.level_num + 1);
-	refresh.emit();
-	
 	
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
 
 func _on_mute_button_pressed() -> void:
+	_toggle_mute(!is_muted);
+
+func _toggle_mute(to_mute: bool) -> void:
 	var texture_path: String;
-	is_muted = !is_muted;
+	is_muted = to_mute;
+	config.save_value("level", "muted", to_mute);
 	if is_muted:
 		texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
 	else:
@@ -60,13 +59,7 @@ func _on_mute_button_pressed() -> void:
 	%MuteButton["theme_override_styles/hover"].texture = load(texture_path);
 	%MuteButton["theme_override_styles/pressed"].texture = load(texture_path);
 	%MuteButton["theme_override_styles/focus"].texture = load(texture_path);
-	for player in get_tree().get_nodes_in_group("AudioStreamPlayers"):
-		if (is_muted):
-			player.set_volume_db(-999.0);
-		else:
-			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
-	mute.emit(is_muted);
-	level_vars.muted = is_muted;
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), to_mute);
 
 func _on_playfield_jump() -> void:
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
