@@ -1,30 +1,30 @@
 extends Node2D;
-@onready var level_vars : LevelSystem = $/root/LevelSystem;
-@onready var config : ConfigSystem = $/root/ConfigSystem;
+@onready var level_vars: LevelSystem = $ / root / LevelSystem;
+@onready var config: ConfigSystem = $ / root / ConfigSystem;
 
-var rng : RandomNumberGenerator = RandomNumberGenerator.new();
-var is_muted : bool = false;
+var rng: RandomNumberGenerator = RandomNumberGenerator.new();
+var is_muted: bool = false;
 
 signal refresh;
 signal mute;
 
 func _initialize() -> void:
-	var info : Dictionary = level_vars["info"];
+	var info: Dictionary = level_vars["level_info"];
 	Logger.info("Loading level");
 	# TODO: add asserts
 	# Set up labels and textures
-	%LevelLabel.text = "Level: %d" % level_vars.current_level;
+	%LevelLabel.text = "Level: %d" % level_vars.level_num;
 	%Background.texture = level_vars.background;
-	if info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
+	if info["difficulty"] == level_const.DIFFICULTY.CUSTOM:
 		%Difficulty.visible = false;
 		%CreatedLevels.visible = true;
 		%NextLevelButton.disabled = false;
 		%FinishWarning.visible = false;
 	else:
 		%EditLevelButton.visible = false;
-		%DifficultyLabel.text = "Difficulty: %s" % info["difficulty_name"];	
-		%DifficultyProgressBar.texture = load(info["difficulty_progress_bar"]);
-		# Is level already solved?
+		%DifficultyLabel.text = "Difficulty: %s" % info["name"];
+		%DifficultyProgressBar.texture = load(info["path_progress_bar"]);
+		# If level is already solved, proceeding to next level is available
 		%FinishWarning.visible = !info["solved"];
 		%NextLevelButton.disabled = !info["solved"];
 	
@@ -36,14 +36,14 @@ func _initialize() -> void:
 	if info["solved"]:
 		%LevelSolved.texture = load("res://assets/buttons/4x/Asset 14@4x.png");
 	# Min level boundary
-	if level_vars.current_level == 1:
+	if level_vars.level_num == 1:
 		%PreviousLevelButton.disabled = true;
 	# Max level boundary
-	if level_vars.current_level == level_enum.MAX_EXPERT:
+	if level_vars.level_num == level_vars.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%FinishWarning.visible = false;
-	elif info["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
-		if level_vars.current_level == level_enum.MAX_EXPERT + info["difficulty_levels"].size():
+	elif info["difficulty"] == level_const.DIFFICULTY.CUSTOM:
+		if level_vars.level_num == info["all_levels"].size():
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
 
@@ -61,39 +61,43 @@ func _on_playfield_solved() -> void:
 	%UndoButton.disabled = true;
 	%FinishWarning.visible = false;
 	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 14@4x.png");
-	
-	if level_vars.current_level == level_enum.MAX_EXPERT:
+
+	if level_vars["level_info"]["difficulty"] == level_vars.DIFFICULTY.CUSTOM:
+		if level_vars.level_num >= max(level_vars["level_info"]["all_levels"].keys()):
+			%NextLevelButton.disabled = true;
+			%FinishWarning.visible = false;
+	elif level_vars.level_num >= level_vars.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%GameCompleteLabel.visible = true;
 		$Playfield.visible = false;
-	elif level_vars["info"]["difficulty"] == level_enum.DIFFICULTY.CUSTOM:
-		if level_vars.current_level == level_enum.MAX_EXPERT + level_vars["info"]["difficulty_levels"].size():
+	elif level_vars["level_info"]["difficulty"] == level_const.DIFFICULTY.CUSTOM:
+		if level_vars.level_num == level_vars.MAX_EXPERT + level_vars["level_info"]["all_levels"].size():
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
 	%Win.visible = true;
 	%Win.scale = Vector2(0, 0);
 	var tween = get_tree().create_tween();
-	var pos : Vector2 = %Win.position;
+	var pos: Vector2 = %Win.position;
 	%Win.position += %Win.size / 2;
 	tween.set_parallel(true);
 	tween.tween_property(%Win, "scale", Vector2(1, 1), 0.5);
 	tween.tween_property(%Win, "position", pos, 0.5);
 	level_vars.save_savegame();
-	level_vars["info"]["solved"] = true;
+	level_vars["level_info"]["solved"] = true;
 	
 func _on_previous_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.current_level - 1);
+	level_vars.initialize(level_vars.level_num - 1);
 	refresh.emit();
 	
 func _on_next_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.current_level + 1);
+	level_vars.initialize(level_vars.level_num + 1);
 	refresh.emit();
 	
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
 
 func _on_mute_button_pressed() -> void:
-	var texture_path : String;
+	var texture_path: String;
 	is_muted = !is_muted;
 	if is_muted:
 		texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
@@ -109,7 +113,7 @@ func _on_mute_button_pressed() -> void:
 		else:
 			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
 	mute.emit(is_muted);
-	level_vars.muted = is_muted;		
+	level_vars.muted = is_muted;
 
 func _on_playfield_jump() -> void:
 	%UndoButton.disabled = len(%Playfield.moves) == 0;

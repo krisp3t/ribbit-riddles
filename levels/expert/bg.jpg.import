@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5s7o56j5xwbd"
-path="res://.godot/imported/bg.jpg-2989383531d2341344a0dd875fb3eb8f.ctex"
+path="res://.godot/imported/bg.jpg-fd97b90927abe60e16db94f26a89ecd8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/helltoad/bg.jpg"
-dest_files=["res://.godot/imported/bg.jpg-2989383531d2341344a0dd875fb3eb8f.ctex"]
+source_file="res://levels/expert/bg.jpg"
+dest_files=["res://.godot/imported/bg.jpg-fd97b90927abe60e16db94f26a89ecd8.ctex"]
 
 [params]
 

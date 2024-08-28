@@ -1,36 +1,36 @@
 extends Node2D;
-@onready var level_vars : LevelSystem = $/root/LevelSystem;
-@onready var config : ConfigSystem = $/root/ConfigSystem;
+@onready var level_vars: LevelSystem = $ / root / LevelSystem;
+@onready var config: ConfigSystem = $ / root / ConfigSystem;
 
-const CURSOR_OFFSET : Vector2 = Vector2(-60, -55);
-const GREEN_INITIAL : Vector2 = Vector2(16, 40);
-const RED_INITIAL : Vector2 = Vector2(128, 40);
-const ERASER_INITIAL : Vector2 = Vector2(256, 56);
-const DROP_SHORTEST_DIST : int = 75;
+const CURSOR_OFFSET: Vector2 = Vector2(-60, -55);
+const GREEN_INITIAL: Vector2 = Vector2(16, 40);
+const RED_INITIAL: Vector2 = Vector2(128, 40);
+const ERASER_INITIAL: Vector2 = Vector2(256, 56);
+const DROP_SHORTEST_DIST: int = 75;
 
-var rng : RandomNumberGenerator = RandomNumberGenerator.new();
-var is_muted : bool = false;
-var selected : Control = null;
-@onready var saved : bool = level_vars["info"]["difficulty_levels"].has(level_vars.current_level)
+var rng: RandomNumberGenerator = RandomNumberGenerator.new();
+var is_muted: bool = false;
+var selected: Control = null;
+@onready var saved: bool = level_vars["level_info"]["all_levels"].has(level_vars.level_num)
 
 signal refresh;
 signal mute;
 
 func _initialize() -> void:
 	# Set up labels and textures
-	%LevelLabel.text = "Level: %d" % level_vars.current_level;
+	%LevelLabel.text = "Level: %d" % level_vars.level_num;
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_on_mute_button_pressed();
 	$JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	$WinPlayer.volume_db = $JumpPlayer.volume_db;
 	# Min level boundary
-	if level_vars.current_level == level_enum.MAX_EXPERT + 1:
+	if level_vars.level_num == level_vars.MAX_EXPERT + 1:
 		%PreviousLevelButton.disabled = true;
-	%SaveButton.text = "Save as Level %s" % level_vars.current_level;
+	%SaveButton.text = "Save as Level %s" % level_vars.level_num;
 	_check_valid_edit();
 	# Don't allow gaps (e.g. level 43 and 44 don't exist, want to edit 45)
-	if level_vars.current_level >= level_enum.MAX_EXPERT + level_vars["info"]["difficulty_levels"].size() + 1:
+	if level_vars.level_num >= level_vars.MAX_EXPERT + level_vars["level_info"]["all_levels"].size() + 1:
 		%NextLevelButton.disabled = !saved;
 	
 
@@ -38,11 +38,11 @@ func _ready() -> void:
 	_initialize();
 
 func _on_previous_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.current_level - 1);
+	level_vars.initialize(level_vars.level_num - 1);
 	refresh.emit();
 	
 func _on_next_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.current_level + 1);
+	level_vars.initialize(level_vars.level_num + 1);
 	refresh.emit();
 	
 	
@@ -50,7 +50,7 @@ func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
 
 func _on_mute_button_pressed() -> void:
-	var texture_path : String;
+	var texture_path: String;
 	is_muted = !is_muted;
 	if is_muted:
 		texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
@@ -66,7 +66,7 @@ func _on_mute_button_pressed() -> void:
 		else:
 			player.set_volume_db(audio_system.get_db(config.load_value("audio", "sfx", 100.0)));
 	mute.emit(is_muted);
-	level_vars.muted = is_muted;		
+	level_vars.muted = is_muted;
 
 func _on_playfield_jump() -> void:
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);
@@ -81,7 +81,7 @@ func _on_green_frog_gui_input(event: InputEvent) -> void:
 		if (selected != %GreenFrog):
 			selected = %GreenFrog;
 			selected.modulate = Color(1, 1, 1, 0.5);
-			return;
+			return ;
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			_on_item_drop(selected);
 			selected.modulate = Color(1, 1, 1, 1);
@@ -93,7 +93,7 @@ func _on_red_frog_gui_input(event: InputEvent) -> void:
 		if (selected != %RedFrog):
 			selected = %RedFrog;
 			selected.modulate = Color(1, 1, 1, 0.5);
-			return;
+			return ;
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			_on_item_drop(selected);
 			selected.modulate = Color(1, 1, 1, 1);
@@ -104,18 +104,18 @@ func _on_eraser_gui_input(event: InputEvent) -> void:
 		if (selected != %Eraser):
 			selected = %Eraser;
 			selected.modulate = Color(1, 1, 1, 0.5);
-			return;
+			return ;
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			_on_item_drop(selected);
 			selected.modulate = Color(1, 1, 1, 1);
 			selected = null;
 			
 func _check_valid_edit() -> void:
-	var number_green : int = 0;
-	var number_red : int = 0;
-	var number_empty : int = 0;
-	for y : Array in level_vars["info"]["level_layout"]:
-		for val : lilypad_enum.STATUS in y:
+	var number_green: int = 0;
+	var number_red: int = 0;
+	var number_empty: int = 0;
+	for y: Array in level_vars["level_info"]["layout"]:
+		for val: lilypad_enum.STATUS in y:
 			match val:
 				lilypad_enum.STATUS.RED:
 					number_red += 1;
@@ -123,27 +123,27 @@ func _check_valid_edit() -> void:
 					number_empty += 1;
 				lilypad_enum.STATUS.GREEN:
 					number_green += 1;
-	var red_valid : bool = number_red == 1;
-	var empty_valid : bool = number_empty >= 1;
-	var green_valid : bool = number_green >= 1;
+	var red_valid: bool = number_red == 1;
+	var empty_valid: bool = number_empty >= 1;
+	var green_valid: bool = number_green >= 1;
 	%SaveButton.disabled = !(red_valid and empty_valid and green_valid);
 	%SaveTestButton.disabled = !(red_valid and empty_valid and green_valid);
 	
 func _on_item_drop(item: Control) -> void:
-	for lilypad : Lilypad in get_tree().get_nodes_in_group("lilypads"):
-		var item_pos : Vector2 = item.global_position - CURSOR_OFFSET;
-		var distance : float = item_pos.distance_to(lilypad.global_position);
+	for lilypad: Lilypad in get_tree().get_nodes_in_group("lilypads"):
+		var item_pos: Vector2 = item.global_position - CURSOR_OFFSET;
+		var distance: float = item_pos.distance_to(lilypad.global_position);
 		if distance >= DROP_SHORTEST_DIST:
-			continue;
+			continue ;
 		
-		var coords : Vector2i = lilypad.coord;
-		var ix : Vector2i = level_vars.get_lilypad_array_ix(lilypad.coord);
-		var status : lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name);
+		var coords: Vector2i = lilypad.coord;
+		var ix: Vector2i = level_vars.get_lilypad_array_ix(lilypad.coord);
+		var status: lilypad_enum.STATUS = lilypad_enum.node_to_status(item.name);
 		
 		if lilypad.attached_frog != null:
 			lilypad.attached_frog.queue_free();
 		
-		level_vars.update_level_layout(coords, status);
+		level_vars.update_layout(coords, status);
 		$Playfield.initialize_lilypad(ix, lilypad);
 		_check_valid_edit();
 

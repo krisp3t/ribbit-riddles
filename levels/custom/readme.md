@@ -13,7 +13,7 @@ It is composed of:
 - 2 times rows with 2 lilypads (indexes: 1, 3)
 	
 ## Frog/lilypad values
-Are defined in `level_enum.gd`.
+Are defined in `level_const.gd`.
 0 - empty lilypad
 1 - green frog (have to be jumped over to solve level)
 2 - red frog (has to remain at the end)
