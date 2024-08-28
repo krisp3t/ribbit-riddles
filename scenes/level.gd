@@ -5,7 +5,6 @@ extends Node2D;
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
 var is_muted: bool = false;
 
-signal refresh;
 signal mute;
 
 func _initialize() -> void:
@@ -63,7 +62,7 @@ func _on_playfield_solved() -> void:
 	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 14@4x.png");
 
 	if level_vars["level_info"]["difficulty"] == level_const.DIFFICULTY.CUSTOM:
-		if level_vars.level_num >= max(level_vars["level_info"]["all_levels"].keys()):
+		if level_vars.level_num >= int(level_vars["level_info"]["all_levels"].keys().max()):
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
 	elif level_vars.level_num >= level_vars.MAX_EXPERT:
@@ -87,12 +86,12 @@ func _on_playfield_solved() -> void:
 	
 func _on_previous_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.level_num - 1);
-	refresh.emit();
+	get_tree().reload_current_scene();
 	
 func _on_next_level_button_pressed() -> void:
 	level_vars.initialize(level_vars.level_num + 1);
-	refresh.emit();
-	
+	get_tree().reload_current_scene();
+
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
 
