@@ -3,7 +3,6 @@ extends Node2D;
 @onready var config: ConfigSystem = $ / root / ConfigSystem;
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
-@onready var is_muted: bool = config.load_value("level", "muted", false);
 
 signal refresh;
 
@@ -42,7 +41,6 @@ func _initialize() -> void:
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
 	# Audio system
-	_toggle_mute(is_muted);
 	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	%WinPlayer.volume_db = %JumpPlayer.volume_db;
 
@@ -95,23 +93,6 @@ func _on_menu_button_pressed() -> void:
 
 func _on_restart_level_button_pressed() -> void:
 	_change_level(level_vars.level_num);
-
-func _on_mute_button_pressed() -> void:
-	_toggle_mute(!is_muted);
-
-func _toggle_mute(to_mute: bool) -> void:
-	var texture_path: String;
-	is_muted = to_mute;
-	config.save_value("level", "muted", to_mute);
-	if is_muted:
-		texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
-	else:
-		texture_path = "res://assets/buttons/4x/Asset 12@4x.png";
-	%MuteButton["theme_override_styles/normal"].texture = load(texture_path);
-	%MuteButton["theme_override_styles/hover"].texture = load(texture_path);
-	%MuteButton["theme_override_styles/pressed"].texture = load(texture_path);
-	%MuteButton["theme_override_styles/focus"].texture = load(texture_path);
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), to_mute);
 	
 func _on_playfield_jump() -> void:
 	%UndoButton.disabled = len(%Playfield.moves) == 0;

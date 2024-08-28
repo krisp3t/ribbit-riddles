@@ -13,7 +13,7 @@ func _ready() -> void:
 		config.set_value("audio", "sfx", 100);
 		config.set_value("tutorial", "level", true);
 		config.set_value("tutorial", "editor", true);
-		config.set_value("level", "muted", false);
+		config.set_value("audio", "muted", false);
 		config.save(CONFIG_PATH);
 	else:
 		Logger.info(CONFIG_PATH + " successfully loaded!\n" + config.encode_to_text());

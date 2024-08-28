@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1w1p6c305l6w"]
+
+[ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="1_qq0m5"]
+[ext_resource type="Script" path="res://scenes/sidebars/mute_button.gd" id="2_yr4b6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_033ou"]
+texture = ExtResource("1_qq0m5")
+modulate_color = Color(1, 1, 1, 0.439216)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fxw67"]
+texture = ExtResource("1_qq0m5")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2ybn"]
+texture = ExtResource("1_qq0m5")
+modulate_color = Color(1, 1, 1, 0.756863)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea1sm"]
+texture = ExtResource("1_qq0m5")
+
+[node name="MuteButton" type="Button"]
+offset_right = 128.0
+offset_bottom = 127.0
+theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
+theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
+script = ExtResource("2_yr4b6")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

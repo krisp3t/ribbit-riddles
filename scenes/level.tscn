@@ -1,10 +1,10 @@
-[gd_scene load_steps=48 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=44 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_aluce"]
 [ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://assets/buttons/4x/Asset 6@4x.png" id="3_bak26"]
 [ext_resource type="Texture2D" uid="uid://b24jo2j46xtpk" path="res://assets/buttons/4x/Asset 7@4x.png" id="3_wj4g1"]
-[ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="4_x8enm"]
+[ext_resource type="PackedScene" uid="uid://d1w1p6c305l6w" path="res://scenes/sidebars/mute_button.tscn" id="4_itofy"]
 [ext_resource type="Texture2D" uid="uid://btia1q1jl7ui" path="res://assets/buttons/4x/Asset 24@4x.png" id="5_51sw0"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="6_3m6x0"]
 [ext_resource type="Texture2D" uid="uid://crqdt1h8pf7pw" path="res://assets/buttons/4x/Asset 7-b@4x.png" id="6_l4bcf"]
@@ -33,21 +33,6 @@ modulate_color = Color(1, 1, 1, 0.756863)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kuvsq"]
 texture = ExtResource("3_bak26")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_033ou"]
-texture = ExtResource("4_x8enm")
-modulate_color = Color(1, 1, 1, 0.439216)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fxw67"]
-texture = ExtResource("4_x8enm")
-modulate_color = Color(1, 1, 1, 0.756863)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s2ybn"]
-texture = ExtResource("4_x8enm")
-modulate_color = Color(1, 1, 1, 0.756863)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea1sm"]
-texture = ExtResource("4_x8enm")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sqk2d"]
 
@@ -168,16 +153,12 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_gfxrr")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_xksdq")
 theme_override_styles/normal = SubResource("StyleBoxTexture_kuvsq")
 
-[node name="MuteButton" type="Button" parent="UI/CanvasLayer"]
+[node name="MuteButton" parent="UI/CanvasLayer" instance=ExtResource("4_itofy")]
 unique_name_in_owner = true
-offset_left = 208.0
-offset_top = 40.0
-offset_right = 336.0
-offset_bottom = 167.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_033ou")
-theme_override_styles/hover = SubResource("StyleBoxTexture_fxw67")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_s2ybn")
-theme_override_styles/normal = SubResource("StyleBoxTexture_ea1sm")
+offset_left = 233.0
+offset_top = 38.0
+offset_right = 361.0
+offset_bottom = 165.0
 
 [node name="UndoButton" type="Button" parent="UI/CanvasLayer"]
 unique_name_in_owner = true
@@ -663,7 +644,6 @@ stream = ExtResource("14_kowql")
 volume_db = -80.0
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/UndoButton" to="." method="_on_undo_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/PreviousLevelButton" to="." method="_on_previous_level_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/RestartLevelButton" to="." method="_on_restart_level_button_pressed"]

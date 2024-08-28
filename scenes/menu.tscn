@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dpa62fnjg4pxu"]
+[gd_scene load_steps=17 format=3 uid="uid://dpa62fnjg4pxu"]
 
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="1_v3ef7"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_gxpg1"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://ca184cu7ajjb" path="res://assets/audio/main_menu.mp3" id="7_efx4i"]
 [ext_resource type="PackedScene" uid="uid://by0eh4smd8446" path="res://scenes/sidebars/options.tscn" id="8_wap4e"]
 [ext_resource type="PackedScene" uid="uid://cr5dg02h1qg23" path="res://scenes/sidebars/credits.tscn" id="9_bl5yy"]
+[ext_resource type="PackedScene" uid="uid://d1w1p6c305l6w" path="res://scenes/sidebars/mute_button.tscn" id="11_gj1la"]
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ajuxe"]
 gradient = ExtResource("5_xa7ve")
@@ -237,6 +238,13 @@ unique_name_in_owner = true
 stream = ExtResource("7_efx4i")
 volume_db = -80.0
 autoplay = true
+
+[node name="MuteButton" parent="." instance=ExtResource("11_gj1la")]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 40.0
+offset_right = 187.0
+offset_bottom = 167.0
 
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ButtonContainer/MapEditor" to="." method="_on_map_editor_pressed"]
