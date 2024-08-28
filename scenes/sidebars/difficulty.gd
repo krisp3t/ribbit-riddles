@@ -4,7 +4,7 @@ extends Control
 
 func _play() -> void:
 	if (!config.load_value('tutorial', 'level', true)):
-		get_tree().change_scene_to_file("res://scenes/level.tscn");
+		get_tree().change_scene_to_file("res://scenes/main.tscn");
 	else:
 		get_tree().change_scene_to_file("res://scenes/tutorial_level.tscn");
 	

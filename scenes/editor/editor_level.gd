@@ -19,7 +19,6 @@ func _initialize() -> void:
 	# Set up muted / unmuted audio players
 	is_muted = !level_vars.muted;
 	_toggle_mute(is_muted);
-	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
 	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	%WinPlayer.volume_db = %JumpPlayer.volume_db;
 	# Min level boundary

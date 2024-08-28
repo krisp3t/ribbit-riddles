@@ -1,8 +1,8 @@
 extends Control
 
-@onready var level : LevelSystem = $/root/LevelSystem;
-@onready var config : Config = $/root/ConfigSystem;
-var step : int = 1;
+@onready var level: LevelSystem = $ / root / LevelSystem;
+@onready var config: Config = $ / root / ConfigSystem;
+var step: int = 1;
 
 func _ready() -> void:
 	step = 1;
@@ -46,7 +46,7 @@ func _update_step() -> void:
 		_:
 			config.save_value('tutorial', 'level', false);
 			level.initialize(1);
-			get_tree().change_scene_to_file("res://scenes/level.tscn");
+			get_tree().change_scene_to_file("res://scenes/main.tscn");
 
 func _on_next_step_button_pressed() -> void:
 	step += 1;

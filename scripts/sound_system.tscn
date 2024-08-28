@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://vnn3o2582gpy"]
+
+[ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="1_bwpmc"]
+[ext_resource type="Script" path="res://scripts/sound_system.gd" id="1_yb1bt"]
+[ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="2_ucidy"]
+[ext_resource type="AudioStream" uid="uid://c054yerkblx7m" path="res://assets/audio/soundtrack.mp3" id="3_n60ua"]
+[ext_resource type="AudioStream" uid="uid://ca184cu7ajjb" path="res://assets/audio/main_menu.mp3" id="5_6cek3"]
+
+[node name="SoundSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yb1bt")
+
+[node name="WinPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+unique_name_in_owner = true
+stream = ExtResource("1_bwpmc")
+volume_db = -80.0
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="." groups=["AudioStreamPlayers"]]
+unique_name_in_owner = true
+stream = ExtResource("2_ucidy")
+volume_db = -80.0
+
+[node name="LevelSoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_n60ua")
+volume_db = -80.0
+autoplay = true
+
+[node name="MenuSoundtrackPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_6cek3")
+volume_db = -80.0
+autoplay = true

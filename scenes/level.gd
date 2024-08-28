@@ -5,6 +5,8 @@ extends Node2D;
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
 @onready var is_muted: bool = config.load_value("level", "muted", false);
 
+signal refresh;
+
 func _initialize() -> void:
 	var info: Dictionary = level_vars["level_info"];
 	Logger.info("Loading level %d" % level_vars.level_num);
@@ -26,7 +28,6 @@ func _initialize() -> void:
 		%NextLevelButton.disabled = !info["solved"];
 	
 	_toggle_mute(is_muted);
-	%SoundtrackPlayer.volume_db = audio_system.get_db(config.load_value("audio", "bg", 100.0));
 	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	%WinPlayer.volume_db = %JumpPlayer.volume_db;
 	if info["solved"]:
@@ -45,9 +46,6 @@ func _initialize() -> void:
 
 func _ready() -> void:
 	_initialize();
-
-func _on_restart_level_button_pressed() -> void:
-	get_tree().reload_current_scene();
 	
 func _on_playfield_solved() -> void:
 	%WinPlayer.play();
@@ -78,17 +76,22 @@ func _on_playfield_solved() -> void:
 	tween.tween_property(%Win, "position", pos, 0.5);
 	level_vars.save_savegame();
 	level_vars["level_info"]["solved"] = true;
-	
+
+func _change_level(level: int) -> void:
+	level_vars.initialize(level);
+	refresh.emit();
+
 func _on_previous_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.level_num - 1);
-	get_tree().reload_current_scene();
-	
+	_change_level(level_vars.level_num - 1);
+
 func _on_next_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.level_num + 1);
-	get_tree().reload_current_scene();
+	_change_level(level_vars.level_num + 1);
 
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
+
+func _on_restart_level_button_pressed() -> void:
+	_change_level(level_vars.level_num);
 
 func _on_mute_button_pressed() -> void:
 	_toggle_mute(!is_muted);

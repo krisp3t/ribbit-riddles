@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cp230rwt64c2n"]
+[gd_scene load_steps=48 format=3 uid="uid://cp230rwt64c2n"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_wp4g5"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="2_aluce"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://scenes/playfield.gd" id="12_m65xv"]
 [ext_resource type="AudioStream" uid="uid://cyw5f8mfxftmn" path="res://assets/audio/jump.mp3" id="14_kowql"]
 [ext_resource type="AudioStream" uid="uid://bbliconnul4in" path="res://assets/audio/win.mp3" id="14_kujnr"]
-[ext_resource type="AudioStream" uid="uid://c054yerkblx7m" path="res://assets/audio/soundtrack.mp3" id="20_svia1"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7t47x"]
 texture = ExtResource("3_bak26")
@@ -648,12 +647,6 @@ volume_db = -80.0
 unique_name_in_owner = true
 stream = ExtResource("14_kowql")
 volume_db = -80.0
-
-[node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
-unique_name_in_owner = true
-stream = ExtResource("20_svia1")
-volume_db = -80.0
-autoplay = true
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
