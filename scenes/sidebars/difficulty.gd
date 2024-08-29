@@ -16,11 +16,11 @@ func _ready() -> void:
 
 	%BeginnerLabel.text = "%d / %d solved" % [beginner_completed.x, beginner_completed.y];
 	%IntermediateButton.disabled = !level_vars.is_completed_difficulty(level_const.DIFFICULTY.EASY);
-	%IntermediateLabel.text = "%d / %d solved" % [intermediate_completed.x, intermediate_completed.y] if intermediate_completed.x == intermediate_completed.y else "Finish Frogspawn to unlock";
+	%IntermediateLabel.text = "%d / %d solved" % [intermediate_completed.x, intermediate_completed.y] if !%IntermediateButton.disabled else "Finish Frogspawn to unlock";
 	%HardButton.disabled = !level_vars.is_completed_difficulty(level_const.DIFFICULTY.INTERMEDIATE);
-	%HardLabel.text = "%d / %d solved" % [hard_completed.x, hard_completed.y] if hard_completed.x == hard_completed.y else "Finish Tadpole to unlock";
+	%HardLabel.text = "%d / %d solved" % [hard_completed.x, hard_completed.y] if !%HardButton.disabled else "Finish Tadpole to unlock";
 	%ExpertButton.disabled = !level_vars.is_completed_difficulty(level_const.DIFFICULTY.HARD);
-	%ExpertLabel.text = "%d / %d solved" % [expert_completed.x, expert_completed.y] if expert_completed.x == expert_completed.y else "Finish Froglet to unlock";
+	%ExpertLabel.text = "%d / %d solved" % [expert_completed.x, expert_completed.y] if !%ExpertButton.disabled else "Finish Froglet to unlock";
 	%CustomButton.disabled = !level_vars.is_completed_difficulty(level_const.DIFFICULTY.CUSTOM);
 
 func _on_beginner_button_pressed() -> void:

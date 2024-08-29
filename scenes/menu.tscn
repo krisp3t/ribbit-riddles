@@ -228,10 +228,6 @@ offset_right = -2.0
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_left = 16.0
-offset_top = 128.0
-offset_right = -16.0
-script = null
 
 [node name="SoundtrackPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
