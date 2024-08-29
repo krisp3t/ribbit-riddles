@@ -36,10 +36,12 @@ func _initialize() -> void:
 	if level_vars.level_num == level_vars.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%FinishWarning.visible = false;
-	elif info["difficulty"] == level_const.DIFFICULTY.CUSTOM:
-		if level_vars.level_num == info["all_levels"].size():
+	if level_vars["level_info"]["difficulty"] == level_const.DIFFICULTY.CUSTOM:
+		if level_vars.level_num >= int(level_vars["level_info"]["all_levels"].keys().max()):
 			%NextLevelButton.disabled = true;
 			%FinishWarning.visible = false;
+		if level_vars.level_num == level_vars.MAX_EXPERT + 1:
+			%PreviousLevelButton.disabled = true;
 	# Audio system
 	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	%WinPlayer.volume_db = %JumpPlayer.volume_db;
@@ -54,19 +56,10 @@ func _on_playfield_solved() -> void:
 	%UndoButton.disabled = true;
 	%FinishWarning.visible = false;
 	%LevelSolved.texture = preload("res://assets/buttons/4x/Asset 14@4x.png");
-
-	if level_vars["level_info"]["difficulty"] == level_const.DIFFICULTY.CUSTOM:
-		if level_vars.level_num >= int(level_vars["level_info"]["all_levels"].keys().max()):
-			%NextLevelButton.disabled = true;
-			%FinishWarning.visible = false;
-	elif level_vars.level_num >= level_vars.MAX_EXPERT:
+	if level_vars.level_num >= level_vars.MAX_EXPERT:
 		%NextLevelButton.disabled = true;
 		%GameCompleteLabel.visible = true;
 		$Playfield.visible = false;
-	elif level_vars["level_info"]["difficulty"] == level_const.DIFFICULTY.CUSTOM:
-		if level_vars.level_num == level_vars.MAX_EXPERT + level_vars["level_info"]["all_levels"].size():
-			%NextLevelButton.disabled = true;
-			%FinishWarning.visible = false;
 	%Win.visible = true;
 	%Win.scale = Vector2(0, 0);
 	var tween = get_tree().create_tween();

@@ -62,9 +62,12 @@ func save_savegame() -> void:
 func get_max_completed_level(difficulty: level_const.DIFFICULTY) -> int:
 	var cmp: int = get_max_level(difficulty);
 	var info: Dictionary = get_level_info(cmp);
+	if (difficulty == level_const.DIFFICULTY.CUSTOM):
+		return int(info["all_levels"].keys().min());
+	# First level in difficulty
 	if (info["savegame"].size() == 0):
 		return cmp - info["all_levels"].size() + 1;
-	# Last level
+	# Last level in difficulty
 	if (info["savegame"].size() == info["all_levels"].size()):
 		return int(info["savegame"].keys().max());
 	return int(info["savegame"].keys().max()) + 1;
@@ -86,7 +89,7 @@ func get_level_info(level: int) -> Dictionary:
 		dict["path_bg"] = dict["path"] + "bg.jpg";
 	if (!dict.has("path_progress_bar")):
 		dict["path_progress_bar"] = dict["path"] + "progress_bar.png";
-	dict["all_levels"] = read_JSON.get_dict(dict["path"] + "/layout.json");
+	dict["all_levels"] = read_JSON.get_dict(dict["path_layout"]);
 	if dict["all_levels"].has(str(level)):
 		dict["layout"] = dict["all_levels"][str(level)];
 	else:

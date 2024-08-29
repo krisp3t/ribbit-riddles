@@ -9,16 +9,13 @@ const ERASER_INITIAL: Vector2 = Vector2(256, 56);
 const DROP_SHORTEST_DIST: int = 75;
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new();
-@onready var is_muted: bool = false;
 var selected: Control = null;
 @onready var saved: bool = level_vars["level_info"]["all_levels"].has(level_vars.level_num)
 
 func _initialize() -> void:
-	# Set up labels and textures
+	var info: Dictionary = level_vars["level_info"];
+	Logger.info("Loading level %d" % level_vars.level_num);
 	%LevelLabel.text = "Level: %d" % level_vars.level_num;
-	# Set up muted / unmuted audio players
-	is_muted = !level_vars.muted;
-	_toggle_mute(is_muted);
 	%JumpPlayer.volume_db = audio_system.get_db(config.load_value("audio", "sfx", 100.0));
 	%WinPlayer.volume_db = %JumpPlayer.volume_db;
 	# Min level boundary
@@ -34,31 +31,18 @@ func _initialize() -> void:
 func _ready() -> void:
 	_initialize();
 
+func _change_level(level: int) -> void:
+	level_vars.initialize(level);
+	get_tree().reload_current_scene();
+
 func _on_previous_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.level_num - 1);
-	
+	_change_level(level_vars.level_num - 1);
+
 func _on_next_level_button_pressed() -> void:
-	level_vars.initialize(level_vars.level_num + 1);
+	_change_level(level_vars.level_num + 1);
 	
 func _on_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn");
-
-func _on_mute_button_pressed() -> void:
-	_toggle_mute(!is_muted);
-
-func _toggle_mute(to_mute: bool) -> void:
-	var texture_path: String;
-	is_muted = to_mute;
-	config.save_value("level", "muted", to_mute);
-	if is_muted:
-		texture_path = "res://assets/buttons/4x/Asset 11@4x.png";
-	else:
-		texture_path = "res://assets/buttons/4x/Asset 12@4x.png";
-	%MuteButton["theme_override_styles/normal"].texture = load(texture_path);
-	%MuteButton["theme_override_styles/hover"].texture = load(texture_path);
-	%MuteButton["theme_override_styles/pressed"].texture = load(texture_path);
-	%MuteButton["theme_override_styles/focus"].texture = load(texture_path);
-	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), to_mute);
 
 func _on_playfield_jump() -> void:
 	$JumpPlayer.pitch_scale = rng.randf_range(0.7, 1.3);

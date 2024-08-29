@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dr3glkwbuhxfe"]
+[gd_scene load_steps=23 format=3 uid="uid://dr3glkwbuhxfe"]
 
 [ext_resource type="AudioStream" uid="uid://c054yerkblx7m" path="res://assets/audio/soundtrack.mp3" id="1_0homl"]
 [ext_resource type="Script" path="res://scenes/editor/editor_level.gd" id="1_nwkjb"]
 [ext_resource type="Texture2D" uid="uid://be2h7fmeirq5h" path="res://assets/bg_editor.jpg" id="2_g0bho"]
 [ext_resource type="Texture2D" uid="uid://ci2sr2uwwom1a" path="res://assets/logo_main_menu.png" id="3_b314e"]
 [ext_resource type="Texture2D" uid="uid://bgydtidxq1hii" path="res://assets/buttons/4x/Asset 6@4x.png" id="4_yet16"]
-[ext_resource type="Texture2D" uid="uid://cwmc0mp346k2n" path="res://assets/buttons/4x/Asset 12@4x.png" id="5_flaeb"]
+[ext_resource type="PackedScene" uid="uid://d1w1p6c305l6w" path="res://scenes/sidebars/mute_button.tscn" id="5_67540"]
 [ext_resource type="Gradient" uid="uid://spqtv68kdlkx" path="res://themes/gradient.tres" id="6_37b5p"]
 [ext_resource type="Theme" uid="uid://c3n7aiaxcqhoo" path="res://themes/theme.tres" id="7_lmplr"]
 [ext_resource type="PackedScene" uid="uid://canje33764ww7" path="res://scenes/created_levels.tscn" id="8_tg5l5"]
@@ -30,21 +30,6 @@ modulate_color = Color(1, 1, 1, 0.756863)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tqqi2"]
 texture = ExtResource("4_yet16")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6c7kr"]
-texture = ExtResource("5_flaeb")
-modulate_color = Color(1, 1, 1, 0.439216)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7nx4k"]
-texture = ExtResource("5_flaeb")
-modulate_color = Color(1, 1, 1, 0.756863)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6qlwg"]
-texture = ExtResource("5_flaeb")
-modulate_color = Color(1, 1, 1, 0.756863)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y0rul"]
-texture = ExtResource("5_flaeb")
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_50n33"]
 gradient = ExtResource("6_37b5p")
@@ -102,16 +87,11 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_0nnl1")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_an1rx")
 theme_override_styles/normal = SubResource("StyleBoxTexture_tqqi2")
 
-[node name="MuteButton" type="Button" parent="UI/CanvasLayer"]
-unique_name_in_owner = true
-offset_left = 208.0
-offset_top = 40.0
-offset_right = 336.0
-offset_bottom = 167.0
-theme_override_styles/focus = SubResource("StyleBoxTexture_6c7kr")
-theme_override_styles/hover = SubResource("StyleBoxTexture_7nx4k")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_6qlwg")
-theme_override_styles/normal = SubResource("StyleBoxTexture_y0rul")
+[node name="MuteButton" parent="UI/CanvasLayer" instance=ExtResource("5_67540")]
+offset_left = 231.0
+offset_top = 39.0
+offset_right = 359.0
+offset_bottom = 166.0
 
 [node name="LevelContainerTexture" type="TextureRect" parent="UI/CanvasLayer"]
 anchors_preset = 5
@@ -457,7 +437,6 @@ stream = ExtResource("16_0dt76")
 volume_db = -80.0
 
 [connection signal="pressed" from="UI/CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="UI/CanvasLayer/MuteButton" to="." method="_on_mute_button_pressed"]
 [connection signal="gui_input" from="UI/CanvasLayer/Instructions/GreenFrog" to="." method="_on_green_frog_gui_input"]
 [connection signal="gui_input" from="UI/CanvasLayer/Instructions/RedFrog" to="." method="_on_red_frog_gui_input"]
 [connection signal="gui_input" from="UI/CanvasLayer/Instructions/Eraser" to="." method="_on_eraser_gui_input"]
