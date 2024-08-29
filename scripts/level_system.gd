@@ -64,6 +64,9 @@ func get_max_completed_level(difficulty: level_const.DIFFICULTY) -> int:
 	var info: Dictionary = get_level_info(cmp);
 	if (info["savegame"].size() == 0):
 		return cmp - info["all_levels"].size() + 1;
+	# Last level
+	if (info["savegame"].size() == info["all_levels"].size()):
+		return int(info["savegame"].keys().max());
 	return int(info["savegame"].keys().max()) + 1;
 
 func get_level_info(level: int) -> Dictionary:
